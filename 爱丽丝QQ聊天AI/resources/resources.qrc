@@ -1,0 +1,69 @@
+<RCC>
+  <qresource prefix="标题栏">
+    <file>标题栏/窗口置顶.png</file>
+    <file>标题栏/窗口恢复.png</file>
+    <file>标题栏/关闭.png</file>
+    <file>标题栏/深度隐藏.png</file>
+    <file>标题栏/托盘隐藏.png</file>
+    <file>标题栏/最大化.png</file>
+    <file>标题栏/最小化.png</file>
+  </qresource>
+  <qresource prefix="控件">
+    <file>控件/qtmaterialtoggle.h</file>
+  </qresource>
+  <qresource prefix="选项卡图标">
+    <file>选项卡图标/热键.png</file>
+    <file>选项卡图标/问题链接.png</file>
+    <file>选项卡图标/用户设置.png</file>
+    <file>选项卡图标/主页.png</file>
+    <file>选项卡图标/状态监控.png</file>
+  </qresource>
+  <qresource prefix="Logo">
+    <file>Logo/16.ico</file>
+    <file>Logo/32.ico</file>
+    <file>Logo/48.ico</file>
+    <file>Logo/64.ico</file>
+    <file>Logo/128.ico</file>
+    <file>Logo/256.ico</file>
+    <file>Logo/512.ico</file>
+    <file>Logo/爱丽丝.png</file>
+  </qresource>
+  <qresource prefix="背景">
+    <file>背景/爱丽丝抱腿.png</file>
+    <file>背景/爱丽丝的笑容.jpg</file>
+    <file>背景/充能.jpg</file>
+    <file>背景/爱丽丝趴桌子.jpg</file>
+    <file>背景/爱丽丝和大家.jpg</file>
+    <file>背景/动态视频.mp4</file>
+    <file>背景/光啊.png</file>
+    <file>背景/光之剑.png</file>
+  </qresource>
+  <qresource prefix="爱丽丝表情包">
+    <file>爱丽丝表情包/非女仆/1.png</file>
+    <file>爱丽丝表情包/非女仆/2.png</file>
+    <file>爱丽丝表情包/非女仆/3.png</file>
+    <file>爱丽丝表情包/非女仆/4.png</file>
+    <file>爱丽丝表情包/非女仆/5.png</file>
+    <file>爱丽丝表情包/非女仆/6.png</file>
+    <file>爱丽丝表情包/非女仆/7.png</file>
+    <file>爱丽丝表情包/非女仆/8.png</file>
+    <file>爱丽丝表情包/非女仆/9.png</file>
+    <file>爱丽丝表情包/非女仆/10.png</file>
+    <file>爱丽丝表情包/非女仆/11.png</file>
+    <file>爱丽丝表情包/非女仆/12.png</file>
+    <file>爱丽丝表情包/非女仆/13.png</file>
+    <file>爱丽丝表情包/非女仆/14.png</file>
+    <file>爱丽丝表情包/非女仆/15.png</file>
+    <file>爱丽丝表情包/女仆/1.png</file>
+    <file>爱丽丝表情包/女仆/2.png</file>
+    <file>爱丽丝表情包/女仆/3.png</file>
+    <file>爱丽丝表情包/女仆/4.png</file>
+    <file>爱丽丝表情包/女仆/5.png</file>
+    <file>爱丽丝表情包/女仆/6.png</file>
+    <file>爱丽丝表情包/女仆/7.png</file>
+    <file>爱丽丝表情包/女仆/8.png</file>
+    <file>爱丽丝表情包/女仆/9.png</file>
+    <file>爱丽丝表情包/女仆/10.png</file>
+    <file>爱丽丝表情包/女仆/11.png</file>
+  </qresource>
+</RCC>
