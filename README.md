@@ -7,28 +7,69 @@
 </div>
 
 <div align="center">
-  <img alt="" src="https://img.shields.io/badge/platform-Windows11-blue?style=flat-square&color=00ffff" />
+  <a href=https://www.microsoft.com/zh-cn/software-download/windows11>
+    <img alt="使用平台" src="https://img.shields.io/badge/platform-Windows11-blue?style=flat-square&color=00ffff"/>
+  </a>
+  <a href=https://github.com/yandifei/ArisuQQChatAI/releases/download/v1.0.0-beta/ArisuQQChatAI.7z>
+    <img alt="最新版徽章" src="https://img.shields.io/github/release/yandifei/ArisuQQChatAI?include_prereleases&style=flat-square&color=4141dc"/>
+  </a>
+  <a href=https://github.com/yandifei/ArisuQQChatAI/releases>
+    <img alt="Total Downloads" src="https://img.shields.io/github/downloads/yandifei/ArisuQQChatAI/total?style=flat-square&color=00ffff" />
+  </a>
 </div>
+
+## 功能介绍
+
+- **AI自动回复**：
+  - 使用deepseek的api自动回复
+  - 结合指令系统对回答进行优化
+  - 可自定义人设和能记录上下文
+  - 其余功能可以看：[DeepseekConversationEngine](https://github.com/yandifei/DeepseekConversationEngine)
+- **自定回复策略**：
+  - 关键词自动回复
+  - 过滤回复指定发送者
+  - 指定发送者发出消息就进行回复
+  - 指定发送者及特定语句自动回复
+- **权限系统**：
+  - 需要承认的是权限系统存在设计缺陷：权限可被复制。(有解决方案，但价值和意义太低了)
+  - 通过权限分级可以避免某些“危险指令”导致QQ封号(如：从禁漫天堂下本子发到Q群中)
+- **指令系统**：
+  - AI无法完成的操作(调整AI的回复策略)
+  - 后续有功能再加(文件处理、电脑状态等)
+- **异常处理与日志**：
+  - 强大的纠错机制(全局异常捕获和线程池自动重启线程)
+  - 消息日志记录(撤回前监测到的消息会被记录到日志中)
+
+## 界面示意
 
 <div style="display: flex; justify-content: center; gap: 10px; margin: 20px auto;">
   <img src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/bf40dda6d3300abe92f4e03f103e936f9738ee97/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E4%B8%BB%E9%A1%B5.png" 
-       alt="热键" 
-       style="width: 400px; height: auto;"/>
+       alt="热键"
+       style="width: 300px; height: auto;"/>
+  <img src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%8A%B6%E6%80%81%E7%9B%91%E6%B5%8B.png" 
+      alt="绑定" 
+      style="width: 300px; height: auto;"/>
   <img src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%BB%91%E5%AE%9A.png" 
        alt="绑定" 
-       style="width: 400px; height: auto;"/>
+       style="width: 300px; height: auto;"/>
 </div>
 
-核心功能已完善，额外功能和文档正在完善中......
-***
+此软件的根本目的是打造接入DeepSeek的API接口实现“满分”🧠的问题解答和为用户提供《情绪价值💖》！
 
-![主页](https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/bf40dda6d3300abe92f4e03f103e936f9738ee97/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E4%B8%BB%E9%A1%B5.png)
+## 免责声明
+- ⚠️本软件通过 DeepSeek API 生成的内容不代表开发者观点，其准确性、适当性由使用者自行判断并承担全部责任。🤖AI可能产生错误、偏见或不适宜内容，开发者不对此引发的任何后果负责。
+- 如果使用该软件导致Q号被封⚡，开发者不负任何责任！(非要作死开发者也拦不住，已提供移除危险指令的选项)🎭用户需要自行承当封号风险！！！
+- 使用MIT协议📜保留原始版权可自由修改，🚫禁止将该项目用于引流(带节奏)、纯色情、当键政、消息轰炸等非法目的。
 
 
-![热键](https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/bf40dda6d3300abe92f4e03f103e936f9738ee97/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%83%AD%E9%94%AE.png)
 
-![绑定](https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%BB%91%E5%AE%9A.png)
+## 致谢
 
-![自定义1](https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E8%87%AA%E5%AE%9A%E4%B9%891.png)
+此项目的开发离不开以下项目
+- [PyQt6](https://www.riverbankcomputing.com/software/pyqt/)
+- [Python-UIAutomation-for-Windows](https://github.com/yinkaisheng/Python-UIAutomation-for-Windows)
+- [JMComic-Crawler-Python](https://github.com/hect0x7/JMComic-Crawler-Python)
 
-![设置](https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E8%AE%BE%E7%BD%AE.png)
+## 相关项目
+
+- [DeepseekConversationEngine](https://github.com/yandifei/DeepseekConversationEngine) 基于deepseek api开发的类库
