@@ -18,6 +18,10 @@
   </a>
 </div>
 
+<div align="center">
+  喜欢的话，就给爱丽丝个✨Star✨吧！ (ﾉ>ω<)ﾉ❤️<img alt="Total Downloads" src="./爱丽丝QQ聊天AI/resources/爱丽丝表情包/非女仆/14.png" width="50"/>
+</div>
+
 ## 功能介绍
 
 - **AI自动回复**：
@@ -66,8 +70,25 @@
 ***
 
 ## 项目运行
+- 小白不用看这里。用于异常崩溃和日志输出
+- 也可以用pycharm中打开 爱丽丝QQ聊天AI 文件夹运行 爱丽丝QQ聊天AI.py
 ```git
-git clone --recurse-submodules https://github.com/moesnow/March7thAssistant
+# 1.克隆项目
+git clone https://github.com/yandifei/ArisuQQChatAI.git
+
+# 2.进入项目目录的开发目录（目录名需与克隆结果一致）
+cd ArisuQQChatAI/爱丽丝QQ聊天AI/
+
+# 3. [可选] 创建虚拟环境
+conda create -n Arisu python=3.13.5
+# 激活虚拟环境
+conda activate Arisu
+
+# 4.安装依赖（强烈建议使用虚拟环境）
+pip install -r requirements.txt
+
+# 5.启动项目
+python 爱丽丝QQ聊天AI/爱丽丝QQ聊天AI.py
 ```
 
 
@@ -103,4 +124,5 @@ git clone --recurse-submodules https://github.com/moesnow/March7thAssistant
 ***
 
 ## 问题反馈
-提 Issue 或 邮箱3058439878@qq.com
+- 其实还有别的项目要研发和个人学习，没时间处理。
+- 提交 [Issues](https://github.com/yandifei/ArisuQQChatAI/issues) 或 邮箱3058439878@qq.com

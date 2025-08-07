@@ -18,7 +18,7 @@ a = Analysis(
     hooksconfig={},
     runtime_hooks=[],
     # 排除未使用的库减小体积(numpy必要)'pandas', 'matplotlib', 'tkinter', 'tensorflow', 'torch'
-    excludes=[],
+    excludes=['pipreqs'],   # pipreqs是生成requirements.txt用的
     noarchive=False,
     optimize=0,
 )
