@@ -54,14 +54,38 @@
        style="width: 300px; height: auto;"/>
 </div>
 
-此软件的根本目的是打造接入DeepSeek的API接口实现“满分”🧠的问题解答和为用户提供《情绪价值💖》！
+## 安装使用
+- 下载地址：[⚡Github下载⚡](https://github.com/yandifei/ArisuQQChatAI/releases/download/v1.0.0-beta/ArisuQQChatAI.7z)
+- 直接解压即后打开“爱丽丝QQ聊天AI.exe”
+- 确保你有deepseek api的密钥和这个密钥有钱
+- 设置窗口录入deepseek api密钥并填写好绑定QQ群的参数
+- 打开并登陆QQ，设置中在点击“超级调色盘”把主题选择为“极简白”
+- 打开需要自动回复的Q群窗口，点击开启自
+- 动回复按钮或一键开启按钮即可
+
+***
+
+## 项目运行
+```git
+git clone --recurse-submodules https://github.com/moesnow/March7thAssistant
+```
+
+
+***
+
+## 注意事项
+- 更新就直接覆盖安装
+- 必须在QQ中在点击“超级调色盘”把主题选择为“极简白”
+
+***
 
 ## 免责声明
 - ⚠️本软件通过 DeepSeek API 生成的内容不代表开发者观点，其准确性、适当性由使用者自行判断并承担全部责任。🤖AI可能产生错误、偏见或不适宜内容，开发者不对此引发的任何后果负责。
 - 如果使用该软件导致Q号被封⚡，开发者不负任何责任！(非要作死开发者也拦不住，已提供移除危险指令的选项)🎭用户需要自行承当封号风险！！！
 - 使用MIT协议📜保留原始版权可自由修改，🚫禁止将该项目用于引流(带节奏)、纯色情、当键政、消息轰炸等非法目的。
+- 此软件的根本目的是打造接入DeepSeek的API接口实现“满分”🧠的问题解答和为用户提供《情绪价值💖》！
 
-
+***
 
 ## 致谢
 
@@ -70,6 +94,13 @@
 - [Python-UIAutomation-for-Windows](https://github.com/yinkaisheng/Python-UIAutomation-for-Windows)
 - [JMComic-Crawler-Python](https://github.com/hect0x7/JMComic-Crawler-Python)
 
+***
+
 ## 相关项目
 
 - [DeepseekConversationEngine](https://github.com/yandifei/DeepseekConversationEngine) 基于deepseek api开发的类库
+
+***
+
+## 问题反馈
+提 Issue 或 邮箱3058439878@qq.com
