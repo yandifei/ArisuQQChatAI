@@ -5,9 +5,6 @@
 import os
 import platform  # CPU逻辑核心计算
 import sys
-
-# import threading                                                                        # 线程库
-# from time import sleep                                                                  # 时间库
 # 第三方
 import keyring  # api密钥加密和解密
 import psutil
@@ -17,9 +14,6 @@ from PyQt6.QtCore import Qt, QTimer, QThreadPool  # Qt的核心类
 from PyQt6.QtGui import QDesktopServices, QShortcut, QKeySequence, QTextCursor  # 桌面服务
 from PyQt6.QtMultimedia import QMediaPlayer  # 视频播放器
 from PyQt6.QtWidgets import QApplication, QMessageBox, QGroupBox, QVBoxLayout, QTextBrowser  # 界面处理类
-
-from UI.arisu_threading import ArisuThreading
-
 # 自己的包
 try:  # 实际环境使用
     from .functions import OutputRedirection, clear_temp  # 导入非UI功能函数
@@ -33,7 +27,7 @@ except (ModuleNotFoundError, ImportError):  # 测试环境使用
 from resources.Arisu import Ui_Arisu  # uic界面文件转py
 from 用户设置.configuration_manager import ConfigurationManager  # 导入配置文件的类
 from arisu_logger import debug, info, warning, critical, exception  # 导入日志方法
-
+from UI.arisu_threading import ArisuThreading   # 线程的类
 debug("ExtendedUI.py(UI界面额外扩展文件已加载完成)")
 
 
@@ -49,8 +43,8 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         super().__init__(title, show_system_tray, ui_file_path)  # 继承父类的属性和方法
         self.config = ConfigurationManager()  # 实例化配置文件(读取配置文件数据)
         """终端输出重定向"""
-        # sys.stdout = OutputRedirection()  # 实例化输出重定向
-        # sys.stdout.text_print.connect(self.log_print)
+        sys.stdout = OutputRedirection()  # 实例化输出重定向
+        sys.stdout.text_print.connect(self.log_print)
 
         # output_redirection = OutputRedirection()   # 实例化输出重定向
         # sys.stderr = output_redirection
@@ -221,7 +215,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
     @staticmethod
     def link_to_github():
         """链接跳转到github"""
-        QDesktopServices.openUrl(QUrl("https://github.com/yandifei/GUI_Designer-Qt6"))
+        QDesktopServices.openUrl(QUrl("https://github.com/yandifei/ArisuQQChatAI"))
         info("已条跳转链接到Github项目地址")
 
     """状态设置"""

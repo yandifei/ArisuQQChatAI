@@ -8,12 +8,6 @@ import re   # 正则库
 from PyQt6.QtCore import QObject, pyqtSignal, QThread, QProcess
 # 自己的库
 from arisu_logger import debug, info, warning, critical, exception                     # 导入日志方法
-# from arisu_logger import console_handler
-# 核心进程创建和调用需要的类
-# from arisu_qq_chat_ai_core import ArisuQQChatAICore
-# from deepseek_conversation_engine import DeepseekConversationEngine
-# from qq_message_monitor import QQMessageMonitor
-
 
 class OutputRedirection(QObject):
     """输入重定向"""

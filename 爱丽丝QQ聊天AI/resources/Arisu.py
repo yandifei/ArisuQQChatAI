@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'B:\Qt界面模板开发\爱丽丝QQ聊天AI\resources\Arisu.ui'
+# Form implementation generated from reading ui file 'B:\爱丽丝QQ聊天AI项目\爱丽丝QQ聊天AI\resources\Arisu.ui'
 #
 # Created by: PyQt6 UI code generator 6.9.1
 #
@@ -1627,7 +1627,7 @@ class Ui_Arisu(object):
         self.verticalLayout.addWidget(self.ModeWidget)
 
         self.retranslateUi(Arisu)
-        self.ModeWidget.setCurrentIndex(1)
+        self.ModeWidget.setCurrentIndex(0)
         self.StateTabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Arisu)
 

@@ -735,9 +735,8 @@ class DeepseekConversationEngine:
             path = os.path.join("用户设置/提示库/", txt_file_name)
             # path = os.path.join("../提示库/", txt_file_name)  # 上级目录
             if not os.path.isfile(path):  # 检查是否有这个文件（文件不存在）
-                if not os.path.isfile(path):  # 检查是否有这个文件（文件不存在）
-                    print(f"\033[91m\"{os.path.join(os.getcwd(), "提示库")}\"中没有“{txt_file_name}”这个文件，请检查该txt文件是否存在\033[0m")
-                    txt_file_name = input("\033[92m请重新输入文件名(不用输入全名，路径自动补足)：\033[0m")
+                print(f"\033[91m\"{os.path.join(os.getcwd(), "提示库")}\"中没有“{txt_file_name}”这个文件，请检查该txt文件是否存在\033[0m")
+                # txt_file_name = input("\033[92m请重新输入文件名(不用输入全名，路径自动补足)：\033[0m")
             else:  # 检查是否有这个文件（文件存在）:
                 break  # 跳出循环
         with open(path, "r", encoding="utf-8") as role_txt:

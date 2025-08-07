@@ -5,17 +5,12 @@ try:
 except ImportError:
     pass
 #系统自带的包
-# from time import sleep                                                      # 导入休眠的方法（防止不断循环CPU导致资源占用过高）
 import sys
 # 第三方库
-from PyQt6.QtWidgets import QApplication, QTextBrowser                      # 界面处理类
+from PyQt6.QtWidgets import QApplication                                    # 界面处理类
 # 自己的库
 from UI.ExtendedUI  import ArisuUI                                          # 导入开发好的UI类
 from arisu_logger import debug, info, warning, critical, exception          # 导入日志方法
-# from deepseek_conversation_engine import DeepseekConversationEngine         # deepseek对话类
-# from qq_message_monitor import QQMessageMonitor                             # QQ消息监听类
-# from UI.arisu_qq_chat_ai_core import ArisuQQChatAICore                      # ui的拓展方法类
-# from UI.functions import OutputRedirection                                  # 输出重定向的类
 
 
 """主进程UI设置和槽函数链接"""

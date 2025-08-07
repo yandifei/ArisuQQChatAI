@@ -1,11 +1,23 @@
-# <center>爱丽丝QQ聊天AI</center>
+<div align="center">
+  <h1 align="center">
+   <br/>
+   ArisuQQChatAI · 爱丽丝QQ聊天AI
+  </h1> 
+</div>
+
+![1](https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%88%B1%E4%B8%BD%E4%B8%9D.png){: style="display:block; margin:auto; width:200px"}
+
+<div align="center">
+  <img alt="" src="https://img.shields.io/badge/platform-Windows11-blue?style=flat-square&color=00ffff" />
+</div>
 
 [TOC]
 
-- 我个人认为其实软件已经够完善了，把鼠标移动到按钮上停顿一会(鼠标悬停)就会弹出提示，本该实在是没有必要写文档，但是文档也是软件的一部分。
-- ***我也算是无愧于爱丽丝之名***，既是魔王也是勇者。
+# 快速上手
 
-## 快速上手
+
+
+
 以下10点内容都是抄之前写的，内容不乏已经过失了。🤖
 1.🚀本项目是基于自主研发的DeepseekConversationEngine类库📦开发的示例程序，通过调用案例直观演示该库的功能特性与开发流程。
 2.示例项目源码地址：https://github.com/yandifei/DeepseekConversationEngine/tree/main/调用示例/QQ机器人📂
@@ -54,3 +66,5 @@
 
 ## 感想
 此项目是我对前后端分离的第一次认识
+- 我个人认为其实软件已经够完善了，把鼠标移动到按钮上停顿一会(鼠标悬停)就会弹出提示，本该实在是没有必要写文档，但是文档也是软件的一部分。
+- ***我也算是无愧于爱丽丝之名***，既是魔王也是勇者。

@@ -202,9 +202,9 @@ class QQMessageMonitor:
             if visible_window.Name == self.win_name and visible_window.ClassName == "Chrome_WidgetWin_1":
                 qq_chat_win_list.append(visible_window) # 把查找对象添加进去
         if len(qq_chat_win_list) == 0:
-            raise ValueError("没有找到这个窗口")
+            raise ValueError(f"没有找到这个窗口\n\n错误提示：\n请手动打开【{self.win_name}】 Q群将该Q群窗口显示到桌面上，你不开Q群我玩个屁！我不是神不知道你想的啥！")
         elif len(qq_chat_win_list) >= 2:
-            raise ValueError("请确保当前名字的窗口没有重名")
+            raise ValueError("窗口重名\n\n错误提示：\n请确保当前打开的Q群没有重名(有备注名就看备注名，没有就是原来的Q的名)。")
         return qq_chat_win_list[0]
 
     """窗口判定相关"""

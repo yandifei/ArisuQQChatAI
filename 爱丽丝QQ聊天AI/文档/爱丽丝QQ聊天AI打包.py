@@ -12,6 +12,25 @@ pyinstaller --hidden-import comtypes --add-data "A:/Anaconda3/envs/Arisu/Lib/sit
 --add-data：确保 comtypes 的附属文件被正确打包（路径需根据实际虚拟环境调整）。
 """
 
+
+"""新打包指令
+靠，还得添加其他可能的transformers子模块
+transformers.models.auto
+transformers.models.ernie_moe
+
+pyinstaller --hidden-import comtypes --add-data "A:/Anaconda3/envs/Arisu/Lib/site-packages/comtypes;comtypes" --hidden-import=transformers.models.ernie4_5 --hidden-import=transformers.models.ernie.tokenization_ernie --add-data "A:/Anaconda3/envs/Arisu/Lib/site-packages/uiautomation/bin;uiautomation/bin" -i ./resources/Logo/256.ico --uac-admin --noconsole -D 爱丽丝QQ聊天AI.py
+pyinstaller
+--hidden-import comtypes --add-data "A:/Anaconda3/envs/Arisu/Lib/site-packages/comtypes;comtypes"
+--hidden-import=transformers.models.ernie4_5
+--hidden-import=transformers.models.ernie.tokenization_ernie
+--add-data "A:/Anaconda3/envs/Arisu/Lib/site-packages/uiautomation/bin;uiautomation/bin"
+-i ./resources/Logo/256.ico --uac-admin --noconsole -D 爱丽丝QQ聊天AI.py
+
+-i ./resources/Logo/256.ico --splash ./resources/背景/爱丽丝的笑容.jpg --uac-admin --noconsole -D 爱丽丝QQ聊天AI.py
+"""
+
+
+
 """
 我 pip freeze 后输出的是乱码说明不是文件编码格式出问题了，是包元数据问题
 升级 pip

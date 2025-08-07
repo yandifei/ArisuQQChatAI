@@ -5,15 +5,8 @@
 import logging  # logs
 import sys  # 系统库
 from logging.handlers import RotatingFileHandler  # 日志大小轮转处理器
-# from types import TracebackType  # 重写方法需要
-# from typing import Mapping  # 重写方法需要
-
 # 第三方库
 import colorlog  # 颜色处理
-
-# 自己的库
-# from UI.ExtendedUI import OutputRedirection
-
 
 # 记录器
 log = logging.getLogger("爱丽丝QQ聊天AI.py")  # 创建记录器

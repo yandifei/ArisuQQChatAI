@@ -123,6 +123,8 @@ class ArisuThreading(QRunnable):
             # 发射崩溃的信号，传递自身和错误
             self.signal.error_signal.emit(self.print_widget, self, error_msg)
         except Exception as e:
+            error_msg = (f"线程崩溃: {str(e)}\n{traceback.format_exc()}\n"
+                         f"错误提示：检测到线程池里面的线程崩溃,失去对 {self.qq_group_name} 窗口的控制，将在10秒后重启该线程")
             error_msg = f"线程崩溃: {str(e)}\n{traceback.format_exc()}"
             # 发射崩溃的信号，传递自生和错误
             self.signal.error_signal.emit(self.print_widget, self, error_msg)
