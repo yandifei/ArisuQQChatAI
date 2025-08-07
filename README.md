@@ -14,7 +14,7 @@
     <img alt="最新版徽章" src="https://img.shields.io/github/release/yandifei/ArisuQQChatAI?include_prereleases&style=flat-square&color=4141dc"/>
   </a>
   <a href=https://github.com/yandifei/ArisuQQChatAI/releases>
-    <img alt="Total Downloads" src="https://img.shields.io/github/downloads/yandifei/ArisuQQChatAI/total?style=flat-square&color=00ffff" />
+    <img alt="总下载次数" src="https://img.shields.io/github/downloads/yandifei/ArisuQQChatAI/total?style=flat-square&color=00ffff" />
   </a>
 </div>
 

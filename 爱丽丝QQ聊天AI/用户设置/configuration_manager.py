@@ -12,7 +12,7 @@ class ConfigurationManager:
         """配置文件路径"""
         self.user_settings_path = "./用户设置/UserSettings.ini"  # 用户设置路径
         self.bind_path = "./用户设置/Bind.ini"  # 绑定配置路径
-        self.hotkey_path = "./用户设置/Hotkey.ini"  # 热键路径
+        self.keyboard_shortcut_path = "./用户设置/KeyboardShortcut.ini"  # 键盘快捷键配置路径
         self.encoding = "utf-8"  # 编码格式
         self.try_path()  # 路径检测
         """实例化解析器"""
@@ -22,16 +22,16 @@ class ConfigurationManager:
         # Bind(INI格式配置文件的解析器对象[严格区分大小写])
         self.bind = configparser.ConfigParser(allow_no_value=False, strict=True)
         self.bind.read(self.bind_path, encoding=self.encoding)  # 读入配置文件内容(指定编码格式是utf-8)
-        # hotkey(INI格式配置文件的解析器对象[严格区分大小写])
-        self.hotkey = configparser.ConfigParser(allow_no_value=False, strict=True)
-        self.hotkey.read(self.hotkey_path, encoding=self.encoding)  # 读入配置文件内容(指定编码格式是utf-8)
+        # KeyboardShortcut(INI格式配置文件的解析器对象[严格区分大小写])
+        self.keyboard_shortcut = configparser.ConfigParser(allow_no_value=False, strict=True)
+        self.keyboard_shortcut.read(self.keyboard_shortcut_path, encoding=self.encoding)  # 读入配置文件内容(指定编码格式是utf-8)
 
         #
         #
-        # print(self.hotkey["运行和停止"]["running"])
-        # print(self.hotkey["运行和停止"]["stop"])
-        # print(self.hotkey["动态主页"]["running"])
-        # print(self.hotkey["动态主页"]["stop"])
+        # print(self.KeyboardShortcut["运行和停止"]["running"])
+        # print(self.KeyboardShortcut["运行和停止"]["stop"])
+        # print(self.KeyboardShortcut["动态主页"]["running"])
+        # print(self.KeyboardShortcut["动态主页"]["stop"])
 
         # # 更新值
         # config.set('database', 'host', '192.168.1.100')
@@ -61,30 +61,30 @@ class ConfigurationManager:
         if not os.path.isfile(self.user_settings_path):  # 当前测试路径
             self.user_settings_path = "." + self.user_settings_path  # 更新路径
             self.bind_path = "." + self.bind_path  # 更新路径
-            self.hotkey_path += "." + self.hotkey_path  # 更新路径
+            self.keyboard_shortcut_path += "." + self.keyboard_shortcut_path  # 更新路径
 
     """配置读取"""
 
     def original_interface_location(self):
         """原始界面位置
-        返回值： {"Home": 1, "StateMonitor": 2, "Hotkey": 3, "QuestionLinks": 4, "Settings": 5}
+        返回值： {"Home": 1, "StateMonitor": 2, "KeyboardShortcut": 3, "QuestionLinks": 4, "Settings": 5}
         """
         return {
             "Home": self.user_settings["原始界面位置"]["主页"],
             "StateMonitor": self.user_settings["原始界面位置"]["状态监测"],
-            "Hotkey": self.user_settings["原始界面位置"]["热键"],
+            "KeyboardShortcut": self.user_settings["原始界面位置"]["热键"],
             "QuestionLinks": self.user_settings["原始界面位置"]["问题链接"],
             "Settings": self.user_settings["原始界面位置"]["用户设置"]
         }
 
     def user_interface_location(self):
         """用户界面位置
-        返回值： 如{"Home": 3, "StateMonitor": 1, "Hotkey": 5, "QuestionLinks": 4, "Settings": 2}
+        返回值： 如{"Home": 3, "StateMonitor": 1, "KeyboardShortcut": 5, "QuestionLinks": 4, "Settings": 2}
         """
         return {
             "Home": self.user_settings["用户界面位置"]["主页"],
             "StateMonitor": self.user_settings["用户界面位置"]["状态监测"],
-            "Hotkey": self.user_settings["用户界面位置"]["热键"],
+            "KeyboardShortcut": self.user_settings["用户界面位置"]["热键"],
             "QuestionLinks": self.user_settings["用户界面位置"]["问题链接"],
             "Settings": self.user_settings["用户界面位置"]["用户设置"]
         }
@@ -140,11 +140,11 @@ class ConfigurationManager:
         with open(self.bind_path, "w", encoding=self.encoding) as config_file:
             self.bind.write(config_file)
 
-    def save_hotkey_ini(self):
-        """保存hotkey的ini文件"""
+    def save_keyboard_shortcut_ini(self):
+        """保存keyboard_shortcut的ini文件"""
         # 写入文件（保留原有注释用config.read()先读取）
-        with open(self.hotkey_path, "w", encoding=self.encoding) as config_file:
-            self.hotkey.write(config_file)
+        with open(self.keyboard_shortcut_path, "w", encoding=self.encoding) as config_file:
+            self.keyboard_shortcut.write(config_file)
 
 
 if __name__ == '__main__':

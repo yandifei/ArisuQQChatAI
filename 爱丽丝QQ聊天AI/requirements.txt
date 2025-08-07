@@ -11,3 +11,4 @@ pywin32==311
 Requests==2.32.4
 transformers==4.54.0
 uiautomation==2.0.28
+keyboard==0.13.5

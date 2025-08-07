@@ -918,66 +918,84 @@ class Ui_Arisu(object):
         icon11 = QtGui.QIcon()
         icon11.addPixmap(QtGui.QPixmap(":/选项卡图标/选项卡图标/状态监控.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.ModeWidget.addTab(self.StateMonitor, icon11, "")
-        self.Hotkey = QtWidgets.QWidget()
-        self.Hotkey.setObjectName("Hotkey")
-        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.Hotkey)
-        self.verticalLayout_5.setContentsMargins(50, 20, 50, 50)
+        self.KeyboardShortcut = QtWidgets.QWidget()
+        self.KeyboardShortcut.setStyleSheet("QWidget {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"}")
+        self.KeyboardShortcut.setObjectName("KeyboardShortcut")
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.KeyboardShortcut)
+        self.verticalLayout_5.setContentsMargins(70, 20, 70, 0)
         self.verticalLayout_5.setSpacing(10)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.HotkeyTip = QtWidgets.QLabel(parent=self.Hotkey)
+        self.KeyboardShortcutLabel = QtWidgets.QLabel(parent=self.KeyboardShortcut)
         font = QtGui.QFont()
-        font.setFamily("等线")
+        font.setFamily("Cascadia Code")
         font.setPointSize(20)
         font.setBold(True)
-        self.HotkeyTip.setFont(font)
-        self.HotkeyTip.setObjectName("HotkeyTip")
-        self.verticalLayout_5.addWidget(self.HotkeyTip)
-        self.label = QtWidgets.QLabel(parent=self.Hotkey)
+        self.KeyboardShortcutLabel.setFont(font)
+        self.KeyboardShortcutLabel.setStyleSheet("color: rgba(0, 0, 0,0.7);")
+        self.KeyboardShortcutLabel.setObjectName("KeyboardShortcutLabel")
+        self.verticalLayout_5.addWidget(self.KeyboardShortcutLabel)
+        self.KeyboardShortcutTip = QtWidgets.QLabel(parent=self.KeyboardShortcut)
         font = QtGui.QFont()
-        font.setFamily("等线")
-        font.setPointSize(15)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
-        self.verticalLayout_5.addWidget(self.label)
-        self.HotkeySelections = QtWidgets.QScrollArea(parent=self.Hotkey)
+        font.setFamily("Cascadia Code")
+        font.setPointSize(12)
+        font.setBold(True)
+        self.KeyboardShortcutTip.setFont(font)
+        self.KeyboardShortcutTip.setStyleSheet("color: rgb(131, 131, 131);")
+        self.KeyboardShortcutTip.setObjectName("KeyboardShortcutTip")
+        self.verticalLayout_5.addWidget(self.KeyboardShortcutTip)
+        self.HotkeySelections = QtWidgets.QScrollArea(parent=self.KeyboardShortcut)
         self.HotkeySelections.setStyleSheet("QScrollArea {\n"
-"    border-radius:10px;\n"
+"    border: 5px solid rgb(240, 244, 249);  /*边框大小、边框样式、边框颜色*/\n"
+"    border-radius:20px;         /*圆角*/\n"
+"    background-color: rgb(240, 244, 249); /*背景色*/\n"
+"}\n"
+"/*设置垂直滚动条*/\n"
+"QScrollBar:vertical {\n"
+"    padding-top: 10px;        /*调整内部距离*/\n"
+"    padding-bottom: 10px;    /*调整内部距离*/\n"
+"    border-radius:10px; /*滚动条整体圆角*/\n"
+"    width: 7px;    /*滚动条整体宽度*/\n"
+"    background: none;        /*滚动条没有背景,之前是网格*/\n"
 "}\n"
 "\n"
-"#scrollArea{\n"
-"border: 2px solid #c3c3c3;\n"
-"border-radius:15px;\n"
-"}\n"
-" \n"
-"/*设置滚动条背景*/\n"
-"QScrollBar:vertical {\n"
-"    border-radius:10px;\n"
-"   width: 7px;\n"
-"    background-color: rgba(0, 0, 0, 0.1);\n"
-"}\n"
-"/*设置滑动条*/\n"
+"/*设置垂直滑动条手柄*/\n"
 "QScrollBar::handle:vertical {\n"
 "   border-radius:3px; \n"
-"    background-color: rgb(0, 255, 255);\n"
-"  }\n"
-"/*垂直滚动条顶部的按钮*/\n"
-" QScrollBar::sub-line:vertical {\n"
-"      height: 0px; /*设置按钮大小为0(不显示)*/\n"
+"    background-color: rgb(0, 255, 255);    /*背景颜色*/\n"
 "}\n"
-"/*垂直滚动条底部的按钮*/\n"
-"QScrollBar::add-line:vertical {\n"
-"      height: 0px; /*设置按钮大小为0(不显示)*/\n"
-" }\n"
+"\n"
+"/*手柄悬停颜色*/\n"
+"QScrollBar::handle:vertical:hover {\n"
+"    background-color: rgba(0, 255, 255,0.3);        /*背景颜色*/\n"
+"}\n"
+"\n"
+"/*垂直滚动条顶部和底部的按钮*/\n"
+"QScrollBar::add-line:vertical,\n"
+"QScrollBar::sub-line:vertical {\n"
+"    height: 0px; /*设置按钮大小为0(不显示)*/\n"
+"}\n"
+"\n"
+"/*垂直滚动条未覆盖的区域*/\n"
+"QScrollBar::add-page:vertical,\n"
+"QScrollBar::sub-page:vertical, {\n"
+"    background-color: rgba(240, 244, 249,1); /*背景色*/\n"
+"}\n"
+"\n"
+"\n"
 "")
         self.HotkeySelections.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
-        self.HotkeySelections.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
+        self.HotkeySelections.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.HotkeySelections.setWidgetResizable(True)
         self.HotkeySelections.setObjectName("HotkeySelections")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1097, 1000))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1047, 1000))
         self.scrollAreaWidgetContents.setMinimumSize(QtCore.QSize(0, 1000))
-        self.scrollAreaWidgetContents.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-radius:10px;")
+        self.scrollAreaWidgetContents.setStyleSheet("/*可视窗口背景*/\n"
+"QWidget {\n"
+"    background-color: rgb(240, 244, 249);\n"
+"}")
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
@@ -1209,7 +1227,7 @@ class Ui_Arisu(object):
         self.verticalLayout_5.addWidget(self.HotkeySelections)
         icon12 = QtGui.QIcon()
         icon12.addPixmap(QtGui.QPixmap(":/选项卡图标/选项卡图标/热键.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.ModeWidget.addTab(self.Hotkey, icon12, "")
+        self.ModeWidget.addTab(self.KeyboardShortcut, icon12, "")
         self.QuestionLinks = QtWidgets.QWidget()
         self.QuestionLinks.setStyleSheet("QWidget {\n"
 "    border-radius: 10px;        /*圆角*/\n"
@@ -1422,7 +1440,8 @@ class Ui_Arisu(object):
         self.ConsolePrint = QtWidgets.QTextBrowser(parent=self.Settings)
         self.ConsolePrint.setGeometry(QtCore.QRect(500, 20, 681, 621))
         font = QtGui.QFont()
-        font.setPointSize(20)
+        font.setFamily("Cascadia Mono")
+        font.setPointSize(12)
         self.ConsolePrint.setFont(font)
         self.ConsolePrint.setStyleSheet("QScrollBar:vertical{\n"
 "\n"
@@ -1621,13 +1640,157 @@ class Ui_Arisu(object):
 "}\n"
 "")
         self.RestoreNavigationBarSortingButton.setObjectName("RestoreNavigationBarSortingButton")
+        self.scrollArea = QtWidgets.QScrollArea(parent=self.Settings)
+        self.scrollArea.setGeometry(QtCore.QRect(110, 410, 231, 151))
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
+        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, -59, 217, 196))
+        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.RestoreNavigationBarSortingButton_2 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_2)
+        self.RestoreNavigationBarSortingButton_2.setMinimumSize(QtCore.QSize(0, 40))
+        self.RestoreNavigationBarSortingButton_2.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.RestoreNavigationBarSortingButton_2.setFont(font)
+        self.RestoreNavigationBarSortingButton_2.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(80, 180, 255);  /*边框颜色*/\n"
+"    \n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(80, 180, 255);\n"
+"    background-color: rgba(80, 180, 255,0.3);    /*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(80, 180, 255,0.5);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(80, 180, 255);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.RestoreNavigationBarSortingButton_2.setObjectName("RestoreNavigationBarSortingButton_2")
+        self.verticalLayout_9.addWidget(self.RestoreNavigationBarSortingButton_2)
+        self.RestoreNavigationBarSortingButton_3 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_2)
+        self.RestoreNavigationBarSortingButton_3.setMinimumSize(QtCore.QSize(0, 40))
+        self.RestoreNavigationBarSortingButton_3.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.RestoreNavigationBarSortingButton_3.setFont(font)
+        self.RestoreNavigationBarSortingButton_3.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(80, 180, 255);  /*边框颜色*/\n"
+"    \n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(80, 180, 255);\n"
+"    background-color: rgba(80, 180, 255,0.3);    /*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(80, 180, 255,0.5);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(80, 180, 255);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.RestoreNavigationBarSortingButton_3.setObjectName("RestoreNavigationBarSortingButton_3")
+        self.verticalLayout_9.addWidget(self.RestoreNavigationBarSortingButton_3)
+        self.RestoreNavigationBarSortingButton_4 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_2)
+        self.RestoreNavigationBarSortingButton_4.setMinimumSize(QtCore.QSize(0, 40))
+        self.RestoreNavigationBarSortingButton_4.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.RestoreNavigationBarSortingButton_4.setFont(font)
+        self.RestoreNavigationBarSortingButton_4.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(80, 180, 255);  /*边框颜色*/\n"
+"    \n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(80, 180, 255);\n"
+"    background-color: rgba(80, 180, 255,0.3);    /*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(80, 180, 255,0.5);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(80, 180, 255);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.RestoreNavigationBarSortingButton_4.setObjectName("RestoreNavigationBarSortingButton_4")
+        self.verticalLayout_9.addWidget(self.RestoreNavigationBarSortingButton_4)
+        self.RestoreNavigationBarSortingButton_5 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_2)
+        self.RestoreNavigationBarSortingButton_5.setMinimumSize(QtCore.QSize(0, 40))
+        self.RestoreNavigationBarSortingButton_5.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.RestoreNavigationBarSortingButton_5.setFont(font)
+        self.RestoreNavigationBarSortingButton_5.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(80, 180, 255);  /*边框颜色*/\n"
+"    \n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(80, 180, 255);\n"
+"    background-color: rgba(80, 180, 255,0.3);    /*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(80, 180, 255,0.5);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(80, 180, 255);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.RestoreNavigationBarSortingButton_5.setObjectName("RestoreNavigationBarSortingButton_5")
+        self.verticalLayout_9.addWidget(self.RestoreNavigationBarSortingButton_5)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents_2)
         icon14 = QtGui.QIcon()
         icon14.addPixmap(QtGui.QPixmap(":/选项卡图标/选项卡图标/用户设置.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.ModeWidget.addTab(self.Settings, icon14, "")
         self.verticalLayout.addWidget(self.ModeWidget)
 
         self.retranslateUi(Arisu)
-        self.ModeWidget.setCurrentIndex(0)
+        self.ModeWidget.setCurrentIndex(2)
         self.StateTabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Arisu)
 
@@ -1663,8 +1826,17 @@ class Ui_Arisu(object):
         self.StateTabWidget.setTabText(self.StateTabWidget.indexOf(self.Bind), _translate("Arisu", "Q群绑定"))
         self.StateTabWidget.setTabToolTip(self.StateTabWidget.indexOf(self.Bind), _translate("Arisu", "QQ群绑定配置录入"))
         self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.StateMonitor), _translate("Arisu", "状态监测"))
-        self.HotkeyTip.setText(_translate("Arisu", "热键设置"))
-        self.label.setText(_translate("Arisu", "只支持组合键和功能键"))
+        self.KeyboardShortcutLabel.setText(_translate("Arisu", "键盘快捷键"))
+        self.KeyboardShortcutTip.setText(_translate("Arisu", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Microsoft YaHei UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">区分：快捷键帮你“快”速操作当前软件，热键让你“热”启动系统或功能（无论在哪）。</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">快捷键：任意键盘单键(如 A、B)、鼠标侧键，操作本软件界面时生效，适用长按操作。</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">全局热键：仅限组合键 (如 Ctrl+Shift+X) 或 功能键 (如 F12)，软件启动后立即生效，存在长按需求的功能不可用。</span></p></body></html>"))
         self.SwitchReply_2.setText(_translate("Arisu", "施工中......"))
         self.SwitchReply_3.setText(_translate("Arisu", "开启自动回复"))
         self.SwitchReply_4.setText(_translate("Arisu", "开启自动回复"))
@@ -1672,7 +1844,7 @@ class Ui_Arisu(object):
         self.SwitchReply_6.setText(_translate("Arisu", "开启自动回复"))
         self.SwitchReply_7.setText(_translate("Arisu", "开启自动回复"))
         self.SwitchReply_8.setText(_translate("Arisu", "开启自动回复"))
-        self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.Hotkey), _translate("Arisu", "快捷键"))
+        self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.KeyboardShortcut), _translate("Arisu", "键盘快捷键"))
         self.QuestionLinksBackground.setText(_translate("Arisu", "<html><head/><body><p><span style=\" font-size:16pt;\">以下10点内容都是抄之前写的，内容不乏已经过失了。</span><span style=\" font-family:\'Menlo\',\'Roboto Mono\',\'Courier New\',\'Courier\',\'monospace\',\'Inter\',\'sans-serif\'; font-size:16pt; color:#e45649;\">🤖</span></p><p><span style=\" font-size:16pt;\">1.</span><span style=\" font-family:\'Menlo\',\'Roboto Mono\',\'Courier New\',\'Courier\',\'monospace\',\'Inter\',\'sans-serif\'; font-size:16pt; color:#494949;\">🚀</span><span style=\" font-size:16pt;\">本项目是基于自主研发的DeepseekConversationEngine类库</span><a href=\"https://github.com/yandifei/DeepseekConversationEngine\"><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; text-decoration: underline; color:#3b82f6; background-color:#ffffff;\">📦</span></a><span style=\" font-size:16pt;\">开发的示例程序，通过调用案例直观演示该库的功能特性与开发流程。</span></p><p><span style=\" font-size:16pt;\">2.示例项目源码地址：</span><a href=\"https://github.com/yandifei/DeepseekConversationEngine/tree/main/调用示例/QQ机器人\"><span style=\" font-size:16pt; text-decoration: underline; color:#003e92;\">https://github.com/yandifei/DeepseekConversationEngine/tree/main/调用示例/QQ机器人</span></a><span style=\" font-family:\'Menlo\',\'Roboto Mono\',\'Courier New\',\'Courier\',\'monospace\',\'Inter\',\'sans-serif\'; font-size:16pt; color:#494949;\">📂</span></p><p><span style=\" font-size:16pt;\">3.核心类库仓库地址：</span><a href=\"https://github.com/yandifei/DeepseekConversationEngine\"><span style=\" font-size:16pt; text-decoration: underline; color:#003e92;\">https://github.com/yandifei/DeepseekConversationEngine</span></a></p><p><span style=\" font-size:16pt;\">4.</span><span style=\" font-family:\'Menlo\',\'Roboto Mono\',\'Courier New\',\'Courier\',\'monospace\',\'Inter\',\'sans-serif\'; font-size:16pt; color:#e45649;\">🔧</span><span style=\" font-size:16pt;\">必须先在环境变量里</span><span style=\" font-family:\'Menlo\',\'Roboto Mono\',\'Courier New\',\'Courier\',\'monospace\',\'Inter\',\'sans-serif\'; font-size:16pt; color:#494949;\">⚙️</span><span style=\" font-size:16pt;\">配置好密钥</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; color:#404040; background-color:#ffffff;\">🔐</span><span style=\" font-size:16pt;\">，不懂的可以去看相关视频</span><span style=\" font-family:\'Menlo\',\'Roboto Mono\',\'Courier New\',\'Courier\',\'monospace\',\'Inter\',\'sans-serif\'; font-size:16pt; color:#494949;\">📺</span><span style=\" font-size:16pt;\">或查看文档目录下的deepseek对话引擎文件</span></p><p><span style=\" font-size:16pt;\">5.优先查看文档解决问题，文档没有问AI(直接粘贴报错提示)或把报错发作者QQ邮箱:3058439878@qq.com</span></p><p><span style=\" font-size:16pt;\">6.此程序的根本目的是打造接入DeepSeek的API接口实现“满分”</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; color:#404040; background-color:#ffffff;\">🧠</span><span style=\" font-size:16pt;\">的问题解答和为用户提供《情绪价值</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; color:#404040; background-color:#ffffff;\">💖</span><span style=\" font-size:16pt;\">》！</span></p><p><span style=\" font-size:16pt;\">7.提供了预定的人设(已经调教好了)，</span><a href=\"https://docs/troubleshooting.md\"><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; text-decoration: underline; color:#3b82f6; background-color:#ffffff;\">📚</span></a><span style=\" font-size:16pt;\">文档中记载了自定义人设的方法</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; color:#404040; background-color:#ffffff;\">🎭</span><span style=\" font-size:16pt;\">，可自行查看修改。</span></p><p><span style=\" font-size:16pt;\">8.MIT协议</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; color:#404040; background-color:#ffffff;\">📜</span><span style=\" font-size:16pt;\">保留原始版权可自由修改，</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; color:#404040; background-color:#ffffff;\">🚫</span><span style=\" font-size:16pt;\">禁止将该项目用于引流(带节奏)、纯色情、当键政等非法目的。</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; color:#404040; background-color:#ffffff;\">⚡</span></p><p><span style=\" font-size:16pt;\">9.如果您喜欢该项目或觉得该项目对您有所帮助，感谢您的使用。开源不易，如果可以请在项目根地址给我一个</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; font-weight:600; color:#404040; background-color:#ffffff;\">✨</span><span style=\" font-size:16pt;\">Star</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Noto Sans\',\'Ubuntu\',\'Cantarell\',\'Helvetica Neue\',\'Oxygen\',\'Open Sans\',\'sans-serif\'; font-size:16pt; font-weight:600; color:#404040; background-color:#ffffff;\">✨</span><span style=\" font-size:16pt;\">吧！</span></p><p><span style=\" font-size:16pt;\">10.QQ需要在设置里面把超级调色板调的分格调整成极简白，不然会报错！</span><img src=\":/Logo/Logo/128.ico\"/></p></body></html>"))
         self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.QuestionLinks), _translate("Arisu", "问题链接"))
         self.InitialInterfaceLocationComboBox.setToolTip(_translate("Arisu", "初始界面位置"))
@@ -1710,10 +1882,10 @@ class Ui_Arisu(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:\'Microsoft YaHei UI\'; font-size:20pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">print 调试输出（输出重定向）</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">没有实现日志输出重定向到这里，可惜了。</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+"</style></head><body style=\" font-family:\'Cascadia Mono\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Microsoft YaHei UI\';\">print 调试输出（输出重定向）</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Microsoft YaHei UI\';\">没有实现日志输出重定向到这里，可惜了。</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Microsoft YaHei UI\';\"><br /></p></body></html>"))
         self.LogicCPUCountState.setToolTip(_translate("Arisu", "API录入状态显示"))
         self.LogicCPUCount.setToolTip(_translate("Arisu", "<html><head/><body><p><span style=\" font-size:11pt; color:#414141;\">输入可使用的逻辑核心数，默认通过编程计算。物理核心数乘上1.5后去掉小数点，如过这个值超过最大逻辑核心数就使用最大逻辑核心数。</span></p></body></html>"))
         self.LogicCPUCount.setPlaceholderText(_translate("Arisu", "请输入运行的最大逻辑核心数"))
@@ -1730,5 +1902,9 @@ class Ui_Arisu(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">输入可使用的逻辑核心数，默认通过编程计算。物理核心数乘上1.5后去掉小数点，如过这个值超过最大逻辑核心数就使用最大逻辑核心数。</p></body></html>"))
         self.LogicCPUCountConfirm.setText(_translate("Arisu", "确认"))
         self.RestoreNavigationBarSortingButton.setText(_translate("Arisu", "还原导航栏排序"))
+        self.RestoreNavigationBarSortingButton_2.setText(_translate("Arisu", "还原导航栏排序"))
+        self.RestoreNavigationBarSortingButton_3.setText(_translate("Arisu", "还原导航栏排序"))
+        self.RestoreNavigationBarSortingButton_4.setText(_translate("Arisu", "还原导航栏排序"))
+        self.RestoreNavigationBarSortingButton_5.setText(_translate("Arisu", "还原导航栏排序"))
         self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.Settings), _translate("Arisu", "用户设置"))
 from PyQt6.QtMultimediaWidgets import QVideoWidget

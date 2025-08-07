@@ -446,7 +446,7 @@ QTabBar::tab:selected {
       <enum>QTabWidget::TabShape::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <property name="iconSize">
       <size>
@@ -1662,7 +1662,12 @@ QScrollBar::sub-line:vertical {
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Hotkey">
+     <widget class="QWidget" name="KeyboardShortcut">
+      <property name="styleSheet">
+       <string notr="true">QWidget {
+	background-color: rgb(255, 255, 255);
+}</string>
+      </property>
       <attribute name="icon">
        <iconset resource="resources.qrc">
         <normaloff>:/选项卡图标/选项卡图标/热键.png</normaloff>:/选项卡图标/选项卡图标/热键.png</iconset>
@@ -1671,48 +1676,64 @@ QScrollBar::sub-line:vertical {
        <string/>
       </attribute>
       <attribute name="toolTip">
-       <string>快捷键</string>
+       <string>键盘快捷键</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
+      <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0">
        <property name="spacing">
         <number>10</number>
        </property>
        <property name="leftMargin">
-        <number>50</number>
+        <number>70</number>
        </property>
        <property name="topMargin">
         <number>20</number>
        </property>
        <property name="rightMargin">
-        <number>50</number>
+        <number>70</number>
        </property>
        <property name="bottomMargin">
-        <number>50</number>
+        <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="HotkeyTip">
+        <widget class="QLabel" name="KeyboardShortcutLabel">
          <property name="font">
           <font>
-           <family>等线</family>
+           <family>Cascadia Code</family>
            <pointsize>20</pointsize>
            <bold>true</bold>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgba(0, 0, 0,0.7);</string>
+         </property>
          <property name="text">
-          <string>热键设置</string>
+          <string>键盘快捷键</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="KeyboardShortcutTip">
          <property name="font">
           <font>
-           <family>等线</family>
-           <pointsize>15</pointsize>
+           <family>Cascadia Code</family>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(131, 131, 131);</string>
+         </property>
          <property name="text">
-          <string>只支持组合键和功能键</string>
+          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;区分：快捷键帮你“快”速操作当前软件，热键让你“热”启动系统或功能（无论在哪）。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;快捷键：任意键盘单键(如 A、B)、鼠标侧键，操作本软件界面时生效，适用长按操作。&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;全局热键：仅限组合键 (如 Ctrl+Shift+X) 或 功能键 (如 F12)，软件启动后立即生效，存在长按需求的功能不可用。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -1720,40 +1741,50 @@ QScrollBar::sub-line:vertical {
         <widget class="QScrollArea" name="HotkeySelections">
          <property name="styleSheet">
           <string notr="true">QScrollArea {
-	border-radius:10px;
+	border: 5px solid rgb(240, 244, 249);  /*边框大小、边框样式、边框颜色*/
+	border-radius:20px; 		/*圆角*/
+	background-color: rgb(240, 244, 249); /*背景色*/
+}
+/*设置垂直滚动条*/
+QScrollBar:vertical {
+	padding-top: 10px;		/*调整内部距离*/
+	padding-bottom: 10px;	/*调整内部距离*/
+	border-radius:10px; /*滚动条整体圆角*/
+	width: 7px;	/*滚动条整体宽度*/
+	background: none;		/*滚动条没有背景,之前是网格*/
 }
 
-#scrollArea{
-border: 2px solid #c3c3c3;
-border-radius:15px;
-}
- 
-/*设置滚动条背景*/
-QScrollBar:vertical {
-	border-radius:10px;
-   width: 7px;
-	background-color: rgba(0, 0, 0, 0.1);
-}
-/*设置滑动条*/
+/*设置垂直滑动条手柄*/
 QScrollBar::handle:vertical {
    border-radius:3px; 
-	background-color: rgb(0, 255, 255);
-  }
-/*垂直滚动条顶部的按钮*/
- QScrollBar::sub-line:vertical {
-      height: 0px; /*设置按钮大小为0(不显示)*/
+	background-color: rgb(0, 255, 255);	/*背景颜色*/
 }
-/*垂直滚动条底部的按钮*/
-QScrollBar::add-line:vertical {
-      height: 0px; /*设置按钮大小为0(不显示)*/
- }
+
+/*手柄悬停颜色*/
+QScrollBar::handle:vertical:hover {
+	background-color: rgba(0, 255, 255,0.3);		/*背景颜色*/
+}
+
+/*垂直滚动条顶部和底部的按钮*/
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+	height: 0px; /*设置按钮大小为0(不显示)*/
+}
+
+/*垂直滚动条未覆盖的区域*/
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical, {
+	background-color: rgba(240, 244, 249,1); /*背景色*/
+}
+
+
 </string>
          </property>
          <property name="verticalScrollBarPolicy">
           <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
          </property>
          <property name="horizontalScrollBarPolicy">
-          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
+          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
          </property>
          <property name="widgetResizable">
           <bool>true</bool>
@@ -1763,7 +1794,7 @@ QScrollBar::add-line:vertical {
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1097</width>
+            <width>1047</width>
             <height>1000</height>
            </rect>
           </property>
@@ -1774,8 +1805,10 @@ QScrollBar::add-line:vertical {
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:10px;</string>
+           <string notr="true">/*可视窗口背景*/
+QWidget {
+	background-color: rgb(240, 244, 249);
+}</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
@@ -2923,6 +2956,241 @@ QPushButton:pressed {
        <property name="text">
         <string>还原导航栏排序</string>
        </property>
+      </widget>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>410</y>
+         <width>231</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>-59</y>
+          <width>217</width>
+          <height>196</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_9">
+         <item>
+          <widget class="QPushButton" name="RestoreNavigationBarSortingButton_2">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>黑体</family>
+             <pointsize>17</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">/**正常情况下样式**/
+QPushButton{
+	border-radius: 10px;		/*圆角*/
+	border-width: 3px;		/*设置边框大小*/
+	border-color: rgb(80, 180, 255);  /*边框颜色*/
+	
+	border-style: solid;		/*实线*/
+	color: rgb(80, 180, 255);
+	background-color: rgba(80, 180, 255,0.3);	/*按钮背景颜色纯白*/
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+	background-color: rgba(80, 180, 255,0.5);
+	color: rgb(255, 255, 255);
+}
+
+/**鼠标按压下去的样式**/
+QPushButton:pressed {
+	background-color: rgb(80, 180, 255);
+	color: rgb(255, 255, 255);
+}
+</string>
+           </property>
+           <property name="text">
+            <string>还原导航栏排序</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="RestoreNavigationBarSortingButton_3">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>黑体</family>
+             <pointsize>17</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">/**正常情况下样式**/
+QPushButton{
+	border-radius: 10px;		/*圆角*/
+	border-width: 3px;		/*设置边框大小*/
+	border-color: rgb(80, 180, 255);  /*边框颜色*/
+	
+	border-style: solid;		/*实线*/
+	color: rgb(80, 180, 255);
+	background-color: rgba(80, 180, 255,0.3);	/*按钮背景颜色纯白*/
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+	background-color: rgba(80, 180, 255,0.5);
+	color: rgb(255, 255, 255);
+}
+
+/**鼠标按压下去的样式**/
+QPushButton:pressed {
+	background-color: rgb(80, 180, 255);
+	color: rgb(255, 255, 255);
+}
+</string>
+           </property>
+           <property name="text">
+            <string>还原导航栏排序</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="RestoreNavigationBarSortingButton_4">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>黑体</family>
+             <pointsize>17</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">/**正常情况下样式**/
+QPushButton{
+	border-radius: 10px;		/*圆角*/
+	border-width: 3px;		/*设置边框大小*/
+	border-color: rgb(80, 180, 255);  /*边框颜色*/
+	
+	border-style: solid;		/*实线*/
+	color: rgb(80, 180, 255);
+	background-color: rgba(80, 180, 255,0.3);	/*按钮背景颜色纯白*/
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+	background-color: rgba(80, 180, 255,0.5);
+	color: rgb(255, 255, 255);
+}
+
+/**鼠标按压下去的样式**/
+QPushButton:pressed {
+	background-color: rgb(80, 180, 255);
+	color: rgb(255, 255, 255);
+}
+</string>
+           </property>
+           <property name="text">
+            <string>还原导航栏排序</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="RestoreNavigationBarSortingButton_5">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>黑体</family>
+             <pointsize>17</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">/**正常情况下样式**/
+QPushButton{
+	border-radius: 10px;		/*圆角*/
+	border-width: 3px;		/*设置边框大小*/
+	border-color: rgb(80, 180, 255);  /*边框颜色*/
+	
+	border-style: solid;		/*实线*/
+	color: rgb(80, 180, 255);
+	background-color: rgba(80, 180, 255,0.3);	/*按钮背景颜色纯白*/
+}
+
+/**鼠标停留在按钮上的样式**/
+QPushButton::hover{	
+	background-color: rgba(80, 180, 255,0.5);
+	color: rgb(255, 255, 255);
+}
+
+/**鼠标按压下去的样式**/
+QPushButton:pressed {
+	background-color: rgb(80, 180, 255);
+	color: rgb(255, 255, 255);
+}
+</string>
+           </property>
+           <property name="text">
+            <string>还原导航栏排序</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
     </widget>

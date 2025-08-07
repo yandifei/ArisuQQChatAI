@@ -43,8 +43,8 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         super().__init__(title, show_system_tray, ui_file_path)  # 继承父类的属性和方法
         self.config = ConfigurationManager()  # 实例化配置文件(读取配置文件数据)
         """终端输出重定向"""
-        sys.stdout = OutputRedirection()  # 实例化输出重定向
-        sys.stdout.text_print.connect(self.log_print)
+        # sys.stdout = OutputRedirection()  # 实例化输出重定向
+        # sys.stdout.text_print.connect(self.log_print)
 
         # output_redirection = OutputRedirection()   # 实例化输出重定向
         # sys.stderr = output_redirection
@@ -136,7 +136,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         """
         # print(f"标签页从位置 {from_index} 移动到了位置 {to_index}")
         # 定义字典映射用来转化ui控件的类名和配置的键名
-        transform_dict = {"Home": "主页", "StateMonitor": "状态监测", "Hotkey": "热键", "QuestionLinks": "问题链接",
+        transform_dict = {"Home": "主页", "StateMonitor": "状态监测", "KeyboardShortcut": "热键", "QuestionLinks": "问题链接",
                           "Settings": "用户设置"}
         tab_widget = [self.ModeWidget.widget(index) for index in range(self.ModeWidget.count())]  # 读取标签页的所有界面
         for widget in tab_widget:  # 遍历界面
@@ -801,6 +801,9 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         self.terminate_thread()  # 停止所有正在运行的线程
         clear_temp()  # 删奇怪溢出的视频缓存
         super().closeEvent(event)  # 继承之前的关闭功能
+
+    def keyPressEvent(self, event):
+        print(event.key())
 
     """后端核心功能"""
     def create_state_monitor(self):

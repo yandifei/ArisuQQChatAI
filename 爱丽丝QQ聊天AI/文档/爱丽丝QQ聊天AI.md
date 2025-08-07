@@ -8,8 +8,10 @@
 ![1](https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%88%B1%E4%B8%BD%E4%B8%9D.png){: style="display:block; margin:auto; width:200px"}
 
 <div align="center">
-  <img alt="" src="https://img.shields.io/badge/platform-Windows11-blue?style=flat-square&color=00ffff" />
+  <a href=https://github.com/yandifei/ArisuQQChatAI>
+    喜欢的话，就给爱丽丝个✨Star✨吧！(ﾉ>ω<)ﾉ❤️
 </div>
+
 
 [TOC]
 
