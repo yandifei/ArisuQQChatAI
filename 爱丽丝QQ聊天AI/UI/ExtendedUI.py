@@ -9,25 +9,27 @@ import sys
 import keyring  # api密钥加密和解密
 import psutil
 import requests  # 网络请求
-from PyQt6.QtCore import QUrl, pyqtSlot  # 链接非图片的资源文件
-from PyQt6.QtCore import Qt, QTimer, QThreadPool  # Qt的核心类
-from PyQt6.QtGui import QDesktopServices, QShortcut, QKeySequence, QTextCursor  # 桌面服务
-from PyQt6.QtMultimedia import QMediaPlayer  # 视频播放器
-from PyQt6.QtWidgets import QApplication, QMessageBox, QGroupBox, QVBoxLayout, QTextBrowser  # 界面处理类
+from PyQt6.QtCore import QUrl, pyqtSlot                                                     # 链接非图片的资源文件
+from PyQt6.QtCore import Qt, QTimer, QThreadPool                                            # Qt的核心类
+from PyQt6.QtGui import QDesktopServices, QShortcut, QKeySequence, QTextCursor              # 桌面服务
+from PyQt6.QtMultimedia import QMediaPlayer                                                 # 视频播放器
+from PyQt6.QtWidgets import QApplication, QMessageBox, QGroupBox, QVBoxLayout, QTextBrowser # 界面处理类
 # 自己的包
 try:  # 实际环境使用
-    from .functions import OutputRedirection, clear_temp  # 导入非UI功能函数
-    from .arisu_qq_chat_ai_ui import ArisuQQCHatAIUI  # 基础框架的类
-except (ModuleNotFoundError, ImportError):  # 测试环境使用
-    from functions import OutputRedirection, clear_temp  # 导入非UI功能函数
-    from arisu_qq_chat_ai_ui import ArisuQQCHatAIUI  # 基础框架的类
-    from UI.arisu_qq_chat_ai_core import ArisuQQChatAICore  # 外部方法的类
-    from deepseek_conversation_engine import DeepseekConversationEngine  # AI对话
-    from qq_message_monitor import QQMessageMonitor  # QQ监控
-from resources.Arisu import Ui_Arisu  # uic界面文件转py
-from 用户设置.configuration_manager import ConfigurationManager  # 导入配置文件的类
-from arisu_logger import debug, info, warning, critical, exception  # 导入日志方法
-from UI.arisu_threading import ArisuThreading   # 线程的类
+    from .functions import OutputRedirection, clear_temp                                    # 导入非UI功能函数
+    from .arisu_qq_chat_ai_ui import ArisuQQCHatAIUI                                        # 基础框架的类
+except (ModuleNotFoundError, ImportError):                                                  # 测试环境使用
+    from functions import OutputRedirection, clear_temp                                     # 导入非UI功能函数
+    from arisu_qq_chat_ai_ui import ArisuQQCHatAIUI                                         # 基础框架的类
+    from UI.arisu_qq_chat_ai_core import ArisuQQChatAICore                                  # 外部方法的类
+    from deepseek_conversation_engine import DeepseekConversationEngine                     # AI对话
+    from qq_message_monitor import QQMessageMonitor                                         # QQ监控
+from 用户设置.configuration_manager import ConfigurationManager                             # 导入配置文件的类
+from arisu_logger import debug, info, warning, critical, exception                          # 导入日志方法
+from arisu_logger import console_handler                                                    # 导入日志处理器
+from UI.arisu_threading import ArisuThreading                                               # 线程的类
+from resources.Arisu import Ui_Arisu                                                        # uic转后py文件
+import resources.resources                                                                  # 这个qrc必须存在（即使编译器报灰色）
 debug("ExtendedUI.py(UI界面额外扩展文件已加载完成)")
 
 
@@ -41,14 +43,26 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         ui_file_path : "../resources/Arisu.ui"开发中ui文件的路径
         """
         super().__init__(title, show_system_tray, ui_file_path)  # 继承父类的属性和方法
+        """终端输出输出重定向"""
+        # 日志输出重定向
+        log_output_redirection = OutputRedirection()  # 实例化输出重定向对象
+        console_handler.stream = log_output_redirection  # 日志输出重定向
+        log_output_redirection.text_print.connect(self.log_print)  # 信号连接
+        info("日志输出重定向已完成")
+        # 准输出重定向
+        stdout_redirection = OutputRedirection()  # 实例化输出重定向对象
+        sys.stdout = stdout_redirection  # 标准输出重定向
+        stdout_redirection.text_print.connect(self.log_print)  # 信号连接
+        info("准输出重定向已完成")
+        # 错误输出重定向
+        stderr_redirection = OutputRedirection()  # 实例化输出重定向对象
+        sys.stderr = stderr_redirection  # 错误输出重定向
+        stderr_redirection.text_print.connect(self.log_print)  # 信号连接
+        info("错误输出重定向已完成")
+        print("\033[93mhello\033[0m")
+        print("\033[93m1\033[0m")
+        """配置文件数据初始化"""
         self.config = ConfigurationManager()  # 实例化配置文件(读取配置文件数据)
-        """终端输出重定向"""
-        # sys.stdout = OutputRedirection()  # 实例化输出重定向
-        # sys.stdout.text_print.connect(self.log_print)
-
-        # output_redirection = OutputRedirection()   # 实例化输出重定向
-        # sys.stderr = output_redirection
-        # output_redirection.text_print.connect(self.log_print)
         info("用户配置信息已导入UI列表视图")
         """=====================================================额外界面功能撰写=================================================="""
         """导航栏"""
@@ -65,34 +79,51 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         info("导航栏初始化完成")
         """Home（主页）"""
         # 动态壁纸
-        self.video_player = QMediaPlayer(self)  # 创建多媒体播放器
-        self.video_player.setVideoOutput(self.DynamicBackground)  # 多媒体播放器设置窗口来视频输出
-        self.video_player.setSource(QUrl("qrc:/背景/背景/动态视频.mp4"))  # 设置播放资源，fromLocalFile处理路径问题
-        self.DynamicBackground.setAspectRatioMode(Qt.AspectRatioMode.KeepAspectRatioByExpanding)  # 保持宽高比并填充整个控件
-        self.video_player.setLoops(QMediaPlayer.Loops.Infinite)  # 循环无限次数
-        self.video_player.play()  # 开始播放
+        self.video_player = QMediaPlayer(self)                                                      # 创建多媒体播放器
+        self.video_player.setVideoOutput(self.DynamicBackground)                                    # 多媒体播放器设置窗口来视频输出
+        self.video_player.setSource(QUrl("qrc:/背景/背景/动态视频.mp4"))                             # 设置播放资源，fromLocalFile处理路径问题
+        self.DynamicBackground.setAspectRatioMode(Qt.AspectRatioMode.KeepAspectRatioByExpanding)    # 保持宽高比并填充整个控件
+        self.video_player.setLoops(QMediaPlayer.Loops.Infinite)                                     # 循环无限次数
+        self.video_player.play()                                                                    # 开始播放
         info("动态壁纸加载完毕")
         # 功能按钮
-        self.Function1.clicked.connect(self.start_auto_reply)  # 一键开启
-        self.Function2.clicked.connect(self.home_jumps_bind)  # 基础配置(主页跳转到绑定界面)
-        self.Function3.clicked.connect(self.function3_btn)  # 文档链接
-        self.Function4.clicked.connect(self.link_to_github)  # Star
+        self.Function1.clicked.connect(self.start_auto_reply)   # 一键开启
+        self.Function2.clicked.connect(self.home_jumps_bind)    # 基础配置(主页跳转到绑定界面)
+        self.Function3.clicked.connect(self.open_document)      # 文档链接
+        self.Function4.clicked.connect(self.link_to_github)     # Star
         """状态监测"""
         # ==================Q群绑定==================
-        self.import_bind_data()  # 导入绑定信息(加载Q群列表的配置信息)
-        self.AddOrChangeQQGroup.clicked.connect(self.add_or_change_qq_group)  # 添加或修改QQ群按钮
-        self.RemoveQQGroup.clicked.connect(self.remove_qq_group)  # 移除QQ群按钮
-        self.SwitchReply.clicked.connect(self.switch_reply)  # AI自动回复开关
-        self.QQGroupList.currentItemChanged.connect(self.show_qq_group_info)  # QQ群列表选择项发生改变时显示Q群信息
-        self.QQGroupList.clicked.connect(self.show_qq_group_info2)  # QQ群列表选择项被点击时显示Q群信息
-        self.previous_item = None  # 用来记录上一个被点击的选择项
-        self.QQGroupList.itemClicked.connect(self.item_clicked)  # 选择项被点击，处理取消选中
+        self.import_bind_data()                                                 # 导入绑定信息(加载Q群列表的配置信息)
+        self.AddOrChangeQQGroup.clicked.connect(self.add_or_change_qq_group)    # 添加或修改QQ群按钮
+        self.RemoveQQGroup.clicked.connect(self.remove_qq_group)                # 移除QQ群按钮
+        self.SwitchReply.clicked.connect(self.switch_reply)                     # AI自动回复开关
+        self.QQGroupList.currentItemChanged.connect(self.show_qq_group_info)    # QQ群列表选择项发生改变时显示Q群信息
+        self.QQGroupList.clicked.connect(self.show_qq_group_info2)              # QQ群列表选择项被点击时显示Q群信息
+        self.previous_item = None                                               # 用来记录上一个被点击的选择项
+        self.QQGroupList.itemClicked.connect(self.item_clicked)                 # 选择项被点击，处理取消选中
         info("状态检测界面加载完毕")
-        """全局热键"""
-        # 创建热键：F10()  快捷键仅仅在窗口中使用
-        self.shortcut = QShortcut(QKeySequence("F10"), self)
-        self.shortcut.activated.connect(lambda: print(1))
+        """键盘快捷键"""
+        # 文档和项目地址链接
+        self.shortcut = QShortcut(QKeySequence("F1"), self)
+        self.shortcut.activated.connect(self.hotkey_github_doc)
+        # 开启/关闭爱丽丝的AI自动回复
+        self.shortcut = QShortcut(QKeySequence("F12"), self)
+        self.shortcut.activated.connect(self.switch_reply)
+        # 开启动态主页
+        self.shortcut = QShortcut(QKeySequence("F8"), self)
+        self.shortcut.activated.connect(self.hotkey_dynamic_background_create)
+        # 关闭动态主页
+        self.shortcut = QShortcut(QKeySequence("F7"), self)
+        self.shortcut.activated.connect(self.hotkey_dynamic_background_del)
+        # 全屏/不全屏
+        self.shortcut = QShortcut(QKeySequence("F11"), self)
+        self.shortcut.activated.connect(self.hotkey_switch_full_screen)
+
+
+
         """用户设置"""
+        # 设置最多为20行，多的自动删除，每次增加都是在最新的一行
+        self.ConsolePrint.document().setMaximumBlockCount(100)
         self.tip_api_key_exist()  # 告诉用户密钥是否存在
         self.APIKeyConfirm.clicked.connect(self.__api_key_confirm)  # 检测api有效和把deepseek注入到系统变量
         self.tip_logic_cpu_count()  # 提示用户可以使用的逻辑CPU数量，并自动计算最合适的CPU数量
@@ -115,10 +146,12 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
     """输出重定向"""
 
     def log_print(self, text):
-        """日志输出
+        """输出
         text : 重定向返回的文本
         """
-        self.ConsolePrint.insertPlainText(text)
+        # 文本不为空才发送，即使是"\t"也不算空，为了过滤print的二次"\n",所以这里也就把（text == "\n"）给过滤掉
+        if text:
+            self.ConsolePrint.append(text)
 
     """导航栏"""
 
@@ -153,7 +186,6 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         self.resize(width, height)  # 恢复大小（通过改变边框的方法实现动态背景显示不完整的问题）
 
     """主页"""
-
     def start_auto_reply(self):
         """一键开启按钮槽函数(开启自动回复)"""
         # 判断是否开启了自动跳转
@@ -189,7 +221,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         if self.jump_bind_widget():
             info("点击了基础配置按钮主页成功跳转到了绑定界面")
 
-    def function3_btn(self):
+    def open_document(self):
         """文档链接按钮槽函数实现"""
         # 判断文件是否存在和打开文档
         try:
@@ -200,6 +232,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
                 os.startfile(r"..\文档\爱丽丝QQ聊天AI.pdf")  # 打开文档，注意路径符号
                 info("使用测试路径后文档打开了")
             else:
+                exception("文档不存在")
                 print("文档不存在")
                 # 错误弹窗提示
                 QMessageBox.critical(self, "错误提示", "文档不存在", QMessageBox.StandardButton.Ok,
@@ -211,6 +244,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
             QMessageBox.critical(self, "错误提示", str(e), QMessageBox.StandardButton.Ok,
                                  QMessageBox.StandardButton.Ok)
             exception("文档打开失败")
+            print("文档打开失败")
 
     @staticmethod
     def link_to_github():
@@ -558,7 +592,41 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         else:
             self.previous_item = self.QQGroupList.currentItem()  # 记录当前选择项
 
-    """设置"""
+    """键盘快捷键"""
+    def hotkey_github_doc(self):
+        """热键跳转到Github和打开文档"""
+        self.open_document()
+        self.link_to_github()
+
+    def hotkey_dynamic_background_create(self):
+        """热键动态背景生成"""
+        # 判断是否已经存在,避免重复创建
+        if self.video_player is None:
+            self.video_player = QMediaPlayer(self)  # 创建多媒体播放器
+            self.video_player.setVideoOutput(self.DynamicBackground)  # 多媒体播放器设置窗口来视频输出
+            self.video_player.setSource(QUrl("qrc:/背景/背景/动态视频.mp4"))  # 设置播放资源，fromLocalFile处理路径问题
+            self.DynamicBackground.setAspectRatioMode(Qt.AspectRatioMode.KeepAspectRatioByExpanding)  # 保持宽高比并填充整个控件
+            self.video_player.setLoops(QMediaPlayer.Loops.Infinite)  # 循环无限次数
+            self.video_player.play()  # 开始播放
+
+    def hotkey_dynamic_background_del(self):
+        """热键动态背景删除"""
+        # 判断是否已经存在,避免重复输出
+        if self.video_player is not None:
+            self.video_player.stop()        # 停止视频播放
+            self.video_player = None        # 重新造一个空的属性（后续可能需要重新创建回来）
+            self.DynamicBackground.update()  # 强制刷新控件（可能清空画面）
+
+    def hotkey_switch_full_screen(self):
+        """打开/关闭全屏"""
+        # 判断是否是全屏状态
+        if self.isFullScreen():
+            self.showNormal()   # 恢复正常
+        else:
+            self.showFullScreen()   # 全屏
+
+
+    """用户设置"""
 
     def restore_navigation_bar_sorting(self):
         """还原导航栏排序"""
@@ -803,7 +871,13 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         super().closeEvent(event)  # 继承之前的关闭功能
 
     def keyPressEvent(self, event):
-        print(event.key())
+        # 先继承父类的方法
+        super().keyPressEvent(event)
+        # if event.key() == Qt.Key.Key_Return or event.key() == Qt.Key.Key_Enter:
+        #     # 执行回车键或返回键的处理逻辑
+        #     print(event.text())
+        print(event.text())
+
 
     """后端核心功能"""
     def create_state_monitor(self):

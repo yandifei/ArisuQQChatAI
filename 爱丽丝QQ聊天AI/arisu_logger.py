@@ -30,8 +30,8 @@ except FileNotFoundError:
                                             maxBytes=1024, backupCount=2)
 arisu_handler.setLevel(logging.DEBUG)  # 设置日志等级为调试等级
 
-# # 创建控制台输出格式
-# consoleFormatter = logging.Formatter(
+# 创建控制台输出格式
+# console_formatter = logging.Formatter(
 #     fmt="%(asctime)s %(levelname)s:%(message)s",  # 时间，等级，消息
 #     datefmt="%H:%M:%S"                  # 时分秒
 # )

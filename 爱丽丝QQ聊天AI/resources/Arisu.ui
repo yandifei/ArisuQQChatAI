@@ -446,7 +446,7 @@ QTabBar::tab:selected {
       <enum>QTabWidget::TabShape::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>4</number>
      </property>
      <property name="iconSize">
       <size>
@@ -504,7 +504,8 @@ QTabBar::tab:selected {
          <property name="styleSheet">
           <string notr="true">QWidget {
 	border-radius: 10px;		/*圆角*/
-	background-color: rgba(85, 255, 255,50);
+	border: none;
+	background-color: rgba(170, 255, 255,0.3);	/*加个背景颜色*/
 }
 </string>
          </property>
@@ -846,7 +847,7 @@ QTabBar::tab:selected {
           <enum>QTabWidget::TabShape::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="documentMode">
           <bool>true</bool>
@@ -931,8 +932,8 @@ QScrollBar::add-line:horizontal {		/*滚动条底部的按钮*/
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1186</width>
-                <height>556</height>
+                <width>82</width>
+                <height>18</height>
                </rect>
               </property>
               <layout class="QHBoxLayout" name="StateWidgetLayout"/>
@@ -1795,13 +1796,13 @@ QScrollBar::sub-page:vertical, {
             <x>0</x>
             <y>0</y>
             <width>1047</width>
-            <height>1000</height>
+            <height>524</height>
            </rect>
           </property>
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>1000</height>
+            <height>0</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1857,7 +1858,7 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>施工中......</string>
+              <string>开启/关闭爱丽丝的AI自动回复：F12</string>
              </property>
             </widget>
            </item>
@@ -1907,7 +1908,7 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>开启自动回复</string>
+              <string>关闭动态主页：F7</string>
              </property>
             </widget>
            </item>
@@ -1957,7 +1958,7 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>开启自动回复</string>
+              <string>开启动态主页:F8</string>
              </property>
             </widget>
            </item>
@@ -2007,7 +2008,7 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>开启自动回复</string>
+              <string>文档和项目链接：F1</string>
              </property>
             </widget>
            </item>
@@ -2057,7 +2058,7 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>开启自动回复</string>
+              <string>开启/关闭全屏：F11</string>
              </property>
             </widget>
            </item>
@@ -2107,7 +2108,7 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>开启自动回复</string>
+              <string>施工中</string>
              </property>
             </widget>
            </item>
@@ -2157,7 +2158,7 @@ QPushButton:pressed {
 </string>
              </property>
              <property name="text">
-              <string>开启自动回复</string>
+              <string>施工中</string>
              </property>
             </widget>
            </item>
@@ -2185,65 +2186,173 @@ QPushButton:pressed {
        <string>问题链接</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <property name="leftMargin">
-        <number>10</number>
-       </property>
-       <property name="topMargin">
-        <number>10</number>
-       </property>
-       <property name="rightMargin">
-        <number>10</number>
-       </property>
-       <property name="bottomMargin">
-        <number>10</number>
-       </property>
        <item>
-        <widget class="QLabel" name="QuestionLinksBackground">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <family>黑体</family>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
-         <property name="acceptDrops">
-          <bool>false</bool>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
+        <widget class="QScrollArea" name="QuestionLinksScrollArea">
          <property name="styleSheet">
-          <string notr="true">QLabel {
+          <string notr="true">QScrollArea {
+	border: 5px solid rgb(255, 255, 255);  /*边框大小、边框样式、边框颜色*/
+	border-radius:20px; 		/*圆角*/	
+}
+/*设置垂直滚动条*/
+QScrollBar:vertical {
+	padding-top: 10px;		/*调整内部距离*/
+	padding-bottom: 10px;	/*调整内部距离*/
+	border-radius:10px; /*滚动条整体圆角*/
+	width: 7px;	/*滚动条整体宽度*/
+	background: none;		/*滚动条没有背景,之前是网格*/
+	background-color: rgb(255, 255, 255);	/*背景颜色*/
+}
+
+/*设置垂直滑动条手柄*/
+QScrollBar::handle:vertical {
+   border-radius:3px; 
+	background-color: rgb(0, 255, 255);	/*背景颜色*/
+}
+
+/*手柄悬停颜色*/
+QScrollBar::handle:vertical:hover {
+	background-color: rgba(0, 255, 255,0.3);		/*背景颜色*/
+}
+
+/*垂直滚动条顶部和底部的按钮*/
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+	height: 0px; /*设置按钮大小为0(不显示)*/
+}
+
+
+</string>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="QuestionLinksScrollAreaWidget">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>1169</width>
+            <height>1505</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/*可视窗口背景*/
+QWidget {
+	background-color: rgb(255, 255, 255);
+}</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <item>
+            <widget class="QLabel" name="QuestionLinksBackground">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>15</pointsize>
+              </font>
+             </property>
+             <property name="acceptDrops">
+              <bool>false</bool>
+             </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel {
     border-radius: 10px;		/*圆角*/	
 	background-color: rgb(255, 255, 255);
 }</string>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;以下10点内容都是抄之前写的，内容不乏已经过失了。&lt;/span&gt;&lt;span style=&quot; font-family:'Menlo','Roboto Mono','Courier New','Courier','monospace','Inter','sans-serif'; font-size:16pt; color:#e45649;&quot;&gt;🤖&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;1.&lt;/span&gt;&lt;span style=&quot; font-family:'Menlo','Roboto Mono','Courier New','Courier','monospace','Inter','sans-serif'; font-size:16pt; color:#494949;&quot;&gt;🚀&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;本项目是基于自主研发的DeepseekConversationEngine类库&lt;/span&gt;&lt;a href=&quot;https://github.com/yandifei/DeepseekConversationEngine&quot;&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; text-decoration: underline; color:#3b82f6; background-color:#ffffff;&quot;&gt;📦&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;开发的示例程序，通过调用案例直观演示该库的功能特性与开发流程。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;2.示例项目源码地址：&lt;/span&gt;&lt;a href=&quot;https://github.com/yandifei/DeepseekConversationEngine/tree/main/调用示例/QQ机器人&quot;&gt;&lt;span style=&quot; font-size:16pt; text-decoration: underline; color:#003e92;&quot;&gt;https://github.com/yandifei/DeepseekConversationEngine/tree/main/调用示例/QQ机器人&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Menlo','Roboto Mono','Courier New','Courier','monospace','Inter','sans-serif'; font-size:16pt; color:#494949;&quot;&gt;📂&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;3.核心类库仓库地址：&lt;/span&gt;&lt;a href=&quot;https://github.com/yandifei/DeepseekConversationEngine&quot;&gt;&lt;span style=&quot; font-size:16pt; text-decoration: underline; color:#003e92;&quot;&gt;https://github.com/yandifei/DeepseekConversationEngine&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;4.&lt;/span&gt;&lt;span style=&quot; font-family:'Menlo','Roboto Mono','Courier New','Courier','monospace','Inter','sans-serif'; font-size:16pt; color:#e45649;&quot;&gt;🔧&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;必须先在环境变量里&lt;/span&gt;&lt;span style=&quot; font-family:'Menlo','Roboto Mono','Courier New','Courier','monospace','Inter','sans-serif'; font-size:16pt; color:#494949;&quot;&gt;⚙️&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;配置好密钥&lt;/span&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; color:#404040; background-color:#ffffff;&quot;&gt;🔐&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;，不懂的可以去看相关视频&lt;/span&gt;&lt;span style=&quot; font-family:'Menlo','Roboto Mono','Courier New','Courier','monospace','Inter','sans-serif'; font-size:16pt; color:#494949;&quot;&gt;📺&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;或查看文档目录下的deepseek对话引擎文件&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;5.优先查看文档解决问题，文档没有问AI(直接粘贴报错提示)或把报错发作者QQ邮箱:3058439878@qq.com&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;6.此程序的根本目的是打造接入DeepSeek的API接口实现“满分”&lt;/span&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; color:#404040; background-color:#ffffff;&quot;&gt;🧠&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;的问题解答和为用户提供《情绪价值&lt;/span&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; color:#404040; background-color:#ffffff;&quot;&gt;💖&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;》！&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;7.提供了预定的人设(已经调教好了)，&lt;/span&gt;&lt;a href=&quot;https://docs/troubleshooting.md&quot;&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; text-decoration: underline; color:#3b82f6; background-color:#ffffff;&quot;&gt;📚&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;文档中记载了自定义人设的方法&lt;/span&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; color:#404040; background-color:#ffffff;&quot;&gt;🎭&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;，可自行查看修改。&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;8.MIT协议&lt;/span&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; color:#404040; background-color:#ffffff;&quot;&gt;📜&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;保留原始版权可自由修改，&lt;/span&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; color:#404040; background-color:#ffffff;&quot;&gt;🚫&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;禁止将该项目用于引流(带节奏)、纯色情、当键政等非法目的。&lt;/span&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; color:#404040; background-color:#ffffff;&quot;&gt;⚡&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;9.如果您喜欢该项目或觉得该项目对您有所帮助，感谢您的使用。开源不易，如果可以请在项目根地址给我一个&lt;/span&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; font-weight:600; color:#404040; background-color:#ffffff;&quot;&gt;✨&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Star&lt;/span&gt;&lt;span style=&quot; font-family:'quote-cjk-patch','Inter','system-ui','-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Noto Sans','Ubuntu','Cantarell','Helvetica Neue','Oxygen','Open Sans','sans-serif'; font-size:16pt; font-weight:600; color:#404040; background-color:#ffffff;&quot;&gt;✨&lt;/span&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;吧！&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;10.QQ需要在设置里面把超级调色板调的分格调整成极简白，不然会报错！&lt;/span&gt;&lt;img src=&quot;:/Logo/Logo/128.ico&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="textFormat">
-          <enum>Qt::TextFormat::RichText</enum>
-         </property>
-         <property name="scaledContents">
-          <bool>false</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-         <property name="openExternalLinks">
-          <bool>true</bool>
-         </property>
+             </property>
+             <property name="text">
+              <string notr="true">### &lt;span style=&quot;color:red&quot;&gt;禁止倒卖！禁止倒卖！禁止倒卖！！！&lt;/span&gt;
+
+#### 📖 使用说明 📖  
+1. **🆓 免费声明**  
+   - 本软件为 **免费开源项目**！若你付了钱，请立刻退款！  
+   - 🌟 GitHub 地址：[https://github.com/yandifei/ArisuQQChatAI](https://github.com/yandifei/ArisuQQChatAI)  
+
+2. **🚀 项目定位**  
+   - 基于自研库 [DeepseekConversationEngine](https://github.com/yandifei/DeepseekConversationEngine) 📦 开发的 **示例程序**，用于演示功能与开发流程。  
+   - 🔍 指令系统详解请参考库文档 → [专属指令快捷调参](https://github.com/yandifei/DeepseekConversationEngine)  
+
+3. **🔑 密钥配置必读**  
+   - 使用前 **必须配置** DeepSeek-API 密钥 🔐！  
+   - 获取方式：  
+     - 📄 查看目录文档《爱丽丝QQ聊天AI.pdf》  
+     - 📺 观看教程视频  
+     - 🤖 咨询 AI  
+     - 🌐 [DeepSeek API Key 官网](https://platform.deepseek.com/api_keys)  
+
+4. **🎨 QQ 主题设置**  
+   - 需在 QQ 设置中将 **主题风格调整为「极简白」**，否则可能报错！ ⚠️  
+
+5. **✨ 支持项目**  
+   - 喜欢本项目？感谢你的使用！开源不易，欢迎在 GitHub 点亮 **Star** 🌟 → [项目地址](https://github.com/yandifei/ArisuQQChatAI)  
+
+#### ⚠️ 免责声明 ⚠️  
+1. **⚠️ 内容免责**  
+   - 本软件通过 DeepSeek API 生成的内容 **不代表开发者观点**，其准确性、适当性由使用者 **自行判断并承担全部责任**。  
+   - 🤖 AI 可能产生错误、偏见或不适宜内容，开发者 **不对此引发的任何后果负责**。  
+
+2. **⚡ 封号风险警示**  
+   - 若因使用本软件导致 QQ 号被封(如：Q群中发送禁漫天堂的本子被举报等)，开发者 **概不负责**！  
+   - 🎭（非要作死？开发者也拦不住！已提供移除危险指令选项，请自行承担风险！）  
+
+3. **🚫 使用限制**  
+   - 📜 基于 MIT 协议开源，保留原始版权，可自由修改。  
+   - ❌ **严禁** 用于引流、色情、键政、消息轰炸等非法用途！  
+
+4. **💖 核心目标**  
+   - 打造 DeepSeek API 接口，实现 **爱丽丝** + **满分问题解答** 🧠 + 提供 **情绪价值** 💖！  
+
+5. **🔐 隐私与安全**  
+   - 项目开源透明，**绝不非法获取用户隐私**。  
+   - ⚠️ 若私自重新打包分发导致聊天记录泄露，**开发者概不负责**，请从[Github官网下载](https://github.com/yandifei/ArisuQQChatAI)！  
+
+6. **🔧 密钥安全说明**  
+   - 已妥善设计 API 密钥存储机制 🔒。  
+   - 如因个人操作导致密钥泄露，请 **立即删除并更换** 🔑！  
+   - 本项目 **不承担** 用户操作失误引发的密钥泄露责任。 
+
+#### 问题反馈
+- 其实还有别的项目要研发和个人学习，没时间处理。
+- 提交 [Issues](https://github.com/yandifei/ArisuQQChatAI/issues) 或 邮箱3058439878@qq.com</string>
+             </property>
+             <property name="textFormat">
+              <enum>Qt::TextFormat::MarkdownText</enum>
+             </property>
+             <property name="scaledContents">
+              <bool>false</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -2619,102 +2728,55 @@ QPushButton:pressed {
        <property name="font">
         <font>
          <family>Cascadia Mono</family>
-         <pointsize>12</pointsize>
+         <pointsize>-1</pointsize>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QScrollBar:vertical{
-
-margin:16px 0px 16px 0px;
-
-background-color:rgb(11,54,117);
-
-border:0px;
-
-width:14px;
-
+        <string notr="true">/* 主窗口样式 */
+QTextBrowser {
+    background-color: rgb(255, 255, 255);   /*白色背景*/   
+    border: none;                           /*无边框*/
+    font-size: 20px;                        /* 字体大小 */
+    color: rgb(128, 128, 128);              /*字体颜色为灰色*/
+	border-radius:10px;                 /*圆角*/
 }
 
-QScrollBar::handle:vertical{
-
-background-color:rgba(59,103,168,190);
-
-border-radius:7px;
-
-width:13px;
-
+/* 滚动条 - 垂直 */
+QTextBrowser QScrollBar:vertical {
+    border-radius:10px;                 /*圆角*/
+    background-color: rgb(255,255,255); /*背景颜色*/
+    width: 4px;                         /* 滚动条默认宽度*/
 }
 
-QScrollBar::handle:vertical:hover{
-
-background-color:rgba(59,103,168,220);
-
+/* 垂直滚动条滑块 */
+QTextBrowser QScrollBar::handle:vertical {
+   border-radius:3px;                   /*圆角*/
+    background-color: rgb(0, 255, 255); /*背景颜色*/
 }
 
-QScrollBar::sub-line:vertical{
-
-subcontrol-position:top;
-
-subcontrol-origin:margin;
-
-background-color:rgb(11,54,117);
-
-border:1px solid rgb(11,54,117);
-
-height:16px;
-
+/* 垂直滚动条滑块悬停 */
+QTextBrowser QScrollBar::handle:vertical:hover {
+    background-color: rgba(0, 255, 255,0.5);/*背景颜色*/
 }
 
-QScrollBar::add-line:vertical{
-
-subcontrol-position:bottom;
-
-subcontrol-origin:margin;
-
-background-color:rgb(11,54,117);
-
-border:1px solid rgb(11,54,117);
-
-height:16px;
-
+/* 滚动条向上按钮 */
+QTextBrowser QScrollBar::sub-line:vertical {	
+    height: 0px; /*设置按钮大小为0(不显示)*/
 }
 
-QScrollBar::up-arrow:vertical{
-
-border-image:url(:/commonImg/Resources/image/common/arrowUp.png);
-
-width:12px;
-
-height:6px;
-
+/* 滚动条向下按钮 */
+QTextBrowser QScrollBar::add-line:vertical {
+    height: 0px; /*设置按钮大小为0(不显示)*/
 }
 
-QScrollBar::down-arrow:vertical{
-
-border-image:url(:/commonImg/Resources/image/common/arrowDown.png);
-
-width:12px;
-
-height:6px;
-
-}
-
-QScrollBar::sub-page:vertical,QScrollBar::add-page:vertical{
-
-background-color:rgb(11,54,117);
+/* 滚动条背景 */
+QTextBrowser QScrollBar::add-page:vertical, 
+QTextBrowser QScrollBar::sub-page:vertical {
+    background: none;		/*没有背景,之前是网格*/
 }</string>
        </property>
-       <property name="html">
-        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cascadia Mono'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Microsoft YaHei UI';&quot;&gt;print 调试输出（输出重定向）&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Microsoft YaHei UI';&quot;&gt;没有实现日志输出重定向到这里，可惜了。&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Microsoft YaHei UI';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <property name="readOnly">
+        <bool>false</bool>
        </property>
       </widget>
       <widget class="QGroupBox" name="LogicCPUCountState">
@@ -2956,241 +3018,6 @@ QPushButton:pressed {
        <property name="text">
         <string>还原导航栏排序</string>
        </property>
-      </widget>
-      <widget class="QScrollArea" name="scrollArea">
-       <property name="geometry">
-        <rect>
-         <x>110</x>
-         <y>410</y>
-         <width>231</width>
-         <height>151</height>
-        </rect>
-       </property>
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
-       </property>
-       <property name="horizontalScrollBarPolicy">
-        <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>-59</y>
-          <width>217</width>
-          <height>196</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_9">
-         <item>
-          <widget class="QPushButton" name="RestoreNavigationBarSortingButton_2">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="sizeIncrement">
-            <size>
-             <width>0</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>黑体</family>
-             <pointsize>17</pointsize>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">/**正常情况下样式**/
-QPushButton{
-	border-radius: 10px;		/*圆角*/
-	border-width: 3px;		/*设置边框大小*/
-	border-color: rgb(80, 180, 255);  /*边框颜色*/
-	
-	border-style: solid;		/*实线*/
-	color: rgb(80, 180, 255);
-	background-color: rgba(80, 180, 255,0.3);	/*按钮背景颜色纯白*/
-}
-
-/**鼠标停留在按钮上的样式**/
-QPushButton::hover{	
-	background-color: rgba(80, 180, 255,0.5);
-	color: rgb(255, 255, 255);
-}
-
-/**鼠标按压下去的样式**/
-QPushButton:pressed {
-	background-color: rgb(80, 180, 255);
-	color: rgb(255, 255, 255);
-}
-</string>
-           </property>
-           <property name="text">
-            <string>还原导航栏排序</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="RestoreNavigationBarSortingButton_3">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="sizeIncrement">
-            <size>
-             <width>0</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>黑体</family>
-             <pointsize>17</pointsize>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">/**正常情况下样式**/
-QPushButton{
-	border-radius: 10px;		/*圆角*/
-	border-width: 3px;		/*设置边框大小*/
-	border-color: rgb(80, 180, 255);  /*边框颜色*/
-	
-	border-style: solid;		/*实线*/
-	color: rgb(80, 180, 255);
-	background-color: rgba(80, 180, 255,0.3);	/*按钮背景颜色纯白*/
-}
-
-/**鼠标停留在按钮上的样式**/
-QPushButton::hover{	
-	background-color: rgba(80, 180, 255,0.5);
-	color: rgb(255, 255, 255);
-}
-
-/**鼠标按压下去的样式**/
-QPushButton:pressed {
-	background-color: rgb(80, 180, 255);
-	color: rgb(255, 255, 255);
-}
-</string>
-           </property>
-           <property name="text">
-            <string>还原导航栏排序</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="RestoreNavigationBarSortingButton_4">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="sizeIncrement">
-            <size>
-             <width>0</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>黑体</family>
-             <pointsize>17</pointsize>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">/**正常情况下样式**/
-QPushButton{
-	border-radius: 10px;		/*圆角*/
-	border-width: 3px;		/*设置边框大小*/
-	border-color: rgb(80, 180, 255);  /*边框颜色*/
-	
-	border-style: solid;		/*实线*/
-	color: rgb(80, 180, 255);
-	background-color: rgba(80, 180, 255,0.3);	/*按钮背景颜色纯白*/
-}
-
-/**鼠标停留在按钮上的样式**/
-QPushButton::hover{	
-	background-color: rgba(80, 180, 255,0.5);
-	color: rgb(255, 255, 255);
-}
-
-/**鼠标按压下去的样式**/
-QPushButton:pressed {
-	background-color: rgb(80, 180, 255);
-	color: rgb(255, 255, 255);
-}
-</string>
-           </property>
-           <property name="text">
-            <string>还原导航栏排序</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="RestoreNavigationBarSortingButton_5">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="sizeIncrement">
-            <size>
-             <width>0</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>黑体</family>
-             <pointsize>17</pointsize>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">/**正常情况下样式**/
-QPushButton{
-	border-radius: 10px;		/*圆角*/
-	border-width: 3px;		/*设置边框大小*/
-	border-color: rgb(80, 180, 255);  /*边框颜色*/
-	
-	border-style: solid;		/*实线*/
-	color: rgb(80, 180, 255);
-	background-color: rgba(80, 180, 255,0.3);	/*按钮背景颜色纯白*/
-}
-
-/**鼠标停留在按钮上的样式**/
-QPushButton::hover{	
-	background-color: rgba(80, 180, 255,0.5);
-	color: rgb(255, 255, 255);
-}
-
-/**鼠标按压下去的样式**/
-QPushButton:pressed {
-	background-color: rgb(80, 180, 255);
-	color: rgb(255, 255, 255);
-}
-</string>
-           </property>
-           <property name="text">
-            <string>还原导航栏排序</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
       </widget>
      </widget>
     </widget>

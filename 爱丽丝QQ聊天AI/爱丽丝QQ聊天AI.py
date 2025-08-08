@@ -17,7 +17,10 @@ from arisu_logger import debug, info, warning, critical, exception          # �
 arisu_app = QApplication(sys.argv)  # 管理控制事件流和设置(sys.argv控制台接收参数)
 arisu_ui = ArisuUI("爱丽丝", True, "resources/Arisu.ui")
 arisu_ui.show()                 # 界面展示
+
 info("UI界面加载完成")
+print("\033[93mhello\033[0m")
+info("1")
 sys.exit(arisu_app.exec())      # 安全退出界面任务
 
 # """main处理（可惜我最终是线程池处理的）
