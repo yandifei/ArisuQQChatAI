@@ -47,13 +47,13 @@
 <div style="display: flex; justify-content: center; gap: 10px; margin: 20px auto;">
   <img src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/bf40dda6d3300abe92f4e03f103e936f9738ee97/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E4%B8%BB%E9%A1%B5.png" 
        alt="热键"
-       style="width: 500px; height: auto;"/>
+       style="width: 400px; height: auto;"/>
   <img src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%8A%B6%E6%80%81%E7%9B%91%E6%B5%8B.png" 
       alt="绑定" 
-      style="width: 500px; height: auto;"/>
+      style="width: 400px; height: auto;"/>
   <img src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%BB%91%E5%AE%9A.png" 
        alt="绑定" 
-       style="width: 500px; height: auto;"/>
+       style="width: 400px; height: auto;"/>
 </div>
 
 ## 安装使用

@@ -26,9 +26,10 @@ except (ModuleNotFoundError, ImportError):                                      
     from qq_message_monitor import QQMessageMonitor                                         # QQ监控
 from 用户设置.configuration_manager import ConfigurationManager                             # 导入配置文件的类
 from arisu_logger import debug, info, warning, critical, exception                          # 导入日志方法
-from arisu_logger import console_handler                                                    # 导入日志处理器
 from UI.arisu_threading import ArisuThreading                                               # 线程的类
 from resources.Arisu import Ui_Arisu                                                        # uic转后py文件
+from arisu_logger import console_handler                                                    # 导入日志处理器
+from 爱丽丝QQ聊天AI import log_output_redirection, stdout_redirection, stderr_redirection    # 输出重定向的实例化对象
 import resources.resources                                                                  # 这个qrc必须存在（即使编译器报灰色）
 debug("ExtendedUI.py(UI界面额外扩展文件已加载完成)")
 
@@ -44,23 +45,24 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         """
         super().__init__(title, show_system_tray, ui_file_path)  # 继承父类的属性和方法
         """终端输出输出重定向"""
-        # 日志输出重定向
-        log_output_redirection = OutputRedirection()  # 实例化输出重定向对象
-        console_handler.stream = log_output_redirection  # 日志输出重定向
         log_output_redirection.text_print.connect(self.log_print)  # 信号连接
-        info("日志输出重定向已完成")
-        # 准输出重定向
-        stdout_redirection = OutputRedirection()  # 实例化输出重定向对象
-        sys.stdout = stdout_redirection  # 标准输出重定向
         stdout_redirection.text_print.connect(self.log_print)  # 信号连接
-        info("准输出重定向已完成")
-        # 错误输出重定向
-        stderr_redirection = OutputRedirection()  # 实例化输出重定向对象
-        sys.stderr = stderr_redirection  # 错误输出重定向
         stderr_redirection.text_print.connect(self.log_print)  # 信号连接
-        info("错误输出重定向已完成")
-        print("\033[93mhello\033[0m")
-        print("\033[93m1\033[0m")
+        # # 日志输出重定向
+        # log_output_redirection = OutputRedirection()  # 实例化输出重定向对象
+        # console_handler.stream = log_output_redirection  # 日志输出重定向
+        # log_output_redirection.text_print.connect(self.log_print)  # 信号连接
+        # info("日志输出重定向已完成")
+        # # 准输出重定向
+        # stdout_redirection = OutputRedirection()  # 实例化输出重定向对象
+        # sys.stdout = stdout_redirection  # 标准输出重定向
+        # stdout_redirection.text_print.connect(self.log_print)  # 信号连接
+        # info("准输出重定向已完成")
+        # # 错误输出重定向
+        # stderr_redirection = OutputRedirection()  # 实例化输出重定向对象
+        # sys.stderr = stderr_redirection  # 错误输出重定向
+        # stderr_redirection.text_print.connect(self.log_print)  # 信号连接
+        # info("错误输出重定向已完成")
         """配置文件数据初始化"""
         self.config = ConfigurationManager()  # 实例化配置文件(读取配置文件数据)
         info("用户配置信息已导入UI列表视图")
