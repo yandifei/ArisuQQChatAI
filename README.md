@@ -46,10 +46,14 @@
 ## 界面示意
 
 <div style="display: flex; justify-content: center; gap: 10px; margin: 20px auto;">
-  <img alt="热键" style="width: 400px; height: auto;" src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/bf40dda6d3300abe92f4e03f103e936f9738ee97/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E4%B8%BB%E9%A1%B5.png"/>
+  <img alt="主页" style="width: 400px; height: auto;" src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/bf40dda6d3300abe92f4e03f103e936f9738ee97/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E4%B8%BB%E9%A1%B5.png"/>
   <img alt="状态监测" style="width: 400px; height: auto;" src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%8A%B6%E6%80%81%E7%9B%91%E6%B5%8B.png"/>
-  <img alt="Q群绑定" style="width: 400px; height: auto;" src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%BB%91%E5%AE%9A.png"/>
+  <img alt="Q群绑定" style="width: 400px; height: auto;" src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/Q%E7%BE%A4%E7%BB%91%E5%AE%9A.png"/>
+  <img alt="用户设置" style="width: 400px; height: auto;" src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%94%A8%E6%88%B7%E8%AE%BE%E7%BD%AE.png"/>
+  <img alt="状态监测(最大化)" style="width: 400px; height: auto;" src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E7%8A%B6%E6%80%81%E7%9B%91%E6%B5%8B(%E6%9C%80%E5%A4%A7%E5%8C%96).png"/>
+  <img alt="日志监控(最大化)" style="width: 400px; height: auto;" src="https://media.githubusercontent.com/media/yandifei/ArisuQQChatAI/main/%E5%B1%95%E7%A4%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%9B%BE%E7%89%87/%E6%97%A5%E5%BF%97%E7%9B%91%E6%8E%A7(%E6%9C%80%E5%A4%A7%E5%8C%96).png"/>
 </div>
+
 
 ## 安装使用
 - 下载地址：[⚡Github下载⚡](https://github.com/yandifei/ArisuQQChatAI/releases/download/v1.0.0-beta/ArisuQQChatAI.7z)
