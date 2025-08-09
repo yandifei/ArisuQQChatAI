@@ -4,12 +4,24 @@
 # 系统库
 import os   # 系统库
 import re   # 正则库
-import sys
 
 # 第三方库
-from PyQt6.QtCore import QObject, pyqtSignal, QThread, QProcess
+from PyQt6.QtCore import QObject, pyqtSignal
 # 自己的库
-from arisu_logger import debug, info, warning, critical, exception                     # 导入日志方法
+from arisu_logger import info, exception                     # 导入日志方法
+
+
+class InputRedirection(QObject):
+    """输如重定向"""
+    input_text = pyqtSignal(str)  # 打造输出信号(必须放最高层级)
+
+    def __init__(self, extender_ui):
+        super().__init__()
+        self.ArisuUI = extender_ui
+
+    def readline(self, text):
+        text = self.ArisuUI.ConsoleWidget.document().lastBlock().text()
+        return text
 
 class OutputRedirection(QObject):
     """输入重定向"""

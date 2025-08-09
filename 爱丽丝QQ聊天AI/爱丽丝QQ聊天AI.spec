@@ -1,11 +1,12 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-
 a = Analysis(
     ['爱丽丝QQ聊天AI.py'],
     pathex=[],
     binaries=[],
-    datas=[('A:/Anaconda3/envs/Arisu/Lib/site-packages/comtypes', 'comtypes'), ('A:/Anaconda3/envs/Arisu/Lib/site-packages/uiautomation/bin', 'uiautomation/bin')],
+    datas=[('A:/Anaconda3/envs/Arisu/Lib/site-packages/comtypes', 'comtypes'),
+    ('A:/Anaconda3/envs/Arisu/Lib/site-packages/uiautomation/bin', 'uiautomation/bin')
+    ],
     hiddenimports=[
     'comtypes',
     'transformers.models.ernie4_5',

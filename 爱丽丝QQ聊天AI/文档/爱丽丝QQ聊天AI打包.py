@@ -1,3 +1,10 @@
+"""多文件打包更改_internal文件夹名
+去到pyinstaller包里面
+A:\Anaconda3\envs\Arisu\Lib\site-packages\PyInstaller\building
+找到api.py文件进去把 _internal 名字给改成你自己想用的名（我只有一个可以改，在451行代码处）
+self.contents_directory = kwargs.get("contents_directory", "packages")
+"""
+
 # pyinstaller --hidden-import comtypes --add-data "A:/Anaconda3/envs/Arisu/Lib/site-packages/comtypes;comtypes" --add-data "A:/Anaconda3/envs/Arisu/Lib/site-packages/uiautomation/bin;uiautomation/bin" -i ./resources/Logo/256.ico --uac-admin --noconsole -D 爱丽丝QQ聊天AI.py
 """
 非必要不要加这个字段：--uac-admin  这个是添加管理员权限的（其实这里我觉得是必要得，非必要是pyinstaller文档）

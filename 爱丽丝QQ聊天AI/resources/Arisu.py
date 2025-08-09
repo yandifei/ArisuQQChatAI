@@ -66,6 +66,7 @@ class Ui_Arisu(object):
         self.WindowControlButtons.setObjectName("WindowControlButtons")
         self.hide_btn = QtWidgets.QPushButton(parent=Arisu)
         self.hide_btn.setMouseTracking(True)
+        self.hide_btn.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.hide_btn.setWhatsThis("")
         self.hide_btn.setStyleSheet("QPushButton {\n"
 "    background: transparent;  /* 透明背景 */\n"
@@ -88,6 +89,7 @@ class Ui_Arisu(object):
         self.WindowControlButtons.addWidget(self.hide_btn)
         self.min_system_tray_btn = QtWidgets.QPushButton(parent=Arisu)
         self.min_system_tray_btn.setMouseTracking(True)
+        self.min_system_tray_btn.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.min_system_tray_btn.setStyleSheet("QPushButton {\n"
 "    background: transparent;  /* 透明背景 */\n"
 "    border:  transparent;            /* 移除默认边框 */\n"
@@ -109,6 +111,7 @@ class Ui_Arisu(object):
         self.WindowControlButtons.addWidget(self.min_system_tray_btn)
         self.top_btn = QtWidgets.QPushButton(parent=Arisu)
         self.top_btn.setMouseTracking(True)
+        self.top_btn.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.top_btn.setStyleSheet("QPushButton {\n"
 "    background: transparent;  /* 透明背景 */\n"
 "    border:  transparent;            /* 移除默认边框 */\n"
@@ -130,6 +133,7 @@ class Ui_Arisu(object):
         self.WindowControlButtons.addWidget(self.top_btn)
         self.min_btn = QtWidgets.QPushButton(parent=Arisu)
         self.min_btn.setMouseTracking(True)
+        self.min_btn.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.min_btn.setStyleSheet("QPushButton {\n"
 "    background: transparent;  /* 透明背景 */\n"
 "    border: none;            /* 移除默认边框 */\n"
@@ -151,6 +155,7 @@ class Ui_Arisu(object):
         self.WindowControlButtons.addWidget(self.min_btn)
         self.max_btn = QtWidgets.QPushButton(parent=Arisu)
         self.max_btn.setMouseTracking(True)
+        self.max_btn.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.max_btn.setStyleSheet("QPushButton {\n"
 "    background: transparent;  /* 透明背景 */\n"
 "    border: none;            /* 移除默认边框 */\n"
@@ -175,6 +180,7 @@ class Ui_Arisu(object):
         self.WindowControlButtons.addWidget(self.max_btn)
         self.close_btn = QtWidgets.QPushButton(parent=Arisu)
         self.close_btn.setMouseTracking(True)
+        self.close_btn.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.close_btn.setStyleSheet("QPushButton {\n"
 "    background: transparent;  /* 透明背景 */\n"
 "    border:  transparent;            /* 移除默认边框 */\n"
@@ -508,7 +514,7 @@ class Ui_Arisu(object):
         self.StateScrollArea.setWidgetResizable(True)
         self.StateScrollArea.setObjectName("StateScrollArea")
         self.StateWidget = QtWidgets.QWidget()
-        self.StateWidget.setGeometry(QtCore.QRect(0, 0, 1186, 556))
+        self.StateWidget.setGeometry(QtCore.QRect(0, 0, 82, 18))
         self.StateWidget.setObjectName("StateWidget")
         self.StateWidgetLayout = QtWidgets.QHBoxLayout(self.StateWidget)
         self.StateWidgetLayout.setObjectName("StateWidgetLayout")
@@ -949,7 +955,8 @@ class Ui_Arisu(object):
         self.HotkeySelections = QtWidgets.QScrollArea(parent=self.KeyboardShortcut)
         self.HotkeySelections.setStyleSheet("QScrollArea {\n"
 "    border: 5px solid rgb(240, 244, 249);  /*边框大小、边框样式、边框颜色*/\n"
-"    border-radius:20px;         /*圆角*/\n"
+"    border-top-left-radius: 20px;    /* 左上角圆角半径 */\n"
+"    border-top-right-radius: 20px;   /* 右上角圆角半径 */\n"
 "    background-color: rgb(240, 244, 249); /*背景色*/\n"
 "}\n"
 "/*设置垂直滚动条*/\n"
@@ -991,7 +998,7 @@ class Ui_Arisu(object):
         self.HotkeySelections.setWidgetResizable(True)
         self.HotkeySelections.setObjectName("HotkeySelections")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1047, 524))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, -153, 1047, 677))
         self.scrollAreaWidgetContents.setMinimumSize(QtCore.QSize(0, 0))
         self.scrollAreaWidgetContents.setStyleSheet("/*可视窗口背景*/\n"
 "QWidget {\n"
@@ -999,16 +1006,17 @@ class Ui_Arisu(object):
 "}")
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_6.setSpacing(50)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.SwitchReply_2 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
-        self.SwitchReply_2.setMinimumSize(QtCore.QSize(0, 40))
-        self.SwitchReply_2.setSizeIncrement(QtCore.QSize(0, 40))
+        self.SwitchReply_5 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
+        self.SwitchReply_5.setMinimumSize(QtCore.QSize(0, 40))
+        self.SwitchReply_5.setSizeIncrement(QtCore.QSize(0, 40))
         font = QtGui.QFont()
         font.setFamily("黑体")
         font.setPointSize(17)
         font.setBold(True)
-        self.SwitchReply_2.setFont(font)
-        self.SwitchReply_2.setStyleSheet("/**正常情况下样式**/\n"
+        self.SwitchReply_5.setFont(font)
+        self.SwitchReply_5.setStyleSheet("/**正常情况下样式**/\n"
 "QPushButton{\n"
 "    border-radius: 10px;        /*圆角*/\n"
 "    border-width: 3px;        /*设置边框大小*/\n"
@@ -1016,6 +1024,7 @@ class Ui_Arisu(object):
 "    border-style: solid;        /*实线*/\n"
 "    color: rgb(0, 85, 255);\n"
 "    background-color: rgba(0, 85, 255,0.1);    /*按钮背景颜色纯白*/\n"
+"    text-align : left;    /*文本放在左边*/\n"
 "}\n"
 "\n"
 "/**鼠标停留在按钮上的样式**/\n"
@@ -1030,8 +1039,8 @@ class Ui_Arisu(object):
 "    color: rgb(255, 255, 255);\n"
 "}\n"
 "")
-        self.SwitchReply_2.setObjectName("SwitchReply_2")
-        self.verticalLayout_6.addWidget(self.SwitchReply_2)
+        self.SwitchReply_5.setObjectName("SwitchReply_5")
+        self.verticalLayout_6.addWidget(self.SwitchReply_5)
         self.SwitchReply_3 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
         self.SwitchReply_3.setMinimumSize(QtCore.QSize(0, 40))
         self.SwitchReply_3.setSizeIncrement(QtCore.QSize(0, 40))
@@ -1048,6 +1057,7 @@ class Ui_Arisu(object):
 "    border-style: solid;        /*实线*/\n"
 "    color: rgb(0, 85, 255);\n"
 "    background-color: rgba(0, 85, 255,0.1);    /*按钮背景颜色纯白*/\n"
+"    text-align : left;    /*文本放在左边*/\n"
 "}\n"
 "\n"
 "/**鼠标停留在按钮上的样式**/\n"
@@ -1080,6 +1090,7 @@ class Ui_Arisu(object):
 "    border-style: solid;        /*实线*/\n"
 "    color: rgb(0, 85, 255);\n"
 "    background-color: rgba(0, 85, 255,0.1);    /*按钮背景颜色纯白*/\n"
+"    text-align : left;    /*文本放在左边*/\n"
 "}\n"
 "\n"
 "/**鼠标停留在按钮上的样式**/\n"
@@ -1096,38 +1107,6 @@ class Ui_Arisu(object):
 "")
         self.SwitchReply_4.setObjectName("SwitchReply_4")
         self.verticalLayout_6.addWidget(self.SwitchReply_4)
-        self.SwitchReply_5 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
-        self.SwitchReply_5.setMinimumSize(QtCore.QSize(0, 40))
-        self.SwitchReply_5.setSizeIncrement(QtCore.QSize(0, 40))
-        font = QtGui.QFont()
-        font.setFamily("黑体")
-        font.setPointSize(17)
-        font.setBold(True)
-        self.SwitchReply_5.setFont(font)
-        self.SwitchReply_5.setStyleSheet("/**正常情况下样式**/\n"
-"QPushButton{\n"
-"    border-radius: 10px;        /*圆角*/\n"
-"    border-width: 3px;        /*设置边框大小*/\n"
-"    border-color: rgb(0, 85, 255);  /*边框颜色*/\n"
-"    border-style: solid;        /*实线*/\n"
-"    color: rgb(0, 85, 255);\n"
-"    background-color: rgba(0, 85, 255,0.1);    /*按钮背景颜色纯白*/\n"
-"}\n"
-"\n"
-"/**鼠标停留在按钮上的样式**/\n"
-"QPushButton::hover{    \n"
-"    background-color: rgba(0, 85, 255,0.5);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"/**鼠标按压下去的样式**/\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(0, 85, 255);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"")
-        self.SwitchReply_5.setObjectName("SwitchReply_5")
-        self.verticalLayout_6.addWidget(self.SwitchReply_5)
         self.SwitchReply_6 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
         self.SwitchReply_6.setMinimumSize(QtCore.QSize(0, 40))
         self.SwitchReply_6.setSizeIncrement(QtCore.QSize(0, 40))
@@ -1144,6 +1123,7 @@ class Ui_Arisu(object):
 "    border-style: solid;        /*实线*/\n"
 "    color: rgb(0, 85, 255);\n"
 "    background-color: rgba(0, 85, 255,0.1);    /*按钮背景颜色纯白*/\n"
+"    text-align : left;    /*文本放在左边*/\n"
 "}\n"
 "\n"
 "/**鼠标停留在按钮上的样式**/\n"
@@ -1160,6 +1140,48 @@ class Ui_Arisu(object):
 "")
         self.SwitchReply_6.setObjectName("SwitchReply_6")
         self.verticalLayout_6.addWidget(self.SwitchReply_6)
+        self.SwitchReply_2 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
+        self.SwitchReply_2.setMinimumSize(QtCore.QSize(0, 40))
+        self.SwitchReply_2.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.SwitchReply_2.setFont(font)
+        self.SwitchReply_2.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(0, 85, 255);  /*边框颜色*/\n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(0, 85, 255);\n"
+"    background-color: rgba(0, 85, 255,0.1);    /*按钮背景颜色纯白*/\n"
+"    text-align : left;    /*文本放在左边*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(0, 85, 255,0.5);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(0, 85, 255);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.SwitchReply_2.setObjectName("SwitchReply_2")
+        self.verticalLayout_6.addWidget(self.SwitchReply_2)
+        self.StateScrollAreaTip_2 = QtWidgets.QLabel(parent=self.scrollAreaWidgetContents)
+        font = QtGui.QFont()
+        font.setFamily("等线")
+        font.setPointSize(20)
+        font.setBold(True)
+        self.StateScrollAreaTip_2.setFont(font)
+        self.StateScrollAreaTip_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.StateScrollAreaTip_2.setObjectName("StateScrollAreaTip_2")
+        self.verticalLayout_6.addWidget(self.StateScrollAreaTip_2)
         self.SwitchReply_7 = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents)
         self.SwitchReply_7.setMinimumSize(QtCore.QSize(0, 40))
         self.SwitchReply_7.setSizeIncrement(QtCore.QSize(0, 40))
@@ -1176,6 +1198,7 @@ class Ui_Arisu(object):
 "    border-style: solid;        /*实线*/\n"
 "    color: rgb(0, 85, 255);\n"
 "    background-color: rgba(0, 85, 255,0.1);    /*按钮背景颜色纯白*/\n"
+"    text-align : left;    /*文本放在左边*/\n"
 "}\n"
 "\n"
 "/**鼠标停留在按钮上的样式**/\n"
@@ -1208,6 +1231,7 @@ class Ui_Arisu(object):
 "    border-style: solid;        /*实线*/\n"
 "    color: rgb(0, 85, 255);\n"
 "    background-color: rgba(0, 85, 255,0.1);    /*按钮背景颜色纯白*/\n"
+"    text-align : left;    /*文本放在左边*/\n"
 "}\n"
 "\n"
 "/**鼠标停留在按钮上的样式**/\n"
@@ -1276,7 +1300,7 @@ class Ui_Arisu(object):
         self.QuestionLinksScrollArea.setWidgetResizable(True)
         self.QuestionLinksScrollArea.setObjectName("QuestionLinksScrollArea")
         self.QuestionLinksScrollAreaWidget = QtWidgets.QWidget()
-        self.QuestionLinksScrollAreaWidget.setGeometry(QtCore.QRect(0, -864, 1169, 1505))
+        self.QuestionLinksScrollAreaWidget.setGeometry(QtCore.QRect(0, 0, 1169, 1505))
         self.QuestionLinksScrollAreaWidget.setMinimumSize(QtCore.QSize(0, 0))
         self.QuestionLinksScrollAreaWidget.setStyleSheet("/*可视窗口背景*/\n"
 "QWidget {\n"
@@ -1366,60 +1390,354 @@ class Ui_Arisu(object):
         icon13.addPixmap(QtGui.QPixmap(":/选项卡图标/选项卡图标/问题链接.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.ModeWidget.addTab(self.QuestionLinks, icon13, "")
         self.Settings = QtWidgets.QWidget()
-        self.Settings.setObjectName("Settings")
-        self.InitialInterfaceLocationComboBox = QtWidgets.QComboBox(parent=self.Settings)
-        self.InitialInterfaceLocationComboBox.setGeometry(QtCore.QRect(340, 310, 141, 61))
-        font = QtGui.QFont()
-        font.setPointSize(20)
-        font.setBold(True)
-        self.InitialInterfaceLocationComboBox.setFont(font)
-        self.InitialInterfaceLocationComboBox.setStyleSheet("/* 未下拉时，QComboBox的样式 */\n"
-"QComboBox {\n"
-"    border: 1px solid gray;   /* 边框 */\n"
-"    border-radius:2px;   /* 圆角 */\n"
-"    padding: 0px 0px 0px 10px; /* 上内边距、右内边距、下内边距、左内边距 */\n"
-"    color:rgb(0,0,0);/*字体颜色*/\n"
-"    /*font: normal normal 15px \"Microsoft YaHei\";*/\n"
-"    background: transparent;\n"
-"    text-align: AlignHCenter;\n"
-"/*    background-color: transparent;*/\n"
-"/*    background-color: rgb(0, 255, 255);*/\n"
-"}\n"
-" \n"
-"/* 下拉后，整个下拉窗体样式 */\n"
-"QComboBox QAbstractItemView {\n"
-"    outline: 0px solid gray;   /* 选定项的虚框 */\n"
-"    border-radius:10px;   /* 圆角 */\n"
-"    padding-top:10px;    /*上下都留10px，是因为选中项是矩形，如果不留，移动到第一项和最后一项会变为直角，不好看*/\n"
-"    padding-bottom:10px;\n"
-" \n"
-"    color:rgb(0,0,0);/*字体颜色*/\n"
-"}\n"
-" \n"
-"/* 下拉后，整个下拉窗体每项的样式 */\n"
-"QComboBox QAbstractItemView::item {\n"
-" \n"
-"    min-height: 26px;/*每项高度*/\n"
-"}\n"
-" \n"
-"/* 下拉后，整个下拉窗体越过每项的样式 */\n"
-"QComboBox QAbstractItemView::item:hover {\n"
-"    color:rgba(0,0,0,0.5);/*字体颜色*/\n"
-"}\n"
-" \n"
-"/* 下拉后，整个下拉窗体被选择的每项的样式 */\n"
-"QComboBox QAbstractItemView::item:selected {\n"
-"     color: rgba(51,51,51,1);\n"
-"    border-radius:2px;   /* 圆角 */\n"
+        self.Settings.setAutoFillBackground(False)
+        self.Settings.setStyleSheet("QWidget {\n"
+"    background-color: rgb(255, 255, 255);\n"
 "}")
-        self.InitialInterfaceLocationComboBox.setObjectName("InitialInterfaceLocationComboBox")
-        self.InitialInterfaceLocationComboBox.addItem("")
-        self.InitialInterfaceLocationComboBox.addItem("")
-        self.InitialInterfaceLocationComboBox.addItem("")
-        self.InitialInterfaceLocationComboBox.addItem("")
-        self.InitialInterfaceLocationComboBox.addItem("")
-        self.APIKeyState = QtWidgets.QGroupBox(parent=self.Settings)
-        self.APIKeyState.setGeometry(QtCore.QRect(20, 20, 481, 71))
+        self.Settings.setObjectName("Settings")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.Settings)
+        self.verticalLayout_9.setContentsMargins(70, 30, 70, 0)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.SettingsScrollArea = QtWidgets.QScrollArea(parent=self.Settings)
+        self.SettingsScrollArea.setStyleSheet("QScrollArea {\n"
+"    border: 5px solid rgb(240, 244, 249);  /*边框大小、边框样式、边框颜色*/\n"
+"    border-top-left-radius: 20px;    /* 左上角圆角半径 */\n"
+"    border-top-right-radius: 20px;   /* 右上角圆角半径 */\n"
+"    background-color: rgb(240, 244, 249); /*背景色*/\n"
+"}\n"
+"/*设置垂直滚动条*/\n"
+"QScrollBar:vertical {\n"
+"    padding-top: 10px;        /*调整内部距离*/\n"
+"    padding-bottom: 10px;    /*调整内部距离*/\n"
+"    border-radius:10px; /*滚动条整体圆角*/\n"
+"    width: 7px;    /*滚动条整体宽度*/\n"
+"    background: none;        /*滚动条没有背景,之前是网格*/\n"
+"}\n"
+"\n"
+"/*设置垂直滑动条手柄*/\n"
+"QScrollBar::handle:vertical {\n"
+"   border-radius:3px; \n"
+"    background-color: rgb(0, 255, 255);    /*背景颜色*/\n"
+"}\n"
+"\n"
+"/*手柄悬停颜色*/\n"
+"QScrollBar::handle:vertical:hover {\n"
+"    background-color: rgba(0, 255, 255,0.3);        /*背景颜色*/\n"
+"}\n"
+"\n"
+"/*垂直滚动条顶部和底部的按钮*/\n"
+"QScrollBar::add-line:vertical,\n"
+"QScrollBar::sub-line:vertical {\n"
+"    height: 0px; /*设置按钮大小为0(不显示)*/\n"
+"}\n"
+"\n"
+"/*垂直滚动条未覆盖的区域*/\n"
+"QScrollBar::add-page:vertical,\n"
+"QScrollBar::sub-page:vertical, {\n"
+"    background-color: rgba(240, 244, 249,1); /*背景色*/\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.SettingsScrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.SettingsScrollArea.setWidgetResizable(True)
+        self.SettingsScrollArea.setObjectName("SettingsScrollArea")
+        self.SettingsScrollAreaWidget = QtWidgets.QWidget()
+        self.SettingsScrollAreaWidget.setGeometry(QtCore.QRect(0, 0, 1054, 603))
+        self.SettingsScrollAreaWidget.setStyleSheet("/*可视窗口背景*/\n"
+"QWidget {\n"
+"    background-color: rgb(240, 244, 249);\n"
+"}")
+        self.SettingsScrollAreaWidget.setObjectName("SettingsScrollAreaWidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.SettingsScrollAreaWidget)
+        self.gridLayout.setContentsMargins(0, 40, 0, 0)
+        self.gridLayout.setHorizontalSpacing(20)
+        self.gridLayout.setVerticalSpacing(40)
+        self.gridLayout.setObjectName("gridLayout")
+        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.gridLayout.addItem(spacerItem2, 5, 0, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(174, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem3, 10, 8, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(125, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem4, 10, 1, 1, 1)
+        spacerItem5 = QtWidgets.QSpacerItem(97, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem5, 10, 4, 1, 1)
+        spacerItem6 = QtWidgets.QSpacerItem(17, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem6, 10, 0, 1, 1)
+        spacerItem7 = QtWidgets.QSpacerItem(97, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem7, 10, 5, 1, 1)
+        spacerItem8 = QtWidgets.QSpacerItem(98, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem8, 10, 2, 1, 1)
+        self.Uninstall = QtWidgets.QPushButton(parent=self.SettingsScrollAreaWidget)
+        self.Uninstall.setMinimumSize(QtCore.QSize(130, 40))
+        self.Uninstall.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.Uninstall.setFont(font)
+        self.Uninstall.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(255, 0, 0);  /*边框颜色*/\n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(255, 0, 0);\n"
+"    background-color: rgba(255, 0, 0,0.2);    /*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(255, 0, 0,0.5);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(255, 0, 0);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.Uninstall.setAutoRepeat(False)
+        self.Uninstall.setAutoDefault(False)
+        self.Uninstall.setDefault(False)
+        self.Uninstall.setFlat(False)
+        self.Uninstall.setObjectName("Uninstall")
+        self.gridLayout.addWidget(self.Uninstall, 10, 9, 1, 1)
+        spacerItem9 = QtWidgets.QSpacerItem(177, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout.addItem(spacerItem9, 10, 6, 1, 1)
+        self.JMDownloadStrategy = QtWidgets.QPushButton(parent=self.SettingsScrollAreaWidget)
+        self.JMDownloadStrategy.setMinimumSize(QtCore.QSize(0, 40))
+        self.JMDownloadStrategy.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.JMDownloadStrategy.setFont(font)
+        self.JMDownloadStrategy.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(85, 85, 255);  /*边框颜色*/\n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(85, 85, 255);\n"
+"    /*background-color: rgba(0, 255, 0,0.1);    */\n"
+"    background-color: rgba(85, 85, 255,0.1)/*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(85, 85, 255,0.3);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(85, 85, 255);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.JMDownloadStrategy.setAutoRepeat(False)
+        self.JMDownloadStrategy.setAutoDefault(False)
+        self.JMDownloadStrategy.setDefault(False)
+        self.JMDownloadStrategy.setFlat(False)
+        self.JMDownloadStrategy.setObjectName("JMDownloadStrategy")
+        self.gridLayout.addWidget(self.JMDownloadStrategy, 3, 7, 1, 2)
+        self.LogQueryDir = QtWidgets.QPushButton(parent=self.SettingsScrollAreaWidget)
+        self.LogQueryDir.setMinimumSize(QtCore.QSize(0, 40))
+        self.LogQueryDir.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.LogQueryDir.setFont(font)
+        self.LogQueryDir.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(85, 85, 255);  /*边框颜色*/\n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(85, 85, 255);\n"
+"    /*background-color: rgba(0, 255, 0,0.1);    */\n"
+"    background-color: rgba(85, 85, 255,0.1)/*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(85, 85, 255,0.3);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(85, 85, 255);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.LogQueryDir.setAutoRepeat(False)
+        self.LogQueryDir.setAutoDefault(False)
+        self.LogQueryDir.setDefault(False)
+        self.LogQueryDir.setFlat(False)
+        self.LogQueryDir.setObjectName("LogQueryDir")
+        self.gridLayout.addWidget(self.LogQueryDir, 4, 7, 1, 2)
+        self.KeywordReplyDir = QtWidgets.QPushButton(parent=self.SettingsScrollAreaWidget)
+        self.KeywordReplyDir.setMinimumSize(QtCore.QSize(0, 40))
+        self.KeywordReplyDir.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.KeywordReplyDir.setFont(font)
+        self.KeywordReplyDir.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(85, 85, 255);  /*边框颜色*/\n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(85, 85, 255);\n"
+"    /*background-color: rgba(0, 255, 0,0.1);    */\n"
+"    background-color: rgba(85, 85, 255,0.1)/*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(85, 85, 255,0.3);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(85, 85, 255);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.KeywordReplyDir.setAutoRepeat(False)
+        self.KeywordReplyDir.setAutoDefault(False)
+        self.KeywordReplyDir.setDefault(False)
+        self.KeywordReplyDir.setFlat(False)
+        self.KeywordReplyDir.setObjectName("KeywordReplyDir")
+        self.gridLayout.addWidget(self.KeywordReplyDir, 2, 7, 1, 2)
+        self.OpenRoleDir = QtWidgets.QPushButton(parent=self.SettingsScrollAreaWidget)
+        self.OpenRoleDir.setMinimumSize(QtCore.QSize(0, 40))
+        self.OpenRoleDir.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.OpenRoleDir.setFont(font)
+        self.OpenRoleDir.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(85, 85, 255);  /*边框颜色*/\n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(85, 85, 255);\n"
+"    /*background-color: rgba(0, 255, 0,0.1);    */\n"
+"    background-color: rgba(85, 85, 255,0.1)/*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(85, 85, 255,0.3);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(85, 85, 255);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.OpenRoleDir.setAutoRepeat(False)
+        self.OpenRoleDir.setAutoDefault(False)
+        self.OpenRoleDir.setDefault(False)
+        self.OpenRoleDir.setFlat(False)
+        self.OpenRoleDir.setObjectName("OpenRoleDir")
+        self.gridLayout.addWidget(self.OpenRoleDir, 1, 7, 1, 2)
+        self.LogicCPUCountState = QtWidgets.QGroupBox(parent=self.SettingsScrollAreaWidget)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.LogicCPUCountState.setFont(font)
+        self.LogicCPUCountState.setStyleSheet("QGroupBox {\n"
+"    border: none;            /*无边框*/\n"
+"    color: rgb(0, 255, 0);\n"
+"}")
+        self.LogicCPUCountState.setTitle("")
+        self.LogicCPUCountState.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignTop)
+        self.LogicCPUCountState.setFlat(False)
+        self.LogicCPUCountState.setCheckable(False)
+        self.LogicCPUCountState.setObjectName("LogicCPUCountState")
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.LogicCPUCountState)
+        self.horizontalLayout_5.setContentsMargins(0, 24, 0, 0)
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.LogicCPUCount = QtWidgets.QLineEdit(parent=self.LogicCPUCountState)
+        self.LogicCPUCount.setMinimumSize(QtCore.QSize(309, 40))
+        font = QtGui.QFont()
+        font.setFamily("等线")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.LogicCPUCount.setFont(font)
+        self.LogicCPUCount.setStyleSheet("QLineEdit {\n"
+"    border: 3px solid rgb(41, 57, 85); /*边框1px宽，颜色为深紫色*/\n"
+"    border-radius: 10px; /*边框圆角3px*/\n"
+"    background: white; /*背景色为白色*/\n"
+"    selection-background-color: green; /* 文本选中时的背景色*/\n"
+"}\n"
+"/*悬停*/\n"
+"QLineEdit:hover {\n"
+"    border: 3px solid rgba(0, 0, 0,0.4); /* 鼠标悬停时边框颜色为蓝色*/\n"
+"}\n"
+"\n"
+"/*正常模式的颜色*/\n"
+"QLineEdit[echoMode=\"0\"] {\n"
+"    color: rgb(0,0, 0);\n"
+"}")
+        self.LogicCPUCount.setInputMask("")
+        self.LogicCPUCount.setText("")
+        self.LogicCPUCount.setFrame(False)
+        self.LogicCPUCount.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.LogicCPUCount.setReadOnly(False)
+        self.LogicCPUCount.setClearButtonEnabled(True)
+        self.LogicCPUCount.setObjectName("LogicCPUCount")
+        self.horizontalLayout_5.addWidget(self.LogicCPUCount)
+        self.LogicCPUCountConfirm = QtWidgets.QPushButton(parent=self.LogicCPUCountState)
+        self.LogicCPUCountConfirm.setMinimumSize(QtCore.QSize(70, 40))
+        self.LogicCPUCountConfirm.setSizeIncrement(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setFamily("黑体")
+        font.setPointSize(17)
+        font.setBold(True)
+        self.LogicCPUCountConfirm.setFont(font)
+        self.LogicCPUCountConfirm.setStyleSheet("/**正常情况下样式**/\n"
+"QPushButton{\n"
+"    border-radius: 10px;        /*圆角*/\n"
+"    border-width: 3px;        /*设置边框大小*/\n"
+"    border-color: rgb(77, 107, 254);  /*边框颜色*/\n"
+"    border-style: solid;        /*实线*/\n"
+"    color: rgb(77, 107, 254);\n"
+"    background-color: rgba(77, 107, 254,0.2);    /*按钮背景颜色纯白*/\n"
+"}\n"
+"\n"
+"/**鼠标停留在按钮上的样式**/\n"
+"QPushButton::hover{    \n"
+"    background-color: rgba(77, 107, 254,0.5);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"/**鼠标按压下去的样式**/\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(77, 107, 254);\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"")
+        self.LogicCPUCountConfirm.setAutoRepeat(False)
+        self.LogicCPUCountConfirm.setAutoDefault(False)
+        self.LogicCPUCountConfirm.setDefault(False)
+        self.LogicCPUCountConfirm.setFlat(False)
+        self.LogicCPUCountConfirm.setObjectName("LogicCPUCountConfirm")
+        self.horizontalLayout_5.addWidget(self.LogicCPUCountConfirm)
+        self.gridLayout.addWidget(self.LogicCPUCountState, 0, 6, 1, 3)
+        self.APIKeyState = QtWidgets.QGroupBox(parent=self.SettingsScrollAreaWidget)
         font = QtGui.QFont()
         font.setPointSize(14)
         self.APIKeyState.setFont(font)
@@ -1433,7 +1751,7 @@ class Ui_Arisu(object):
         self.APIKeyState.setCheckable(False)
         self.APIKeyState.setObjectName("APIKeyState")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.APIKeyState)
-        self.horizontalLayout_3.setContentsMargins(0, 16, 15, 0)
+        self.horizontalLayout_3.setContentsMargins(0, 24, 15, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.APIKeyInput = QtWidgets.QLineEdit(parent=self.APIKeyState)
         self.APIKeyInput.setMinimumSize(QtCore.QSize(309, 40))
@@ -1502,55 +1820,109 @@ class Ui_Arisu(object):
         self.APIKeyConfirm.setFlat(False)
         self.APIKeyConfirm.setObjectName("APIKeyConfirm")
         self.horizontalLayout_3.addWidget(self.APIKeyConfirm)
-        self.Uninstall = QtWidgets.QPushButton(parent=self.Settings)
-        self.Uninstall.setGeometry(QtCore.QRect(350, 400, 130, 40))
-        self.Uninstall.setMinimumSize(QtCore.QSize(130, 40))
-        self.Uninstall.setSizeIncrement(QtCore.QSize(0, 40))
+        self.gridLayout.addWidget(self.APIKeyState, 0, 1, 1, 5)
+        self.RestoreNavigationBarSortingButton = QtWidgets.QPushButton(parent=self.SettingsScrollAreaWidget)
+        self.RestoreNavigationBarSortingButton.setMinimumSize(QtCore.QSize(0, 40))
+        self.RestoreNavigationBarSortingButton.setSizeIncrement(QtCore.QSize(0, 40))
         font = QtGui.QFont()
         font.setFamily("黑体")
         font.setPointSize(17)
         font.setBold(True)
-        self.Uninstall.setFont(font)
-        self.Uninstall.setStyleSheet("/**正常情况下样式**/\n"
+        self.RestoreNavigationBarSortingButton.setFont(font)
+        self.RestoreNavigationBarSortingButton.setStyleSheet("/**正常情况下样式**/\n"
 "QPushButton{\n"
 "    border-radius: 10px;        /*圆角*/\n"
 "    border-width: 3px;        /*设置边框大小*/\n"
-"    border-color: rgb(255, 0, 0);  /*边框颜色*/\n"
+"    border-color: rgb(85, 85, 255);  /*边框颜色*/\n"
 "    border-style: solid;        /*实线*/\n"
-"    color: rgb(255, 0, 0);\n"
-"    background-color: rgba(255, 0, 0,0.2);    /*按钮背景颜色纯白*/\n"
+"    color: rgb(85, 85, 255);\n"
+"    /*background-color: rgba(0, 255, 0,0.1);    */\n"
+"    background-color: rgba(85, 85, 255,0.1)/*按钮背景颜色纯白*/\n"
 "}\n"
 "\n"
 "/**鼠标停留在按钮上的样式**/\n"
 "QPushButton::hover{    \n"
-"    background-color: rgba(255, 0, 0,0.5);\n"
+"    background-color: rgba(85, 85, 255,0.3);\n"
 "    color: rgb(255, 255, 255);\n"
 "}\n"
 "\n"
 "/**鼠标按压下去的样式**/\n"
 "QPushButton:pressed {\n"
-"    background-color: rgb(255, 0, 0);\n"
+"    background-color: rgb(85, 85, 255);\n"
 "    color: rgb(255, 255, 255);\n"
 "}\n"
 "")
-        self.Uninstall.setAutoRepeat(False)
-        self.Uninstall.setAutoDefault(False)
-        self.Uninstall.setDefault(False)
-        self.Uninstall.setFlat(False)
-        self.Uninstall.setObjectName("Uninstall")
-        self.ConsolePrint = QtWidgets.QTextBrowser(parent=self.Settings)
-        self.ConsolePrint.setGeometry(QtCore.QRect(500, 20, 681, 621))
+        self.RestoreNavigationBarSortingButton.setObjectName("RestoreNavigationBarSortingButton")
+        self.gridLayout.addWidget(self.RestoreNavigationBarSortingButton, 2, 6, 1, 1)
+        self.InitialInterfaceLocationComboBox = QtWidgets.QComboBox(parent=self.SettingsScrollAreaWidget)
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        font.setBold(True)
+        self.InitialInterfaceLocationComboBox.setFont(font)
+        self.InitialInterfaceLocationComboBox.setStyleSheet("/* 未下拉时，QComboBox的样式 */\n"
+"QComboBox {\n"
+"    border: 1px solid gray;   /* 边框 */\n"
+"    border-radius:2px;   /* 圆角 */\n"
+"    padding: 0px 0px 0px 10px; /* 上内边距、右内边距、下内边距、左内边距 */\n"
+"    color:rgb(0,0,0);/*字体颜色*/\n"
+"    /*font: normal normal 15px \"Microsoft YaHei\";*/\n"
+"    background: transparent;\n"
+"    text-align: AlignHCenter;\n"
+"/*    background-color: transparent;*/\n"
+"/*    background-color: rgb(0, 255, 255);*/\n"
+"}\n"
+" \n"
+"/* 下拉后，整个下拉窗体样式 */\n"
+"QComboBox QAbstractItemView {\n"
+"    outline: 0px solid gray;   /* 选定项的虚框 */\n"
+"    border-radius:10px;   /* 圆角 */\n"
+"    padding-top:10px;    /*上下都留10px，是因为选中项是矩形，如果不留，移动到第一项和最后一项会变为直角，不好看*/\n"
+"    padding-bottom:10px;\n"
+" \n"
+"    color:rgb(0,0,0);/*字体颜色*/\n"
+"}\n"
+" \n"
+"/* 下拉后，整个下拉窗体每项的样式 */\n"
+"QComboBox QAbstractItemView::item {\n"
+" \n"
+"    min-height: 26px;/*每项高度*/\n"
+"}\n"
+" \n"
+"/* 下拉后，整个下拉窗体越过每项的样式 */\n"
+"QComboBox QAbstractItemView::item:hover {\n"
+"    color:rgba(0,0,0,0.5);/*字体颜色*/\n"
+"}\n"
+" \n"
+"/* 下拉后，整个下拉窗体被选择的每项的样式 */\n"
+"QComboBox QAbstractItemView::item:selected {\n"
+"     color: rgba(51,51,51,1);\n"
+"    border-radius:2px;   /* 圆角 */\n"
+"}")
+        self.InitialInterfaceLocationComboBox.setObjectName("InitialInterfaceLocationComboBox")
+        self.InitialInterfaceLocationComboBox.addItem("")
+        self.InitialInterfaceLocationComboBox.addItem("")
+        self.InitialInterfaceLocationComboBox.addItem("")
+        self.InitialInterfaceLocationComboBox.addItem("")
+        self.InitialInterfaceLocationComboBox.addItem("")
+        self.gridLayout.addWidget(self.InitialInterfaceLocationComboBox, 1, 6, 1, 1)
+        self.SettingsScrollArea.setWidget(self.SettingsScrollAreaWidget)
+        self.verticalLayout_9.addWidget(self.SettingsScrollArea)
+        self.ConsoleWidget = QtWidgets.QTextBrowser(parent=self.Settings)
+        self.ConsoleWidget.setEnabled(True)
         font = QtGui.QFont()
         font.setFamily("Cascadia Mono")
         font.setPointSize(-1)
-        self.ConsolePrint.setFont(font)
-        self.ConsolePrint.setStyleSheet("/* 主窗口样式 */\n"
+        self.ConsoleWidget.setFont(font)
+        self.ConsoleWidget.setAutoFillBackground(False)
+        self.ConsoleWidget.setStyleSheet("/* 主窗口样式 */\n"
 "QTextBrowser {\n"
-"    background-color: rgb(255, 255, 255);   /*白色背景*/   \n"
-"    border: none;                           /*无边框*/\n"
-"    font-size: 20px;                        /* 字体大小 */\n"
-"    color: rgb(128, 128, 128);              /*字体颜色为灰色*/\n"
-"    border-radius:10px;                 /*圆角*/\n"
+"   background-color: rgb(240, 244, 249);   /*背景色*/   \n"
+"   border: none;                           /*无边框*/\n"
+"   font-size: 20px;                        /* 字体大小 */\n"
+"   color: rgb(128, 128, 128);              /*字体颜色为灰色*/\n"
+"    border-top-left-radius: 20px;    /* 左上角圆角半径 */\n"
+"    border-top-right-radius: 20px;   /* 右上角圆角半径 */\n"
+"    background-image: none;\n"
 "}\n"
 "\n"
 "/* 滚动条 - 垂直 */\n"
@@ -1586,123 +1958,11 @@ class Ui_Arisu(object):
 "QTextBrowser QScrollBar::sub-page:vertical {\n"
 "    background: none;        /*没有背景,之前是网格*/\n"
 "}")
-        self.ConsolePrint.setObjectName("ConsolePrint")
-        self.LogicCPUCountState = QtWidgets.QGroupBox(parent=self.Settings)
-        self.LogicCPUCountState.setGeometry(QtCore.QRect(80, 100, 401, 71))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        self.LogicCPUCountState.setFont(font)
-        self.LogicCPUCountState.setStyleSheet("QGroupBox {\n"
-"    border: none;            /*无边框*/\n"
-"    color: rgb(0, 255, 0);\n"
-"}")
-        self.LogicCPUCountState.setTitle("")
-        self.LogicCPUCountState.setAlignment(QtCore.Qt.AlignmentFlag.AlignHCenter|QtCore.Qt.AlignmentFlag.AlignTop)
-        self.LogicCPUCountState.setFlat(False)
-        self.LogicCPUCountState.setCheckable(False)
-        self.LogicCPUCountState.setObjectName("LogicCPUCountState")
-        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.LogicCPUCountState)
-        self.horizontalLayout_5.setContentsMargins(0, 16, 0, 0)
-        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.LogicCPUCount = QtWidgets.QLineEdit(parent=self.LogicCPUCountState)
-        self.LogicCPUCount.setMinimumSize(QtCore.QSize(309, 40))
-        font = QtGui.QFont()
-        font.setFamily("等线")
-        font.setPointSize(17)
-        font.setBold(True)
-        self.LogicCPUCount.setFont(font)
-        self.LogicCPUCount.setStyleSheet("QLineEdit {\n"
-"    border: 3px solid rgb(41, 57, 85); /*边框1px宽，颜色为深紫色*/\n"
-"    border-radius: 10px; /*边框圆角3px*/\n"
-"    background: white; /*背景色为白色*/\n"
-"    selection-background-color: green; /* 文本选中时的背景色*/\n"
-"}\n"
-"/*悬停*/\n"
-"QLineEdit:hover {\n"
-"    border: 3px solid rgba(0, 0, 0,0.4); /* 鼠标悬停时边框颜色为蓝色*/\n"
-"}\n"
-"\n"
-"/*正常模式的颜色*/\n"
-"QLineEdit[echoMode=\"0\"] {\n"
-"    color: rgb(0,0, 0);\n"
-"}")
-        self.LogicCPUCount.setInputMask("")
-        self.LogicCPUCount.setText("")
-        self.LogicCPUCount.setFrame(False)
-        self.LogicCPUCount.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.LogicCPUCount.setReadOnly(False)
-        self.LogicCPUCount.setClearButtonEnabled(True)
-        self.LogicCPUCount.setObjectName("LogicCPUCount")
-        self.horizontalLayout_5.addWidget(self.LogicCPUCount)
-        self.LogicCPUCountConfirm = QtWidgets.QPushButton(parent=self.LogicCPUCountState)
-        self.LogicCPUCountConfirm.setMinimumSize(QtCore.QSize(70, 40))
-        self.LogicCPUCountConfirm.setSizeIncrement(QtCore.QSize(0, 40))
-        font = QtGui.QFont()
-        font.setFamily("黑体")
-        font.setPointSize(17)
-        font.setBold(True)
-        self.LogicCPUCountConfirm.setFont(font)
-        self.LogicCPUCountConfirm.setStyleSheet("/**正常情况下样式**/\n"
-"QPushButton{\n"
-"    border-radius: 10px;        /*圆角*/\n"
-"    border-width: 3px;        /*设置边框大小*/\n"
-"    border-color: rgb(77, 107, 254);  /*边框颜色*/\n"
-"    border-style: solid;        /*实线*/\n"
-"    color: rgb(77, 107, 254);\n"
-"    background-color: rgba(77, 107, 254,0.2);    /*按钮背景颜色纯白*/\n"
-"}\n"
-"\n"
-"/**鼠标停留在按钮上的样式**/\n"
-"QPushButton::hover{    \n"
-"    background-color: rgba(77, 107, 254,0.5);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"/**鼠标按压下去的样式**/\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(77, 107, 254);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"")
-        self.LogicCPUCountConfirm.setAutoRepeat(False)
-        self.LogicCPUCountConfirm.setAutoDefault(False)
-        self.LogicCPUCountConfirm.setDefault(False)
-        self.LogicCPUCountConfirm.setFlat(False)
-        self.LogicCPUCountConfirm.setObjectName("LogicCPUCountConfirm")
-        self.horizontalLayout_5.addWidget(self.LogicCPUCountConfirm)
-        self.RestoreNavigationBarSortingButton = QtWidgets.QPushButton(parent=self.Settings)
-        self.RestoreNavigationBarSortingButton.setGeometry(QtCore.QRect(170, 190, 309, 101))
-        self.RestoreNavigationBarSortingButton.setMinimumSize(QtCore.QSize(0, 40))
-        self.RestoreNavigationBarSortingButton.setSizeIncrement(QtCore.QSize(0, 40))
-        font = QtGui.QFont()
-        font.setFamily("黑体")
-        font.setPointSize(17)
-        font.setBold(True)
-        self.RestoreNavigationBarSortingButton.setFont(font)
-        self.RestoreNavigationBarSortingButton.setStyleSheet("/**正常情况下样式**/\n"
-"QPushButton{\n"
-"    border-radius: 10px;        /*圆角*/\n"
-"    border-width: 3px;        /*设置边框大小*/\n"
-"    border-color: rgb(80, 180, 255);  /*边框颜色*/\n"
-"    \n"
-"    border-style: solid;        /*实线*/\n"
-"    color: rgb(80, 180, 255);\n"
-"    background-color: rgba(80, 180, 255,0.3);    /*按钮背景颜色纯白*/\n"
-"}\n"
-"\n"
-"/**鼠标停留在按钮上的样式**/\n"
-"QPushButton::hover{    \n"
-"    background-color: rgba(80, 180, 255,0.5);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"\n"
-"/**鼠标按压下去的样式**/\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(80, 180, 255);\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"")
-        self.RestoreNavigationBarSortingButton.setObjectName("RestoreNavigationBarSortingButton")
+        self.ConsoleWidget.setReadOnly(False)
+        self.ConsoleWidget.setObjectName("ConsoleWidget")
+        self.verticalLayout_9.addWidget(self.ConsoleWidget)
+        self.verticalLayout_9.setStretch(0, 100)
+        self.verticalLayout_9.setStretch(1, 1)
         icon14 = QtGui.QIcon()
         icon14.addPixmap(QtGui.QPixmap(":/选项卡图标/选项卡图标/用户设置.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.ModeWidget.addTab(self.Settings, icon14, "")
@@ -1756,35 +2016,16 @@ class Ui_Arisu(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">区分：快捷键帮你“快”速操作当前软件，热键让你“热”启动系统或功能（无论在哪）。</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">快捷键：任意键盘单键(如 A、B)、鼠标侧键，操作本软件界面时生效，适用长按操作。</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">全局热键：仅限组合键 (如 Ctrl+Shift+X) 或 功能键 (如 F12)，软件启动后立即生效，存在长按需求的功能不可用。</span></p></body></html>"))
-        self.SwitchReply_2.setText(_translate("Arisu", "开启/关闭爱丽丝的AI自动回复：F12"))
+        self.SwitchReply_5.setText(_translate("Arisu", "文档和项目链接：F1"))
         self.SwitchReply_3.setText(_translate("Arisu", "关闭动态主页：F7"))
         self.SwitchReply_4.setText(_translate("Arisu", "开启动态主页:F8"))
-        self.SwitchReply_5.setText(_translate("Arisu", "文档和项目链接：F1"))
         self.SwitchReply_6.setText(_translate("Arisu", "开启/关闭全屏：F11"))
-        self.SwitchReply_7.setText(_translate("Arisu", "施工中"))
+        self.SwitchReply_2.setText(_translate("Arisu", "开启/关闭爱丽丝的AI自动回复：F12"))
+        self.StateScrollAreaTip_2.setText(_translate("Arisu", "开发者功能"))
+        self.SwitchReply_7.setText(_translate("Arisu", "开启/关闭重定向窗口(日志窗口)：F9"))
         self.SwitchReply_8.setText(_translate("Arisu", "施工中"))
         self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.KeyboardShortcut), _translate("Arisu", "键盘快捷键"))
         self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.QuestionLinks), _translate("Arisu", "问题链接"))
-        self.InitialInterfaceLocationComboBox.setToolTip(_translate("Arisu", "初始界面位置"))
-        self.InitialInterfaceLocationComboBox.setItemText(0, _translate("Arisu", "主页"))
-        self.InitialInterfaceLocationComboBox.setItemText(1, _translate("Arisu", "状态监测"))
-        self.InitialInterfaceLocationComboBox.setItemText(2, _translate("Arisu", "热键"))
-        self.InitialInterfaceLocationComboBox.setItemText(3, _translate("Arisu", "问题链接"))
-        self.InitialInterfaceLocationComboBox.setItemText(4, _translate("Arisu", "用户设置"))
-        self.APIKeyState.setToolTip(_translate("Arisu", "API录入状态显示"))
-        self.APIKeyInput.setToolTip(_translate("Arisu", "<html><head/><body><p>deepseek的api密钥，如果要更换密钥也是这里输入并确认。</p></body></html>"))
-        self.APIKeyInput.setPlaceholderText(_translate("Arisu", "请输入DeepSeek的API密钥(Key)"))
-        self.APIKeyConfirm.setToolTip(_translate("Arisu", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:\'Microsoft YaHei UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">1. 什么都不填直接点击确定能测试密钥是否已经存在。</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">2. 输入密钥点击确定检测密钥是否有效。</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">3. 把密钥存储在存储系统密钥库中。</span></p></body></html>"))
-        self.APIKeyConfirm.setText(_translate("Arisu", "确认"))
         self.Uninstall.setToolTip(_translate("Arisu", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -1794,14 +2035,14 @@ class Ui_Arisu(object):
 "</style></head><body style=\" font-family:\'Microsoft YaHei UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">没有挽留，只为尊重你的选择!卸载软件本体、回收资源和清除软件产生的文件，做到绝不留下任何一点垃圾。</p></body></html>"))
         self.Uninstall.setText(_translate("Arisu", "一键卸载"))
-        self.ConsolePrint.setHtml(_translate("Arisu", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:\'Cascadia Mono\'; font-size:20px; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.JMDownloadStrategy.setToolTip(_translate("Arisu", "<html><head/><body><p><span style=\" color:#ff0000;\">不懂不要动！！！</span></p><p>打开禁漫天堂下载策略的配置文件，修改下载策略，默认下载完整的本子。</p></body></html>"))
+        self.JMDownloadStrategy.setText(_translate("Arisu", "禁漫天堂下载策略"))
+        self.LogQueryDir.setToolTip(_translate("Arisu", "存放Q群的聊天记录和软件的日志信息"))
+        self.LogQueryDir.setText(_translate("Arisu", "日志查询"))
+        self.KeywordReplyDir.setToolTip(_translate("Arisu", "打开关键词回复目录，在这个目录下用户可以自行添加或修改AI自动回复的规则。"))
+        self.KeywordReplyDir.setText(_translate("Arisu", "关键词回复"))
+        self.OpenRoleDir.setToolTip(_translate("Arisu", "打开提示库，在这个目录下用户可以自行添加或修改AI自动回复的人设。"))
+        self.OpenRoleDir.setText(_translate("Arisu", "人设自定义"))
         self.LogicCPUCountState.setToolTip(_translate("Arisu", "API录入状态显示"))
         self.LogicCPUCount.setToolTip(_translate("Arisu", "<html><head/><body><p><span style=\" font-size:11pt; color:#414141;\">输入可使用的逻辑核心数，默认通过编程计算。物理核心数乘上1.5后去掉小数点，如过这个值超过最大逻辑核心数就使用最大逻辑核心数。</span></p></body></html>"))
         self.LogicCPUCount.setPlaceholderText(_translate("Arisu", "请输入运行的最大逻辑核心数"))
@@ -1817,6 +2058,26 @@ class Ui_Arisu(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">如果能够获取逻辑核心数则会判断用户输入的核心数是否合理，超出后则使用最大逻辑核心数。</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">输入可使用的逻辑核心数，默认通过编程计算。物理核心数乘上1.5后去掉小数点，如过这个值超过最大逻辑核心数就使用最大逻辑核心数。</p></body></html>"))
         self.LogicCPUCountConfirm.setText(_translate("Arisu", "确认"))
+        self.APIKeyState.setToolTip(_translate("Arisu", "API录入状态显示"))
+        self.APIKeyInput.setToolTip(_translate("Arisu", "<html><head/><body><p>deepseek的api密钥，如果要更换密钥也是这里输入并确认。</p></body></html>"))
+        self.APIKeyInput.setPlaceholderText(_translate("Arisu", "请输入DeepSeek的API密钥(Key)"))
+        self.APIKeyConfirm.setToolTip(_translate("Arisu", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Microsoft YaHei UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">1. 什么都不填直接点击确定能测试密钥是否已经存在。</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">2. 输入密钥点击确定检测密钥是否有效。</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">3. 把密钥存储在存储系统密钥库中。</span></p></body></html>"))
+        self.APIKeyConfirm.setText(_translate("Arisu", "确认"))
         self.RestoreNavigationBarSortingButton.setText(_translate("Arisu", "还原导航栏排序"))
+        self.InitialInterfaceLocationComboBox.setToolTip(_translate("Arisu", "初始界面位置"))
+        self.InitialInterfaceLocationComboBox.setItemText(0, _translate("Arisu", "主页"))
+        self.InitialInterfaceLocationComboBox.setItemText(1, _translate("Arisu", "状态监测"))
+        self.InitialInterfaceLocationComboBox.setItemText(2, _translate("Arisu", "热键"))
+        self.InitialInterfaceLocationComboBox.setItemText(3, _translate("Arisu", "问题链接"))
+        self.InitialInterfaceLocationComboBox.setItemText(4, _translate("Arisu", "用户设置"))
         self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.Settings), _translate("Arisu", "用户设置"))
 from PyQt6.QtMultimediaWidgets import QVideoWidget

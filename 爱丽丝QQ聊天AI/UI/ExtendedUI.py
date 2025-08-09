@@ -6,30 +6,29 @@ import os
 import platform  # CPU逻辑核心计算
 import sys
 # 第三方
-import keyring  # api密钥加密和解密
-import psutil
-import requests  # 网络请求
+import keyring                                                                              # api密钥加密和解密
+import psutil                                                                               # 电脑硬件信息获取
+import requests                                                                             # 网络请求
 from PyQt6.QtCore import QUrl, pyqtSlot                                                     # 链接非图片的资源文件
 from PyQt6.QtCore import Qt, QTimer, QThreadPool                                            # Qt的核心类
-from PyQt6.QtGui import QDesktopServices, QShortcut, QKeySequence, QTextCursor              # 桌面服务
+from PyQt6.QtGui import QDesktopServices, QShortcut, QKeySequence                           # 桌面服务
 from PyQt6.QtMultimedia import QMediaPlayer                                                 # 视频播放器
 from PyQt6.QtWidgets import QApplication, QMessageBox, QGroupBox, QVBoxLayout, QTextBrowser # 界面处理类
 # 自己的包
 try:  # 实际环境使用
-    from .functions import OutputRedirection, clear_temp                                    # 导入非UI功能函数
+    from .functions import OutputRedirection, clear_temp, InputRedirection                  # 导入非UI功能函数
     from .arisu_qq_chat_ai_ui import ArisuQQCHatAIUI                                        # 基础框架的类
 except (ModuleNotFoundError, ImportError):                                                  # 测试环境使用
-    from functions import OutputRedirection, clear_temp                                     # 导入非UI功能函数
+    from functions import OutputRedirection, clear_temp, InputRedirection                   # 导入非UI功能函数
     from arisu_qq_chat_ai_ui import ArisuQQCHatAIUI                                         # 基础框架的类
     from UI.arisu_qq_chat_ai_core import ArisuQQChatAICore                                  # 外部方法的类
     from deepseek_conversation_engine import DeepseekConversationEngine                     # AI对话
     from qq_message_monitor import QQMessageMonitor                                         # QQ监控
 from 用户设置.configuration_manager import ConfigurationManager                             # 导入配置文件的类
 from arisu_logger import debug, info, warning, critical, exception                          # 导入日志方法
+from arisu_logger import console_handler                                                    # 导入日志处理器
 from UI.arisu_threading import ArisuThreading                                               # 线程的类
 from resources.Arisu import Ui_Arisu                                                        # uic转后py文件
-from arisu_logger import console_handler                                                    # 导入日志处理器
-from 爱丽丝QQ聊天AI import log_output_redirection, stdout_redirection, stderr_redirection    # 输出重定向的实例化对象
 import resources.resources                                                                  # 这个qrc必须存在（即使编译器报灰色）
 debug("ExtendedUI.py(UI界面额外扩展文件已加载完成)")
 
@@ -44,25 +43,26 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         ui_file_path : "../resources/Arisu.ui"开发中ui文件的路径
         """
         super().__init__(title, show_system_tray, ui_file_path)  # 继承父类的属性和方法
-        """终端输出输出重定向"""
+        """终端输入输出重定向"""
+        # 日志输出重定向
+        log_output_redirection = OutputRedirection()  # 实例化输出重定向对象
+        console_handler.stream = log_output_redirection  # 日志输出重定向
         log_output_redirection.text_print.connect(self.log_print)  # 信号连接
+        info("日志输出重定向已完成")
+        # 准输出重定向
+        stdout_redirection = OutputRedirection()  # 实例化输出重定向对象
+        sys.stdout = stdout_redirection  # 标准输出重定向
         stdout_redirection.text_print.connect(self.log_print)  # 信号连接
+        info("准输出重定向已完成")
+        # 错误输出重定向
+        stderr_redirection = OutputRedirection()  # 实例化输出重定向对象
+        sys.stderr = stderr_redirection  # 错误输出重定向
         stderr_redirection.text_print.connect(self.log_print)  # 信号连接
-        # # 日志输出重定向
-        # log_output_redirection = OutputRedirection()  # 实例化输出重定向对象
-        # console_handler.stream = log_output_redirection  # 日志输出重定向
-        # log_output_redirection.text_print.connect(self.log_print)  # 信号连接
-        # info("日志输出重定向已完成")
-        # # 准输出重定向
-        # stdout_redirection = OutputRedirection()  # 实例化输出重定向对象
-        # sys.stdout = stdout_redirection  # 标准输出重定向
-        # stdout_redirection.text_print.connect(self.log_print)  # 信号连接
-        # info("准输出重定向已完成")
-        # # 错误输出重定向
-        # stderr_redirection = OutputRedirection()  # 实例化输出重定向对象
-        # sys.stderr = stderr_redirection  # 错误输出重定向
-        # stderr_redirection.text_print.connect(self.log_print)  # 信号连接
-        # info("错误输出重定向已完成")
+        # 输入重定向
+        sys.stdin = InputRedirection(self)
+        # 隐藏终端输入输出重定向窗口
+        self.ConsoleWidget.hide()
+        info("已隐藏终端输入输出重定向窗口")
         """配置文件数据初始化"""
         self.config = ConfigurationManager()  # 实例化配置文件(读取配置文件数据)
         info("用户配置信息已导入UI列表视图")
@@ -70,14 +70,11 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         """导航栏"""
         self.ModeWidget.tabBarClicked.connect(lambda: QTimer.singleShot(1, self.window_shaking))  # 导航栏事件修复动态视频位移bug
         self.ModeWidget.setCurrentIndex(self.config.user_settings["初始界面位置"].getint("init_index"))  # 设置初始界面位置
-        self.InitialInterfaceLocationComboBox.setCurrentIndex(
-            self.config.user_settings["初始界面位置"].getint("init_index"))  # 设置下拉框位置
+        self.InitialInterfaceLocationComboBox.setCurrentIndex(self.config.user_settings["初始界面位置"].getint("init_index"))  # 设置下拉框位置
         self.tab_bar = self.ModeWidget.tabBar()  # 获得标签栏（为后面标签栏功能做铺垫）
         self.set_navigation_bar_sorting()  # 导航栏设置为用户界面位置
         self.tab_bar.tabMoved.connect(self.on_tab_moved)  # 连接标签页面移动的信号（实现标签也移动后的记录）
-        self.RestoreNavigationBarSortingButton.clicked.connect(self.restore_navigation_bar_sorting)  # 还原导航栏排序按钮
-        self.InitialInterfaceLocationComboBox.activated.connect(
-            self.initial_interface_location_selector)  # 初始界面选择下拉框（录入ini）
+        self.InitialInterfaceLocationComboBox.activated.connect(self.initial_interface_location_selector)  # 初始界面选择下拉框（录入ini）
         info("导航栏初始化完成")
         """Home（主页）"""
         # 动态壁纸
@@ -120,17 +117,24 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         # 全屏/不全屏
         self.shortcut = QShortcut(QKeySequence("F11"), self)
         self.shortcut.activated.connect(self.hotkey_switch_full_screen)
-
-
-
+        # 显示/隐藏输入输出重定向窗口
+        self.shortcut = QShortcut(QKeySequence("F9"), self)
+        self.shortcut.activated.connect(self.console_widget_visible)
+        # 打开一个cmd窗口
+        self.shortcut = QShortcut(QKeySequence("F10"), self)
+        self.shortcut.activated.connect(self.open_cmd)
         """用户设置"""
-        # 设置最多为20行，多的自动删除，每次增加都是在最新的一行
-        self.ConsolePrint.document().setMaximumBlockCount(100)
-        self.tip_api_key_exist()  # 告诉用户密钥是否存在
-        self.APIKeyConfirm.clicked.connect(self.__api_key_confirm)  # 检测api有效和把deepseek注入到系统变量
-        self.tip_logic_cpu_count()  # 提示用户可以使用的逻辑CPU数量，并自动计算最合适的CPU数量
-        self.LogicCPUCountConfirm.clicked.connect(self.logic_cup_confirm)  # 确认逻辑CPU数
-        self.Uninstall.clicked.connect(self.uninstall)  # 卸载按钮
+        self.ConsoleWidget.document().setMaximumBlockCount(100)                 # 设置重定向窗口最多为20行，多的自动删除
+        self.tip_api_key_exist()                                                # 告诉用户密钥是否存在
+        self.tip_logic_cpu_count()                                              # 提示用户可以使用的逻辑CPU数量，并自动计算最合适的CPU数量
+        self.RestoreNavigationBarSortingButton.clicked.connect(self.restore_navigation_bar_sorting)  # 还原导航栏排序按钮
+        self.APIKeyConfirm.clicked.connect(self.__api_key_confirm)              # 检测api有效和把deepseek注入到系统变量
+        self.LogicCPUCountConfirm.clicked.connect(self.logic_cup_confirm)       # 确认逻辑CPU数
+        self.OpenRoleDir.clicked.connect(self.open_role_repository_directory)   # 打开人设仓库目录
+        self.KeywordReplyDir.clicked.connect(self.open_keyword_reply_directory) # 打开关键词回复目录
+        self.JMDownloadStrategy.clicked.connect(self.open_jm_strategy_file)     # 打开JM策略的配置文件
+        self.LogQueryDir.clicked.connect(self.open_log_directory)               # 打开日志文件夹
+        self.Uninstall.clicked.connect(self.uninstall)                          # 卸载按钮
         """后端核心"""
         # 开启了自动回复的标志
         self.arisu_auto_reply_flag = False
@@ -146,17 +150,15 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
 
     """=====================================重构后基础布局以外的内容============================================="""
     """输出重定向"""
-
     def log_print(self, text):
         """输出
         text : 重定向返回的文本
         """
         # 文本不为空才发送，即使是"\t"也不算空，为了过滤print的二次"\n",所以这里也就把（text == "\n"）给过滤掉
         if text:
-            self.ConsolePrint.append(text)
+            self.ConsoleWidget.append(text)
 
     """导航栏"""
-
     def set_navigation_bar_sorting(self):
         """把导航栏按钮顺序设置为用户界面位置"""
         location = self.config.user_interface_location()  # 从配置文件里面拿到用户界面位置(最后一次导航栏的位置)
@@ -169,7 +171,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         """选项卡被用户移动到了不同的位置的事件
         实现记录导航栏排序（写入硬盘）
         """
-        # print(f"标签页从位置 {from_index} 移动到了位置 {to_index}")
+        print(f"标签页从位置 {from_index} 移动到了位置 {to_index}")
         # 定义字典映射用来转化ui控件的类名和配置的键名
         transform_dict = {"Home": "主页", "StateMonitor": "状态监测", "KeyboardShortcut": "热键", "QuestionLinks": "问题链接",
                           "Settings": "用户设置"}
@@ -255,7 +257,6 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         info("已条跳转链接到Github项目地址")
 
     """状态设置"""
-
     def jump_state_output_widget(self):
         """跳转到状态输出界面"""
         # 跳到状态监测界面（设置当前选项卡的界面，从配置文件里面拿到数据，需要类型转换）
@@ -268,7 +269,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
                 self.StateTabWidget.setCurrentWidget(widget)  # 跳转到Q群绑定界面
                 return True  # 跳出循环
         else:  # 不可能找不到这个界面，除非篡改ui删了这个界面不然这里不可能有异常
-            warning("没有成功跳转到状态输出。问题出现源：\n", stack_info=True)
+            warning("没有成功跳转到状态输出。问题出现源：\n")
         return False
 
     def jump_bind_widget(self):
@@ -283,7 +284,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
                 self.StateTabWidget.setCurrentWidget(widget)  # 跳转到Q群绑定界面
                 return True  # 跳出循环
         else:  # 不可能找不到这个界面，除非篡改ui删了这个界面不然这里不可能有异常
-            warning("没有成功跳转到绑定界面。问题出现源：\n", stack_info=True)
+            warning("没有成功跳转到绑定界面。问题出现源：\n")
         return False
 
     def add_state_monitor(self, qq_group_name: str, bot_name: str, root: str, exit_password: str, init_role: str,
@@ -610,6 +611,9 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
             self.DynamicBackground.setAspectRatioMode(Qt.AspectRatioMode.KeepAspectRatioByExpanding)  # 保持宽高比并填充整个控件
             self.video_player.setLoops(QMediaPlayer.Loops.Infinite)  # 循环无限次数
             self.video_player.play()  # 开始播放
+            info("动态背景生成热键：动态背景已重新生成")
+        else:
+            info("动态背景生成热键：动态背景已存在，不需要重新生成")
 
     def hotkey_dynamic_background_del(self):
         """热键动态背景删除"""
@@ -618,17 +622,47 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
             self.video_player.stop()        # 停止视频播放
             self.video_player = None        # 重新造一个空的属性（后续可能需要重新创建回来）
             self.DynamicBackground.update()  # 强制刷新控件（可能清空画面）
+            info("动态背景删除热键：动态背景已成功删除")
+        else:
+            info("动态背景删除热键：动态背景已经被删除，过滤重复删除")
 
     def hotkey_switch_full_screen(self):
         """打开/关闭全屏"""
         # 判断是否是全屏状态
         if self.isFullScreen():
             self.showNormal()   # 恢复正常
+            info("成功恢复窗正常状态")
         else:
             self.showFullScreen()   # 全屏
+            info("成功打开全屏功能")
 
+    # 开发者功能
+    def console_widget_visible(self):
+        """显示或隐藏输入输出重定向窗口"""
+        # 判断是否已经隐藏
+        if self.ConsoleWidget.isHidden():
+            self.SettingsScrollArea.hide()  # 隐藏设置滚动控件
+            self.ConsoleWidget.show()       # 显示输入输出重定向窗口
+            self.jump_settings_widget()     # 跳转到用户设置界面
+            info("已打开输入输出重定向窗口并跳转到该窗口")
+        else:
+            self.SettingsScrollArea.show()  # 显示设置滚动控件
+            self.ConsoleWidget.hide()       # 隐藏输入输出重定向窗口
+            info("已隐藏输入输出重定向窗口")
+        # self.ConsoleWidget.clearFocus()  # 清除焦点
+
+    @staticmethod
+    def open_cmd():
+        """打开一个cmd窗口"""
+        os.system("start cmd")  # 打开新窗口并立即返回控制
+        info("已打开一个cmd窗口")
 
     """用户设置"""
+    def jump_settings_widget(self):
+        """跳转到用户设置界面"""
+        # 跳转到用户设置界面（设置当前选项卡的界面，从配置文件里面拿到数据，需要类型转换）
+        self.ModeWidget.setCurrentIndex(int(self.config.user_settings["用户界面位置"]["用户设置"]))
+        return False
 
     def restore_navigation_bar_sorting(self):
         """还原导航栏排序"""
@@ -668,7 +702,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
                     self.APIKeyState.setTitle("密钥有效")
                     info("检测到存储的密钥有效")
                     return True
-            except requests.exceptions.RequestException as e:  # 捕获所有网络相关异常
+            except requests.exceptions.RequestException:  # 捕获所有网络相关异常
                 # print(f"初始化无法检测密钥有效，网络问题\n{e}")  # 打印输出异常
                 # warning(f"初始化无法检测密钥有效，网络问题\n{e}")
                 exception("初始化无法检测密钥有效，错误信息:\n")
@@ -713,7 +747,7 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
                 keyring.set_password("DEEPSEEK_API_KEY", "爱丽丝", self.APIKeyInput.text())
                 # print("API密钥有效，已将密钥存储完毕")
                 info("API密钥有效，已将密钥存储完毕")
-        except requests.exceptions.RequestException as e:  # 捕获所有网络相关异常
+        except requests.exceptions.RequestException:  # 捕获所有网络相关异常
             # print(e)  # 打印输出异常
             exception("网络请求失败，错误信息:")  # 打印输出异常并记录异常
             self.APIKeyState.setStyleSheet("color: red;border: none;")  # 样式表设置字体为红色并且为无边框
@@ -743,7 +777,6 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
 
     def logic_cup_confirm(self):
         """逻辑cup按钮确认"""
-        default_core: int = 1  # 默认核心数
         # 能够拿到逻辑核心数的情况
         if psutil.cpu_count(True):  # 判断逻辑核心数是否有值
             logical_cores = psutil.cpu_count(True)  # 逻辑核心数
@@ -793,6 +826,106 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
                 self.LogicCPUCountState.setStyleSheet("color: green;border: none;")  # 提示样式表设置字体为绿色并且为无边框
                 self.LogicCPUCountState.setTitle(f"修改成功")
         return True
+
+    def open_role_repository_directory(self):
+        """打开人设库目录"""
+        # 判断文件是否存在和打开文档
+        try:
+            if os.path.exists(r".\用户设置\提示库"):  # 实际开发路径
+                os.startfile(r".\用户设置\提示库")  # 打开文档，注意路径符号
+                info("使用开发路径后文档打开了")
+            elif os.path.exists(r"..\用户设置\提示库"):  # 当前测试路径
+                os.startfile(r"..\用户设置\提示库")  # 打开文档，注意路径符号
+                info("使用测试路径后文档打开了")
+            else:
+                exception("提示库文件夹不存在")
+                print("提示库文件夹不存在")
+                # 错误弹窗提示
+                QMessageBox.critical(self, "错误提示", "提示库文件夹不存在", QMessageBox.StandardButton.Ok,
+                                     QMessageBox.StandardButton.Ok)
+                warning("提示库文件夹不存在，可能被删除了")
+        # 异常处理
+        except Exception as e:
+            # print(f"打开文档失败: {str(e)}")  # 输出错误信息
+            QMessageBox.critical(self, "错误提示", str(e), QMessageBox.StandardButton.Ok,
+                                 QMessageBox.StandardButton.Ok)
+            exception("提示库文件夹不存在")
+            print("提示库文件夹不存在")
+
+    def open_keyword_reply_directory(self):
+        """打开关键词回复目录"""
+        # 判断文件是否存在和打开文档
+        try:
+            if os.path.exists(r".\用户设置\关键词回复"):  # 实际开发路径
+                os.startfile(r".\用户设置\关键词回复")  # 打开文档，注意路径符号
+                info("使用开发路径后文档打开了")
+            elif os.path.exists(r"..\用户设置\关键词回复"):  # 当前测试路径
+                os.startfile(r"..\用户设置\关键词回复")  # 打开文档，注意路径符号
+                info("使用测试路径后文档打开了")
+            else:
+                exception("关键词回复文件夹不存在")
+                print("关键词回复文件夹不存在")
+                # 错误弹窗提示
+                QMessageBox.critical(self, "错误提示", "关键词回复文件夹不存在", QMessageBox.StandardButton.Ok,
+                                     QMessageBox.StandardButton.Ok)
+                warning("关键词回复文件夹不存在，可能被删除了")
+        # 异常处理
+        except Exception as e:
+            # print(f"打开文档失败: {str(e)}")  # 输出错误信息
+            QMessageBox.critical(self, "错误提示", str(e), QMessageBox.StandardButton.Ok,
+                                 QMessageBox.StandardButton.Ok)
+            exception("关键词回复文件夹不存在")
+            print("关键词回复文件夹不存在")
+
+    def open_jm_strategy_file(self):
+        """打开禁漫天堂的策略文件"""
+        # 判断文件是否存在和打开文档
+        try:
+            if os.path.exists(r".\用户设置\option.yml"):  # 实际开发路径
+                os.startfile(r".\用户设置\option.yml")  # 打开文档，注意路径符号
+                info("使用开发路径后文档打开了")
+            elif os.path.exists(r"..\用户设置\option.yml"):  # 当前测试路径
+                os.startfile(r"..\用户设置\option.yml")  # 打开文档，注意路径符号
+                info("使用测试路径后文档打开了")
+            else:
+                exception("禁漫天堂的策略文件不存在")
+                print("禁漫天堂的策略文件不存在")
+                # 错误弹窗提示
+                QMessageBox.critical(self, "错误提示", "禁漫天堂的策略文件不存在", QMessageBox.StandardButton.Ok,
+                                     QMessageBox.StandardButton.Ok)
+                warning("禁漫天堂的策略文件不存在，可能被删除了")
+        # 异常处理
+        except Exception as e:
+            # print(f"打开文档失败: {str(e)}")  # 输出错误信息
+            QMessageBox.critical(self, "错误提示", str(e), QMessageBox.StandardButton.Ok,
+                                 QMessageBox.StandardButton.Ok)
+            exception("禁漫天堂的策略文件不存在")
+            print("禁漫天堂的策略文件不存在")
+
+    def open_log_directory(self):
+        """打开日志目录"""
+        # 判断文件是否存在和打开文档
+        try:
+            if os.path.exists(r".\logs"):  # 实际开发路径
+                os.startfile(r".\logs")  # 打开文档，注意路径符号
+                info("使用开发路径后文档打开了")
+            elif os.path.exists(r"..\logs"):  # 当前测试路径
+                os.startfile(r"..\logs")  # 打开文档，注意路径符号
+                info("使用测试路径后文档打开了")
+            else:
+                exception("日志目录不存在")
+                print("日志目录")
+                # 错误弹窗提示
+                QMessageBox.critical(self, "错误提示", "日志目录不存在", QMessageBox.StandardButton.Ok,
+                                     QMessageBox.StandardButton.Ok)
+                warning("日志目录不存在，可能被删除了")
+        # 异常处理
+        except Exception as e:
+            # print(f"打开文档失败: {str(e)}")  # 输出错误信息
+            QMessageBox.critical(self, "错误提示", str(e), QMessageBox.StandardButton.Ok,
+                                 QMessageBox.StandardButton.Ok)
+            exception("日志目录不存在")
+            print("日志目录不存在")
 
     def uninstall(self):
         """卸载操作（回收资源卸载软件本体和软件产生的文件）"""
@@ -878,10 +1011,10 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
         # if event.key() == Qt.Key.Key_Return or event.key() == Qt.Key.Key_Enter:
         #     # 执行回车键或返回键的处理逻辑
         #     print(event.text())
-        print(event.text())
-
+        # print(event.text())
 
     """后端核心功能"""
+
     def create_state_monitor(self):
         """创建状态监视器
         根据绑定文件添加，被Home的按钮和自动开启回复所连接信号
@@ -926,13 +1059,6 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
             self.thread_args_list.append((output_widget[1], args[0], args[1], args[2], args[3], args[4], args[5], args[6]))
 
         info(f"所有状态监听窗口已创建完成，共创建了{len(self.config.bind.sections())}个窗口")
-
-        """监听消息输出重定向"""
-        # sys.stdout = OutputRedirection()                                   # 实例化输出重定向
-        # sys.stdout.text_print.connect(self.thread_args_list[0][0].append)       # 传入输出窗口并打通信号
-        # print("\033[91m测试完成\033[0m")
-        # info([name.objectName() for name in self.thread_args_list])
-
         """进程池创建和绑定"""
         # 设置线程池核心数
         self.thread_pool.setMaxThreadCount(int(self.LogicCPUCount.text()))

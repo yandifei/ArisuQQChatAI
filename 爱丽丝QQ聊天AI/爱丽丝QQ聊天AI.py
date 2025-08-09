@@ -1,6 +1,4 @@
 """界面启动图标"""
-
-
 try:
     import pyi_splash
     pyi_splash.close()
@@ -12,23 +10,8 @@ import sys
 from PyQt6.QtWidgets import QApplication                                    # 界面处理类
 # 自己的库
 from UI.ExtendedUI  import ArisuUI                                          # 导入开发好的UI类
-from arisu_logger import debug, info, console_handler                       # 导入日志方法
-from UI import OutputRedirection                                            # 输出重定向的类
+from arisu_logger import debug, info, warning, critical, exception          # 导入日志方法
 
-"""终端输出输出重定向"""
-# 日志输出重定向
-log_output_redirection = OutputRedirection()  # 实例化输出重定向对象
-console_handler.stream = log_output_redirection  # 日志输出重定向
-
-info("日志输出重定向已完成")
-# 准输出重定向
-stdout_redirection = OutputRedirection()  # 实例化输出重定向对象
-sys.stdout = stdout_redirection  # 标准输出重定向
-info("准输出重定向已完成")
-# 错误输出重定向
-stderr_redirection = OutputRedirection()  # 实例化输出重定向对象
-sys.stderr = stderr_redirection  # 错误输出重定向
-info("错误输出重定向已完成")
 
 """主进程UI设置和槽函数链接"""
 arisu_app = QApplication(sys.argv)  # 管理控制事件流和设置(sys.argv控制台接收参数)
