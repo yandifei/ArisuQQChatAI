@@ -207,6 +207,7 @@ class Ui_Arisu(object):
         self.ModeWidget.setSizeIncrement(QtCore.QSize(0, 0))
         self.ModeWidget.setMouseTracking(False)
         self.ModeWidget.setTabletTracking(False)
+        self.ModeWidget.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
         self.ModeWidget.setAcceptDrops(False)
         self.ModeWidget.setToolTip("")
         self.ModeWidget.setWhatsThis("")
@@ -998,7 +999,7 @@ class Ui_Arisu(object):
         self.HotkeySelections.setWidgetResizable(True)
         self.HotkeySelections.setObjectName("HotkeySelections")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, -153, 1047, 677))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, -144, 1047, 677))
         self.scrollAreaWidgetContents.setMinimumSize(QtCore.QSize(0, 0))
         self.scrollAreaWidgetContents.setStyleSheet("/*可视窗口背景*/\n"
 "QWidget {\n"
@@ -1443,7 +1444,7 @@ class Ui_Arisu(object):
         self.SettingsScrollArea.setWidgetResizable(True)
         self.SettingsScrollArea.setObjectName("SettingsScrollArea")
         self.SettingsScrollAreaWidget = QtWidgets.QWidget()
-        self.SettingsScrollAreaWidget.setGeometry(QtCore.QRect(0, 0, 1054, 603))
+        self.SettingsScrollAreaWidget.setGeometry(QtCore.QRect(0, 0, 1054, 553))
         self.SettingsScrollAreaWidget.setStyleSheet("/*可视窗口背景*/\n"
 "QWidget {\n"
 "    background-color: rgb(240, 244, 249);\n"
@@ -1573,7 +1574,7 @@ class Ui_Arisu(object):
 "    background-color: rgb(85, 85, 255);\n"
 "    color: rgb(255, 255, 255);\n"
 "}\n"
-"")
+"`")
         self.LogQueryDir.setAutoRepeat(False)
         self.LogQueryDir.setAutoDefault(False)
         self.LogQueryDir.setDefault(False)
@@ -1628,12 +1629,10 @@ class Ui_Arisu(object):
         self.OpenRoleDir.setStyleSheet("/**正常情况下样式**/\n"
 "QPushButton{\n"
 "    border-radius: 10px;        /*圆角*/\n"
-"    border-width: 3px;        /*设置边框大小*/\n"
-"    border-color: rgb(85, 85, 255);  /*边框颜色*/\n"
-"    border-style: solid;        /*实线*/\n"
+"    border: 3px solid rgb(85, 85, 255);  /*边框大小、边框样式、边框颜色*/\n"
 "    color: rgb(85, 85, 255);\n"
 "    /*background-color: rgba(0, 255, 0,0.1);    */\n"
-"    background-color: rgba(85, 85, 255,0.1)/*按钮背景颜色纯白*/\n"
+"    background-color: rgba(85, 85, 255,0.1);/*按钮背景颜色纯白*/\n"
 "}\n"
 "\n"
 "/**鼠标停留在按钮上的样式**/\n"
@@ -1855,55 +1854,83 @@ class Ui_Arisu(object):
         self.RestoreNavigationBarSortingButton.setObjectName("RestoreNavigationBarSortingButton")
         self.gridLayout.addWidget(self.RestoreNavigationBarSortingButton, 2, 6, 1, 1)
         self.InitialInterfaceLocationComboBox = QtWidgets.QComboBox(parent=self.SettingsScrollAreaWidget)
+        self.InitialInterfaceLocationComboBox.setSizeIncrement(QtCore.QSize(0, 40))
         font = QtGui.QFont()
-        font.setPointSize(20)
+        font.setPointSize(17)
         font.setBold(True)
         self.InitialInterfaceLocationComboBox.setFont(font)
-        self.InitialInterfaceLocationComboBox.setStyleSheet("/* 未下拉时，QComboBox的样式 */\n"
-"QComboBox {\n"
-"    border: 1px solid gray;   /* 边框 */\n"
-"    border-radius:2px;   /* 圆角 */\n"
-"    padding: 0px 0px 0px 10px; /* 上内边距、右内边距、下内边距、左内边距 */\n"
-"    color:rgb(0,0,0);/*字体颜色*/\n"
-"    /*font: normal normal 15px \"Microsoft YaHei\";*/\n"
-"    background: transparent;\n"
-"    text-align: AlignHCenter;\n"
-"/*    background-color: transparent;*/\n"
-"/*    background-color: rgb(0, 255, 255);*/\n"
+        self.InitialInterfaceLocationComboBox.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
+        self.InitialInterfaceLocationComboBox.setStyleSheet("/*本体样式(不包括下拉窗口)*/\n"
+"QComboBox{\n"
+"    \n"
+"    color: rgb(85, 85, 255);    /*字体颜色*/\n"
+"      border-radius:10px 10px 10px 10px;\n"
+"    background-color: rgba(85, 85, 255,0.1);/*背景颜色*/\n"
+"    border: 3px solid rgb(85, 85, 255);  /*边框大小、边框样式、边框颜色*/\n"
 "}\n"
-" \n"
-"/* 下拉后，整个下拉窗体样式 */\n"
-"QComboBox QAbstractItemView {\n"
-"    outline: 0px solid gray;   /* 选定项的虚框 */\n"
-"    border-radius:10px;   /* 圆角 */\n"
-"    padding-top:10px;    /*上下都留10px，是因为选中项是矩形，如果不留，移动到第一项和最后一项会变为直角，不好看*/\n"
-"    padding-bottom:10px;\n"
-" \n"
-"    color:rgb(0,0,0);/*字体颜色*/\n"
+"/*本体样式下拉状态(不包括下拉窗口)*/\n"
+"QComboBox:on {\n"
+"    border-top-left-radius: 10px;    /* 左上角圆角半径 */\n"
+"    border-top-right-radius: 10px;   /* 右上角圆角半径 */\n"
+"    border-bottom-left-radius: 0px;  /* 左下角直角 */\n"
+"    border-bottom-right-radius: 0px; /* 右下角直角 */\n"
 "}\n"
-" \n"
-"/* 下拉后，整个下拉窗体每项的样式 */\n"
-"QComboBox QAbstractItemView::item {\n"
-" \n"
-"    min-height: 26px;/*每项高度*/\n"
+"\n"
+"/*下拉的按钮*/\n"
+"QComboBox::drop-down {\n"
+"  subcontrol-position: right;\n"
+"    border:none; /*无边框*/\n"
+"    padding-right: 10px;        /*调整内部距离(配合下拉图标一起才有效)*/\n"
 "}\n"
-" \n"
-"/* 下拉后，整个下拉窗体越过每项的样式 */\n"
-"QComboBox QAbstractItemView::item:hover {\n"
-"    color:rgba(0,0,0,0.5);/*字体颜色*/\n"
+"\n"
+"/*右侧下拉箭头图标 */\n"
+"QComboBox::down-arrow {\n"
+"    image: url(:/控件图标/控件图标/chevron-down.png);\n"
+"    width: 20px;    /*限制图标大小*/\n"
+"    height:20px;/*限制图标大小*/\n"
+"    padding-right: 10px;        /*调整内部距离(配合下拉按钮一起才有效)*/\n"
 "}\n"
-" \n"
-"/* 下拉后，整个下拉窗体被选择的每项的样式 */\n"
-"QComboBox QAbstractItemView::item:selected {\n"
-"     color: rgba(51,51,51,1);\n"
-"    border-radius:2px;   /* 圆角 */\n"
-"}")
+"\n"
+"/*右侧下拉箭头图标(下拉状态)*/\n"
+"QComboBox::down-arrow:on {\n"
+"    image: url(:/控件图标/控件图标/chevron-up.png);\n"
+"}\n"
+"/*下拉的列表*/\n"
+"QComboBox QAbstractItemView{\n"
+"    background-color: rgb(225, 228, 250);/*背景颜色(蓝底经过计算的不透明)*/\n"
+"/*    border:none;*/\n"
+"    border: 3px solid rgb(85, 85, 255);    /*边框*/\n"
+"    border-top-left-radius: 0px;    /* 左上角圆角半径 */\n"
+"    border-top-right-radius: 0px;   /* 右上角圆角半径 */\n"
+"    border-bottom-left-radius: 10px;  /* 左下角直角 */\n"
+"    border-bottom-right-radius: 10px; /* 右下角直角 */\n"
+"    border-top: none;    /* 无上边框 */\n"
+"     outline: 0px; /*下拉项去虚线*/\n"
+"}\n"
+"/*=====================下拉框的选项===================*/\n"
+"/*下拉框的选项*/\n"
+"QComboBox QAbstractItemView::item{\n"
+"    text-align: center; /*文本居中显示*/\n"
+"    color: rgb(85, 85, 255);    /*字体颜色*/\n"
+"}\n"
+"/*下拉框的选项被选中*/\n"
+"QComboBox QAbstractItemView::item:selected{\n"
+"    background-color: rgba(85, 85, 255,0.3);\n"
+"}\n"
+"")
+        self.InitialInterfaceLocationComboBox.setIconSize(QtCore.QSize(40, 40))
         self.InitialInterfaceLocationComboBox.setObjectName("InitialInterfaceLocationComboBox")
-        self.InitialInterfaceLocationComboBox.addItem("")
-        self.InitialInterfaceLocationComboBox.addItem("")
-        self.InitialInterfaceLocationComboBox.addItem("")
-        self.InitialInterfaceLocationComboBox.addItem("")
-        self.InitialInterfaceLocationComboBox.addItem("")
+        self.InitialInterfaceLocationComboBox.addItem(icon7, "")
+        self.InitialInterfaceLocationComboBox.addItem(icon6, "")
+        icon14 = QtGui.QIcon()
+        icon14.addPixmap(QtGui.QPixmap(":/爱丽丝表情包/爱丽丝表情包/非女仆/4.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.InitialInterfaceLocationComboBox.addItem(icon14, "")
+        icon15 = QtGui.QIcon()
+        icon15.addPixmap(QtGui.QPixmap(":/爱丽丝表情包/爱丽丝表情包/女仆/6.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.InitialInterfaceLocationComboBox.addItem(icon15, "")
+        icon16 = QtGui.QIcon()
+        icon16.addPixmap(QtGui.QPixmap(":/爱丽丝表情包/爱丽丝表情包/非女仆/15.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.InitialInterfaceLocationComboBox.addItem(icon16, "")
         self.gridLayout.addWidget(self.InitialInterfaceLocationComboBox, 1, 6, 1, 1)
         self.SettingsScrollArea.setWidget(self.SettingsScrollAreaWidget)
         self.verticalLayout_9.addWidget(self.SettingsScrollArea)
@@ -1917,18 +1944,21 @@ class Ui_Arisu(object):
         self.ConsoleWidget.setStyleSheet("/* 主窗口样式 */\n"
 "QTextBrowser {\n"
 "   background-color: rgb(240, 244, 249);   /*背景色*/   \n"
-"   border: none;                           /*无边框*/\n"
+"   border: 5px solid rgb(240, 244, 249);  /*边框大小、边框样式、边框颜色*/\n"
 "   font-size: 20px;                        /* 字体大小 */\n"
 "   color: rgb(128, 128, 128);              /*字体颜色为灰色*/\n"
 "    border-top-left-radius: 20px;    /* 左上角圆角半径 */\n"
 "    border-top-right-radius: 20px;   /* 右上角圆角半径 */\n"
 "    background-image: none;\n"
+"    padding-top: 20px;        /*调整内部距离*/\n"
+"    padding-left: 10px;        /*调整内部距离*/\n"
+"    padding-bottom: 0px;    /*调整内部距离*/\n"
 "}\n"
 "\n"
 "/* 滚动条 - 垂直 */\n"
 "QTextBrowser QScrollBar:vertical {\n"
 "    border-radius:10px;                 /*圆角*/\n"
-"    background-color: rgb(255,255,255); /*背景颜色*/\n"
+"    background-color: rgb(240, 244, 249);   /*背景色*/   \n"
 "    width: 4px;                         /* 滚动条默认宽度*/\n"
 "}\n"
 "\n"
@@ -1943,13 +1973,9 @@ class Ui_Arisu(object):
 "    background-color: rgba(0, 255, 255,0.5);/*背景颜色*/\n"
 "}\n"
 "\n"
-"/* 滚动条向上按钮 */\n"
-"QTextBrowser QScrollBar::sub-line:vertical {    \n"
-"    height: 0px; /*设置按钮大小为0(不显示)*/\n"
-"}\n"
-"\n"
-"/* 滚动条向下按钮 */\n"
-"QTextBrowser QScrollBar::add-line:vertical {\n"
+"/* 滚动条向上、下按钮 */\n"
+"QTextBrowser QScrollBar::sub-line:vertical,\n"
+"QTextBrowser QScrollBar::add-line:vertical {    \n"
 "    height: 0px; /*设置按钮大小为0(不显示)*/\n"
 "}\n"
 "\n"
@@ -1958,14 +1984,16 @@ class Ui_Arisu(object):
 "QTextBrowser QScrollBar::sub-page:vertical {\n"
 "    background: none;        /*没有背景,之前是网格*/\n"
 "}")
+        self.ConsoleWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+        self.ConsoleWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.ConsoleWidget.setReadOnly(False)
         self.ConsoleWidget.setObjectName("ConsoleWidget")
         self.verticalLayout_9.addWidget(self.ConsoleWidget)
         self.verticalLayout_9.setStretch(0, 100)
         self.verticalLayout_9.setStretch(1, 1)
-        icon14 = QtGui.QIcon()
-        icon14.addPixmap(QtGui.QPixmap(":/选项卡图标/选项卡图标/用户设置.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.ModeWidget.addTab(self.Settings, icon14, "")
+        icon17 = QtGui.QIcon()
+        icon17.addPixmap(QtGui.QPixmap(":/选项卡图标/选项卡图标/用户设置.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.ModeWidget.addTab(self.Settings, icon17, "")
         self.verticalLayout.addWidget(self.ModeWidget)
 
         self.retranslateUi(Arisu)
@@ -2023,7 +2051,7 @@ class Ui_Arisu(object):
         self.SwitchReply_2.setText(_translate("Arisu", "开启/关闭爱丽丝的AI自动回复：F12"))
         self.StateScrollAreaTip_2.setText(_translate("Arisu", "开发者功能"))
         self.SwitchReply_7.setText(_translate("Arisu", "开启/关闭重定向窗口(日志窗口)：F9"))
-        self.SwitchReply_8.setText(_translate("Arisu", "施工中"))
+        self.SwitchReply_8.setText(_translate("Arisu", "打开一个cmd窗口(批处理指令)：F10"))
         self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.KeyboardShortcut), _translate("Arisu", "键盘快捷键"))
         self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.QuestionLinks), _translate("Arisu", "问题链接"))
         self.Uninstall.setToolTip(_translate("Arisu", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -2074,9 +2102,10 @@ class Ui_Arisu(object):
         self.APIKeyConfirm.setText(_translate("Arisu", "确认"))
         self.RestoreNavigationBarSortingButton.setText(_translate("Arisu", "还原导航栏排序"))
         self.InitialInterfaceLocationComboBox.setToolTip(_translate("Arisu", "初始界面位置"))
+        self.InitialInterfaceLocationComboBox.setCurrentText(_translate("Arisu", "主页"))
         self.InitialInterfaceLocationComboBox.setItemText(0, _translate("Arisu", "主页"))
         self.InitialInterfaceLocationComboBox.setItemText(1, _translate("Arisu", "状态监测"))
-        self.InitialInterfaceLocationComboBox.setItemText(2, _translate("Arisu", "热键"))
+        self.InitialInterfaceLocationComboBox.setItemText(2, _translate("Arisu", "键盘热键"))
         self.InitialInterfaceLocationComboBox.setItemText(3, _translate("Arisu", "问题链接"))
         self.InitialInterfaceLocationComboBox.setItemText(4, _translate("Arisu", "用户设置"))
         self.ModeWidget.setTabToolTip(self.ModeWidget.indexOf(self.Settings), _translate("Arisu", "用户设置"))

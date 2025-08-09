@@ -73,16 +73,16 @@ class OutputRedirection(QObject):
         1.正常的print为绿色（不用在意错误输出流，因为日志的错误已经捕获了）
         2.去掉ANSI转义序列进行转换html
         """
-        # 去掉ANSI转义序列
+        # 去掉ANSI转义序列(WARNING、ERROR颜色都是从pycharm里面扒的)
         text = self.remove_ansi_escape(text)
         if "DEBUG" in text:
-            return f"<font color='blue'>{text}</font>"
+            return f"<font color='cyan'>{text}</font>"
         elif "INFO" in text:
             return f"<font color='green'>{text}</font>"
         elif "WARNING" in text:
-            return f"<font color='yellow'>{text}</font>"
+            return f"<font color='#E5BF00'>{text}</font>"
         elif "ERROR" in text:
-            return f"<font color='red'>{text}</font>"
+            return f"<font color='#F75464'>{text}</font>"
         elif "CRITICAL" in text:
             return f"<font color='red'>{text}</font>"
         # 过滤掉print()的第二次write("\n")

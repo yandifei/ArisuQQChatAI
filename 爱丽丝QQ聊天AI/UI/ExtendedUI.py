@@ -644,10 +644,12 @@ class ArisuUI(Ui_Arisu, ArisuQQCHatAIUI):
             self.SettingsScrollArea.hide()  # 隐藏设置滚动控件
             self.ConsoleWidget.show()       # 显示输入输出重定向窗口
             self.jump_settings_widget()     # 跳转到用户设置界面
+            # self.setStyleSheet("background-color: rgb(128, 128, 128);")  # 切换整个窗口的样式
             info("已打开输入输出重定向窗口并跳转到该窗口")
         else:
             self.SettingsScrollArea.show()  # 显示设置滚动控件
             self.ConsoleWidget.hide()       # 隐藏输入输出重定向窗口
+            # self.setStyleSheet("background-color: rgb(240, 244, 249);") # 切换整个窗口的样式
             info("已隐藏输入输出重定向窗口")
         # self.ConsoleWidget.clearFocus()  # 清除焦点
 

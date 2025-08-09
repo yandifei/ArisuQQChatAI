@@ -64,6 +64,7 @@ class ArisuQQCHatAIUI(FramelessWindowWidget):
         self.system_tray_menu.addAction(self.quit_action)                   # 菜单把动作添加进去
         self.system_tray_menu.addSeparator()                                # 添加分隔符
         self.system_tray.setContextMenu(self.system_tray_menu)              # 设置系统托盘上下文菜单
+        # self.system_tray_menu.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
         # 点击托盘触发的操作
         self.system_tray.activated.connect(self.system_tray_click)
         """窗口初始化(无边框和自定义按钮)"""

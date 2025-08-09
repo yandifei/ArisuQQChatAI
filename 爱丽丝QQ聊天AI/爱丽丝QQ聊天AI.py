@@ -28,7 +28,6 @@ sys.exit(arisu_app.exec())      # 安全退出界面任务
 #     """主进程UI设置和槽函数链接"""
 #     arisu_app = QApplication(sys.argv)  # 管理控制事件流和设置(sys.argv控制台接收参数)
 #     arisu_ui = ArisuUI("爱丽丝", True, "resources/Arisu.ui")
-#
 #     arisu_ui.show()  # 界面展示
 #     info("UI界面加载完成")
 #

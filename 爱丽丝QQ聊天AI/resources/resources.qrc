@@ -18,6 +18,68 @@
     <file>选项卡图标/主页.png</file>
     <file>选项卡图标/状态监控.png</file>
   </qresource>
+  <qresource prefix="控件图标">
+    <file>控件图标/aperture.png</file>
+    <file>控件图标/apps.png</file>
+    <file>控件图标/apps-alt.png</file>
+    <file>控件图标/arrow-down-circle.png</file>
+    <file>控件图标/arrow-left-circle.png</file>
+    <file>控件图标/arrow-right-circle.png</file>
+    <file>控件图标/arrow-up-circle.png</file>
+    <file>控件图标/bolt.png</file>
+    <file>控件图标/bug.png</file>
+    <file>控件图标/cancel.png</file>
+    <file>控件图标/chevron-down.png</file>
+    <file>控件图标/chevron-left.png</file>
+    <file>控件图标/chevron-right.png</file>
+    <file>控件图标/chevrons-down.png</file>
+    <file>控件图标/chevrons-left.png</file>
+    <file>控件图标/chevrons-right.png</file>
+    <file>控件图标/chevrons-up.png</file>
+    <file>控件图标/chevron-up.png</file>
+    <file>控件图标/dashboard.png</file>
+    <file>控件图标/disc.png</file>
+    <file>控件图标/download.png</file>
+    <file>控件图标/eye.png</file>
+    <file>控件图标/eye-closed.png</file>
+    <file>控件图标/eye-crossed.png</file>
+    <file>控件图标/flower.png</file>
+    <file>控件图标/folder.png</file>
+    <file>控件图标/grid.png</file>
+    <file>控件图标/headphones.png</file>
+    <file>控件图标/home-alt.png</file>
+    <file>控件图标/info.png</file>
+    <file>控件图标/justify.png</file>
+    <file>控件图标/language.png</file>
+    <file>控件图标/line-chart.png</file>
+    <file>控件图标/link.png</file>
+    <file>控件图标/location.png</file>
+    <file>控件图标/maximise.png</file>
+    <file>控件图标/minimise.png</file>
+    <file>控件图标/minus.png</file>
+    <file>控件图标/music.png</file>
+    <file>控件图标/mute.png</file>
+    <file>控件图标/night-mode.png</file>
+    <file>控件图标/not-allowed.png</file>
+    <file>控件图标/ok-circle.png</file>
+    <file>控件图标/origin.png</file>
+    <file>控件图标/paperclip.png</file>
+    <file>控件图标/power.png</file>
+    <file>控件图标/remove.png</file>
+    <file>控件图标/rocket.png</file>
+    <file>控件图标/settings.png</file>
+    <file>控件图标/share-android.png</file>
+    <file>控件图标/shift.png</file>
+    <file>控件图标/star.png</file>
+    <file>控件图标/stopwatch.png</file>
+    <file>控件图标/switch-off.png</file>
+    <file>控件图标/switch-on.png</file>
+    <file>控件图标/text.png</file>
+    <file>控件图标/tool.png</file>
+    <file>控件图标/video.png</file>
+    <file>控件图标/volume-loud.png</file>
+    <file>控件图标/wifi.png</file>
+  </qresource>
   <qresource prefix="Logo">
     <file>Logo/16.ico</file>
     <file>Logo/32.ico</file>
